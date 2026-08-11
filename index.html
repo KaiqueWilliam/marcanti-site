@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcanti</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/logo-marcanti.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>
+  (function () {
+    var supported = ['pt', 'en', 'es'];
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('nolang')) return; // manual override, show chooser
+    var stored = localStorage.getItem('marcanti-lang');
+    var browserLang = (navigator.language || 'pt').slice(0, 2).toLowerCase();
+    var lang = stored || (supported.indexOf(browserLang) !== -1 ? browserLang : null);
+    if (lang) window.location.replace('/' + lang + '/');
+  })();
+</script>
+</head>
+<body>
+<div class="lang-landing">
+  <div class="lang-landing-card">
+    <img src="/assets/img/logo-marcanti.png" alt="Marcanti">
+    <p>Escolha o seu idioma / Choose your language / Elige tu idioma</p>
+    <div class="lang-options">
+      <a href="/pt/" onclick="localStorage.setItem('marcanti-lang','pt')">Português <span>&rarr;</span></a>
+      <a href="/en/" onclick="localStorage.setItem('marcanti-lang','en')">English <span>&rarr;</span></a>
+      <a href="/es/" onclick="localStorage.setItem('marcanti-lang','es')">Español <span>&rarr;</span></a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
