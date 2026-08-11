@@ -8,9 +8,9 @@ const colorsParagraph = {
   es: 'Disponible en una variedad de colores, incluyendo Cerámica, Marfil, Concreto y Blanco, puedes elegir la opción que mejor se adapte al estilo y diseño de tu techo. Estas opciones de color te permiten tener no solo un sellado eficaz, sino también una apariencia estética armoniosa y atractiva.',
 };
 const colorNames = {
-  pt: ['Cerâmica', 'Marfim', 'Concreto', 'Branco'],
-  en: ['Ceramic', 'Ivory', 'Concrete', 'White'],
-  es: ['Cerámica', 'Marfil', 'Concreto', 'Blanco'],
+  pt: ['Cerâmica', 'Marfim', 'Branco', 'Concreto'],
+  en: ['Ceramic', 'Ivory', 'White', 'Concrete'],
+  es: ['Cerámica', 'Marfil', 'Blanco', 'Concreto'],
 };
 const modelNames = {
   pt: {
@@ -58,10 +58,11 @@ function modelsSection(lang) {
   </div>`;
 }
 
-const colorImages = ['color-ceramica.png', 'color-marfim.png', 'color-concreto.png', 'color-branco.png'];
+const colorImagesSwatch = ['color-ceramica.png', 'color-marfim.jpg', 'color-branco.jpg', 'color-concreto.jpg'];
+const colorImagesKit = ['color-kit-ceramica.png', 'color-kit-marfim.png', 'color-kit-branco.png', 'color-kit-concreto.png'];
 
-function colorsSection(lang) {
-  return `<div class="section-tight">${T.colorSwatches({ title: ui.availableColors[lang], colors: colorNames[lang], note: colorsParagraph[lang], images: colorImages })}</div>`;
+function colorsSection(lang, images) {
+  return `<div class="section-tight">${T.colorSwatches({ title: ui.availableColors[lang], colors: colorNames[lang], note: colorsParagraph[lang], images: images || colorImagesSwatch })}</div>`;
 }
 
 // =================== HUB ===================
@@ -89,7 +90,7 @@ const hub = {
     ].map((c) => ({ ...c, linkLabel: ui.viewProduct[lang] }));
     return `
 ${T.pageHero({ title: { pt: 'Kit Vedação', en: 'Sealing Kit', es: 'Kit de Sellado' }[lang], subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', divider: true, warm: true })}
-${T.cardGrid({ cards, cols: 2 })}
+${T.cardGrid({ cards, cols: 2, imgFit: 'contain' })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
   },
 };
@@ -185,7 +186,7 @@ ${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', warm
   ${T.crumbs(lang, crumbItems(lang, h3))}
   ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Kit-Vedacao-Para-Telha-de-PVC.jpg' })}
   <div class="section-tight">${T.splitSection({ title: noScrewTitle, paragraphs: noScrewP, img: 'Copia-de-Title.png', cta: { href: T.url(lang, 'kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc'), label: fixLabel } })}</div>
-  ${colorsSection(lang)}
+  ${colorsSection(lang, colorImagesKit)}
   ${modelsSection(lang)}
 </div></section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
@@ -221,7 +222,7 @@ ${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', warm
   ${T.crumbs(lang, crumbItems(lang, h3))}
   ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Kit-Vedacao-e-Fixacao-Para-Telha-de-PVC-com-vedacao.jpg' })}
   <div class="section-tight">${T.splitSection({ title: withFixTitle, paragraphs: withFixP, img: 'Kit-Vedacao-Para-Telha-de-PVC-com-fixacao.jpg' })}</div>
-  ${colorsSection(lang)}
+  ${colorsSection(lang, colorImagesKit)}
   ${modelsSection(lang)}
 </div></section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;

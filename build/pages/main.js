@@ -243,14 +243,28 @@ const tecnologia = {
     const consultantsCta = { href: T.url(lang, 'contato'), label: talkToConsultants };
 
     return `
-${T.pageHero({ eyebrow: c.eyebrow, title: c.title, subtitle: c.paragraphs, tint: 'blue', cta: consultantsCta })}
+<section class="page-hero tint-blue">
+  <div class="container tecnologia-hero-grid">
+    <div class="tecnologia-hero-content">
+      <span class="breadcrumb-tag">${c.eyebrow}</span>
+      <h1>${c.title}</h1>
+      ${c.paragraphs.map((p) => `<p class="lede">${p}</p>`).join('')}
+      <a class="btn btn-primary" style="margin-top:8px;" href="${consultantsCta.href}">${consultantsCta.label}</a>
+    </div>
+    <div class="tecnologia-hero-photos">
+      <span class="tecnologia-hero-photo" style="background-image:url('${T.asset('img/construction-site-compress.jpg')}')"></span>
+      <span class="tecnologia-hero-photo" style="background-image:url('${T.asset('img/modern-architecture-buildings-in-vienna-austria-eu-small.jpg')}')"></span>
+      <span class="tecnologia-hero-photo" style="background-image:url('${T.asset('img/cement-factory-at-night-compress.jpg')}')"></span>
+    </div>
+  </div>
+</section>
 ${T.splitSection({ title: c.title2, paragraphs: c.paragraphs2, img: 'men-engineers-standing-outdoors-on-construction-si-small.jpg', cta: consultantsCta, ctaClass: 'btn-primary' })}
 <section>
   <div class="container text-center">
     <h2 class="max-720 mx-auto">${c.title3}</h2>
   </div>
 </section>
-${T.stepGrid({ eyebrow: c.stepsEyebrow, steps: c.steps.map((s, i) => ({ ...s, img: ['Etapa-Diagnostico-gratuito.png', 'Etapa-Plan.png', 'Etapa-model.png', 'Etapa-Estudo.png', 'Etapa-Estudo-Cutos.png'][i] })) })}
+${T.stepGrid({ eyebrow: c.stepsEyebrow, theme: 'brand', steps: c.steps.map((s, i) => ({ ...s, img: ['Etapa-Diagnostico-gratuito.png', 'Etapa-Plan.png', 'Etapa-model.png', 'Etapa-Estudo.png', 'Etapa-Estudo-Cutos.png'][i] })) })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}
 `;
   },
@@ -296,10 +310,10 @@ const contato = {
     return `
 <section class="page-hero warm">
   <div class="container contact-layout">
-    <div>
+    <div class="contact-card">
       <h2>${c.title}</h2>
       <span class="hero-divider"></span>
-      ${c.paragraphs.map((p) => `<p><strong>${p}</strong></p>`).join('')}
+      ${c.paragraphs.map((p) => `<p>${p}</p>`).join('')}
     </div>
     <div>
       ${T.contactForm(lang, submitLabel)}

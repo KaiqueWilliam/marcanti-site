@@ -204,7 +204,8 @@ function splitSection({ eyebrow, title, paragraphs = [], img, reverse = false, c
   </section>`;
 }
 
-function cardGrid({ eyebrow, title, subtitle, cards, cols }) {
+function cardGrid({ eyebrow, title, subtitle, cards, cols, imgFit }) {
+  const gridClass = imgFit === 'contain' ? 'card-grid card-grid-contain' : 'card-grid';
   return `<section>
     <div class="container">
       <div class="text-center max-720 mx-auto">
@@ -212,7 +213,7 @@ function cardGrid({ eyebrow, title, subtitle, cards, cols }) {
         ${title ? `<h2>${title}</h2>` : ''}
         ${subtitle ? `<p class="lede">${subtitle}</p>` : ''}
       </div>
-      <div class="card-grid"${cols ? ` style="grid-template-columns:repeat(${cols},1fr)"` : ''}>
+      <div class="${gridClass}"${cols ? ` style="grid-template-columns:repeat(${cols},1fr)"` : ''}>
         ${cards.map((c) => `<a class="card" href="${c.href}">
           <img src="${asset('img/' + c.img)}" alt="${c.title}" loading="lazy">
           <div class="card-body">
@@ -226,8 +227,8 @@ function cardGrid({ eyebrow, title, subtitle, cards, cols }) {
   </section>`;
 }
 
-function stepGrid({ eyebrow, title, steps }) {
-  return `<section class="bg-light">
+function stepGrid({ eyebrow, title, steps, theme }) {
+  return `<section class="${theme === 'brand' ? 'bg-brand' : 'bg-light'}">
     <div class="container">
       <div class="text-center max-720 mx-auto">
         ${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}
@@ -266,22 +267,16 @@ function galleryGrid({ title, subtitle, images, lang }) {
 }
 
 function colorSwatches({ title, colors, note, images }) {
-  const palette = {
-    'Cerâmica': '#B5622E', 'Ceramic': '#B5622E', 'Cerámica': '#B5622E',
-    'Marfim': '#EFE3C8', 'Ivory': '#EFE3C8',
-    'Concreto': '#9B9C9A', 'Concrete': '#9B9C9A', 'Concreto (ES)': '#9B9C9A',
-    'Branco': '#FFFFFF', 'White': '#FFFFFF', 'Blanco': '#FFFFFF',
-  };
   return `<div class="colors-block">
     ${title ? `<h2>${title}</h2>` : ''}
     ${note ? `<p>${note}</p>` : ''}
-    <div class="color-swatches">
+    <div class="color-gallery">
       ${colors.map((c, i) => {
         const img = images && images[i];
-        const dot = img
-          ? `<span class="color-dot color-dot-img" style="background-image:url('${asset('img/' + img)}')"></span>`
-          : `<span class="color-dot" style="background:${palette[c] || '#ccc'}; ${c === 'Branco' || c === 'White' || c === 'Blanco' ? 'border-color:#ccc;' : ''}"></span>`;
-        return `<span class="color-swatch">${dot}${c}</span>`;
+        return `<a class="color-gallery-item" href="${asset('img/' + img)}" target="_blank" rel="noopener" aria-label="${c}">
+          <img src="${asset('img/' + img)}" alt="${c}" loading="lazy">
+          <span>${c}</span>
+        </a>`;
       }).join('')}
     </div>
   </div>`;
