@@ -94,14 +94,18 @@ function renderHeader(lang, currentPath) {
         <span class="top-bar-item hide-mobile"><span aria-hidden="true">${icons.clock}</span> <span class="hide-mobile">${business.hours[lang]}</span></span>
       </div>
       <div class="top-bar-right">
-        ${topBarExtra.map((t) => `<a href="${url(lang, t.slug)}">${t.label[lang]}</a>`).join('')}
-        <div class="lang-switch">
-          <a href="/pt/${currentPath ? currentPath + '/' : ''}" class="${lang === 'pt' ? 'active' : ''}" aria-label="Português">${icons.flagBR}</a>
-          <a href="/en/${currentPath ? currentPath + '/' : ''}" class="${lang === 'en' ? 'active' : ''}" aria-label="English">${icons.flagUS}</a>
-          <a href="/es/${currentPath ? currentPath + '/' : ''}" class="${lang === 'es' ? 'active' : ''}" aria-label="Español">${icons.flagES}</a>
+        <div class="top-bar-links">
+          ${topBarExtra.map((t) => `<a href="${url(lang, t.slug)}">${t.label[lang]}</a>`).join('')}
         </div>
-        <a class="social-link" href="${business.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${icons.linkedin}</a>
-        <a class="social-link" href="${business.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${icons.instagram}</a>
+        <div class="top-bar-icons">
+          <div class="lang-switch">
+            <a href="/pt/${currentPath ? currentPath + '/' : ''}" class="${lang === 'pt' ? 'active' : ''}" aria-label="Português">${icons.flagBR}</a>
+            <a href="/en/${currentPath ? currentPath + '/' : ''}" class="${lang === 'en' ? 'active' : ''}" aria-label="English">${icons.flagUS}</a>
+            <a href="/es/${currentPath ? currentPath + '/' : ''}" class="${lang === 'es' ? 'active' : ''}" aria-label="Español">${icons.flagES}</a>
+          </div>
+          <a class="social-link" href="${business.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${icons.linkedin}</a>
+          <a class="social-link" href="${business.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${icons.instagram}</a>
+        </div>
       </div>
     </div>
   </div>
