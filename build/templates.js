@@ -1,5 +1,30 @@
 'use strict';
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 const { business, waLink, navTree, topBarExtra, ui } = require('./data/site');
+let imageMeta = {};
+try {
+  imageMeta = require('./image-meta.json');
+} catch (e) {
+  // Manifest not generated yet (run `npm run optimize-images`) — fall back to plain <img>.
+}
+
+// Short content hash appended as ?v= to style.css/main.js so we can tell the
+// server (see .htaccess) to cache them for a year: the URL itself changes
+// whenever the file does, so a stale cached copy is never served.
+function fileHash(relPath) {
+  try {
+    const buf = fs.readFileSync(path.join(__dirname, '..', relPath));
+    return crypto.createHash('md5').update(buf).digest('hex').slice(0, 8);
+  } catch (e) {
+    return Date.now().toString(36);
+  }
+}
+const ASSET_VERSION = {
+  css: fileHash('assets/css/style.css'),
+  js: fileHash('assets/js/main.js'),
+};
 
 const icons = {
   phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
@@ -13,6 +38,8 @@ const icons = {
   menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
   close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
   chevronDown: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
+  chevronLeft: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+  chevronRight: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
   flagBR: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#009C3B"/><polygon points="12,2 22,8 12,14 2,8" fill="#FFDF00"/><circle cx="12" cy="8" r="3.2" fill="#002776"/></svg>',
   flagUS: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#B22234"/><rect y="1.23" width="24" height="1.23" fill="#fff"/><rect y="3.69" width="24" height="1.23" fill="#fff"/><rect y="6.15" width="24" height="1.23" fill="#fff"/><rect y="8.61" width="24" height="1.23" fill="#fff"/><rect y="11.07" width="24" height="1.23" fill="#fff"/><rect y="13.53" width="24" height="1.23" fill="#fff"/><rect width="10" height="8.61" fill="#3C3B6E"/></svg>',
   flagES: '<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></svg>',
@@ -20,6 +47,25 @@ const icons = {
 
 const url = (lang, slug) => `/${lang}/${slug ? slug + '/' : ''}`;
 const asset = (p) => `/assets/${p}`;
+
+// Renders <picture> with AVIF/WebP siblings (when optimize-images produced smaller
+// versions) falling back to the original file, plus width/height to prevent layout
+// shift. `file` is just the basename inside assets/img/ (e.g. "Foto01-1.jpg").
+function renderImg(file, alt, { loading = 'lazy', cls, style } = {}) {
+  const meta = imageMeta[file] || {};
+  const dims = meta.width && meta.height ? ` width="${meta.width}" height="${meta.height}"` : '';
+  const classAttr = cls ? ` class="${cls}"` : '';
+  const styleAttr = style ? ` style="${style}"` : '';
+  const fallbackSrc = asset('img/' + file);
+  const imgTag = `<img src="${fallbackSrc}" alt="${alt || ''}" loading="${loading}" decoding="async"${dims}${classAttr}${styleAttr}>`;
+  if (!meta.avif && !meta.webp) return imgTag;
+  const base = file.replace(/\.(jpe?g|png)$/i, '');
+  const sources = [
+    meta.avif ? `<source srcset="${asset('img/' + base + '.avif')}" type="image/avif">` : '',
+    meta.webp ? `<source srcset="${asset('img/' + base + '.webp')}" type="image/webp">` : '',
+  ].join('');
+  return `<picture>${sources}${imgTag}</picture>`;
+}
 
 function renderSubMenu(children, lang, currentPath) {
   if (!children || !children.length) return '';
@@ -83,7 +129,7 @@ function renderFooter(lang) {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
-        <img class="footer-logo" src="${asset('img/logo-marcanti.png')}" alt="Marcanti">
+        <img class="footer-logo" src="${asset('img/logo-marcanti.png')}" alt="Marcanti" width="500" height="157" loading="lazy">
         <p>${ui.aboutFooter[lang]}</p>
         <h5 style="margin-top:24px;">${ui.whereWeAre[lang]}</h5>
         <p>${business.addressLines.join('<br>')}</p>
@@ -120,11 +166,14 @@ function renderFooter(lang) {
   </div>
 </footer>
 <a class="whatsapp-float" href="${wa}" target="_blank" rel="noopener" aria-label="WhatsApp">${icons.whatsapp}</a>
-<script src="${asset('js/main.js')}"></script>`;
+<script src="${asset('js/main.js')}?v=${ASSET_VERSION.js}" defer></script>`;
 }
 
 function renderHead(lang, meta) {
   const hreflangs = ['pt', 'en', 'es'].map((l) => `<link rel="alternate" hreflang="${l}" href="https://marcanti.ind.br${url(l, meta.path)}">`).join('\n  ');
+  const heroPreload = meta.preloadImage
+    ? `<link rel="preload" as="image" href="${meta.preloadImage}" fetchpriority="high">\n`
+    : '';
   return `<!DOCTYPE html>
 <html lang="${lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en' : 'es'}">
 <head>
@@ -135,15 +184,17 @@ function renderHead(lang, meta) {
 <link rel="canonical" href="https://marcanti.ind.br${url(lang, meta.path)}">
 ${hreflangs}
 <link rel="icon" href="${asset('img/logo-marcanti.png')}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+${heroPreload}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${asset('css/style.css')}">
+<link rel="stylesheet" href="${asset('css/style.css')}?v=${ASSET_VERSION.css}">
 </head>`;
 }
 
 function page(lang, meta, bodyHtml) {
-  return `${renderHead(lang, meta)}
+  const heroMatch = bodyHtml.match(/--hero-img:url\('([^']+)'\)/);
+  const fullMeta = heroMatch ? { ...meta, preloadImage: heroMatch[1] } : meta;
+  return `${renderHead(lang, fullMeta)}
 <body>
 ${renderHeader(lang, meta.path)}
 <main>
@@ -193,7 +244,7 @@ function crumbs(lang, items) {
 function splitSection({ eyebrow, title, paragraphs = [], img, reverse = false, cta, bg, mediaClass, ctaClass = 'btn-secondary', splitClass }) {
   return `<section${bg ? ' class="bg-light"' : ''}>
     <div class="container split${reverse ? ' reverse' : ''}${splitClass ? ' ' + splitClass : ''}">
-      <div class="split-media${mediaClass ? ' ' + mediaClass : ''}"><img src="${asset('img/' + img)}" alt="${title || ''}" loading="lazy"></div>
+      <div class="split-media${mediaClass ? ' ' + mediaClass : ''}">${renderImg(img, title || '')}</div>
       <div class="split-content">
         ${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}
         ${title ? `<h2>${title}</h2>` : ''}
@@ -215,7 +266,7 @@ function cardGrid({ eyebrow, title, subtitle, cards, cols, imgFit }) {
       </div>
       <div class="${gridClass}"${cols ? ` style="grid-template-columns:repeat(${cols},1fr)"` : ''}>
         ${cards.map((c) => `<a class="card" href="${c.href}">
-          <img src="${asset('img/' + c.img)}" alt="${c.title}" loading="lazy">
+          ${renderImg(c.img, c.title)}
           <div class="card-body">
             <h3>${c.title}</h3>
             ${c.text ? `<p>${c.text}</p>` : ''}
@@ -236,7 +287,7 @@ function stepGrid({ eyebrow, title, steps, theme }) {
       </div>
       <div class="step-grid">
         ${steps.map((s) => `<div class="step-card">
-          <img src="${asset('img/' + s.img)}" alt="${s.title}" loading="lazy">
+          ${renderImg(s.img, s.title)}
           <h3>${s.title}</h3>
           <p>${s.text}</p>
         </div>`).join('')}
@@ -250,18 +301,21 @@ function valueGrid({ eyebrow, title, values }) {
     <div class="container">
       ${title ? `<div class="text-center max-720 mx-auto">${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}<h2>${title}</h2></div>` : ''}
       <div class="value-grid">
-        ${values.map((v) => `<div class="value-card">${v.icon ? `<img class="value-icon" src="${asset('img/' + v.icon)}" alt="" loading="lazy">` : ''}<h3>${v.title}</h3><p>${v.text}</p></div>`).join('')}
+        ${values.map((v) => `<div class="value-card">${v.icon ? renderImg(v.icon, '', { cls: 'value-icon' }) : ''}<h3>${v.title}</h3><p>${v.text}</p></div>`).join('')}
       </div>
     </div>
   </section>`;
 }
 
 function galleryGrid({ title, subtitle, images, lang }) {
+  const slides = images.map((file) => `<div class="carousel-slide">${renderImg(file, '')}</div>`).join('');
   return `<div class="gallery-block">
     ${title ? `<h2>${title}</h2>` : ''}
     ${subtitle ? `<p class="lede">${subtitle}</p>` : ''}
-    <div class="gallery-grid">
-      ${images.map((img) => `<img src="${asset('img/' + img)}" alt="" loading="lazy">`).join('')}
+    <div class="carousel" data-carousel>
+      <div class="carousel-track" tabindex="0">${slides}</div>
+      <button type="button" class="carousel-arrow carousel-prev" aria-label="Anterior">${icons.chevronLeft}</button>
+      <button type="button" class="carousel-arrow carousel-next" aria-label="Próximo">${icons.chevronRight}</button>
     </div>
   </div>`;
 }
@@ -272,9 +326,9 @@ function colorSwatches({ title, colors, note, images }) {
     ${note ? `<p>${note}</p>` : ''}
     <div class="color-gallery">
       ${colors.map((c, i) => {
-        const img = images && images[i];
-        return `<a class="color-gallery-item" href="${asset('img/' + img)}" target="_blank" rel="noopener" aria-label="${c}">
-          <img src="${asset('img/' + img)}" alt="${c}" loading="lazy">
+        const file = images && images[i];
+        return `<a class="color-gallery-item" href="${asset('img/' + file)}" target="_blank" rel="noopener" aria-label="${c}">
+          ${renderImg(file, c)}
           <span>${c}</span>
         </a>`;
       }).join('')}
@@ -323,7 +377,7 @@ function contactForm(lang, submitLabel) {
 }
 
 module.exports = {
-  icons, url, asset, page,
+  icons, url, asset, page, renderImg,
   pageHero, crumbs, splitSection, cardGrid, stepGrid, valueGrid,
   galleryGrid, colorSwatches, infoBox, ctaBand, contactForm,
 };

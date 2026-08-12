@@ -36,6 +36,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Product photo carousels ("Sistema de Encaixe e Aplicação" etc.)
+  document.querySelectorAll('[data-carousel]').forEach(function (car) {
+    var track = car.querySelector('.carousel-track');
+    var prev = car.querySelector('.carousel-prev');
+    var next = car.querySelector('.carousel-next');
+    if (!track || !prev || !next) return;
+
+    function step() {
+      var slide = track.querySelector('.carousel-slide');
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '16');
+      return slide ? slide.getBoundingClientRect().width + gap : track.clientWidth;
+    }
+
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      if (max <= 4) {
+        prev.disabled = true;
+        next.disabled = true;
+        return;
+      }
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max - 4;
+    }
+
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update);
+    window.addEventListener('resize', update);
+    update();
+  });
+
   // Contact form submission
   var form = document.querySelector('.contact-form');
   if (form) {

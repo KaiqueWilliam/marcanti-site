@@ -81,7 +81,7 @@ ${T.splitSection({ eyebrow: kitTeaser.eyebrow, title: kitTeaser.title, paragraph
     <h2>${clients.title}</h2>
     <p class="clients-note">${clients.note}</p>
     <div class="clients-grid">
-      ${['client-direcional.png', 'client-precon.png', 'client-lacom.png', 'client-civil.png'].map((img) => `<div class="client-slot"><img src="${T.asset('img/' + img)}" alt="" loading="lazy"></div>`).join('')}
+      ${['client-direcional.png', 'client-precon.png', 'client-lacom.png', 'client-civil.png'].map((file) => `<div class="client-slot">${T.renderImg(file, '')}</div>`).join('')}
     </div>
   </div>
 </section>

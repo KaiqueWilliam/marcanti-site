@@ -44,7 +44,7 @@ function fitSection({ images }) {
   return (lang) => `<div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images })}</div>`;
 }
 function sizesSection({ paragraphs, img }) {
-  return (lang) => `<div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(paragraphs[lang])}</div>${img ? `<div><img src="${T.asset('img/' + img)}" alt="" loading="lazy" style="border-radius:8px;"></div>` : ''}</div></div>`;
+  return (lang) => `<div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(paragraphs[lang])}</div>${img ? `<div>${T.renderImg(img, '', { style: 'border-radius:8px;' })}</div>` : ''}</div></div>`;
 }
 
 // =================== ESPAÇADORES HUB ===================
@@ -261,12 +261,12 @@ ${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3a[lang], subtitle: gene
 <section><div class="container">${crumbs}
   ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutA[lang], img: 'Design-sem-nome-circular-fechado.png' })}
   <div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images: ['WhatsApp-Image-2023-08-18-at-13.37.14.jpeg', '9474da9844790fd15981a02f7a35cf16.jpg'] })}</div>
-  <div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(sizesP[lang])}</div><div><img src="${T.asset('img/Title-1.png')}" alt="" loading="lazy" style="border-radius:8px;"></div></div></div>
+  <div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(sizesP[lang])}</div><div>${T.renderImg('Title-1.png', '', { style: 'border-radius:8px;' })}</div></div></div>
 </div></section>
 ${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3b[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
 <section><div class="container">
     ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutB[lang], img: '4538d41e-933d-4118-89de-2b10e4e9f96a.png' })}
-    <div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(sizesP[lang])}</div><div><img src="${T.asset('img/WhatsApp-Image-2026-03-31-at-10.29.36-1024x739.jpeg')}" alt="" loading="lazy" style="border-radius:8px;"></div></div></div>
+    <div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(sizesP[lang])}</div><div>${T.renderImg('WhatsApp-Image-2026-03-31-at-10.29.36-1024x739.jpeg', '', { style: 'border-radius:8px;' })}</div></div></div>
 </div></section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
     },

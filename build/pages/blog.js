@@ -76,7 +76,7 @@ function recentPostsSection(lang, currentSlug) {
     <h3>${ui.recentPosts[lang]}</h3>
     <div class="card-grid">
       ${others.map((p) => `<a class="card" href="${T.url(lang, 'blog/' + p.slug)}">
-        <img src="${T.asset('img/' + p.img)}" alt="${p.title[lang]}" loading="lazy">
+        ${T.renderImg(p.img, p.title[lang])}
         <div class="card-body"><h3>${p.title[lang]}</h3><span class="card-link">${ui.readMore[lang]} &rarr;</span></div>
       </a>`).join('')}
     </div>

@@ -1,0 +1,71 @@
+# =========================================================
+# Marcanti — configuração de performance para Apache/HostGator
+# Compressão, cache do navegador e cabeçalhos de segurança básicos.
+# Cada bloco é protegido por <IfModule> para não quebrar o site
+# caso algum módulo não esteja habilitado no servidor.
+# =========================================================
+
+# ---- Compressão (gzip/deflate) dos arquivos de texto ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf application/vnd.ms-fontobject
+  # Imagens (jpg/png/webp/avif) e fontes woff/woff2 já vêm comprimidas: recomprimi-las
+  # só gasta CPU do servidor sem ganho de tamanho, por isso não entram na lista acima.
+</IfModule>
+
+# ---- Cache do navegador ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML: sempre revalidar, para que edições de conteúdo apareçam na hora.
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # CSS/JS: a URL leva ?v=<hash do conteúdo> (gerado pelo build), então uma
+  # mudança no arquivo já vira uma URL nova — pode cachear por 1 ano com segurança.
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+
+  # Imagens e fontes: cache de 30 dias. Não usamos "immutable" nem 1 ano aqui de
+  # propósito, porque o fluxo de edição rápida do site (ver README) permite trocar
+  # uma imagem mantendo o mesmo nome de arquivo; 30 dias equilibra performance para
+  # visitantes recorrentes com uma janela razoável para uma foto atualizada aparecer.
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/avif "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpe?g|png|webp|avif|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Cabeçalhos básicos de segurança/hardening (não afetam performance nem visual).
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ---- Formatos modernos de imagem ----
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/avif .avif
+</IfModule>
+
+# ---- HTTPS (mantenha comentado até confirmar que o SSL está ativo no domínio) ----
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>

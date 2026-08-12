@@ -1,0 +1,18 @@
+{
+  "name": "marcanti-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ferramentas de build (Node.js, uso local) do site estático Marcanti. Não é necessário no servidor de produção.",
+  "scripts": {
+    "build": "node build/build.js",
+    "optimize-images": "node build/optimize-images.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KaiqueWilliam/marcanti-site.git"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}

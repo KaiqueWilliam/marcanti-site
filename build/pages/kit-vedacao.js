@@ -52,7 +52,7 @@ function modelsSection(lang) {
     <div class="tile-grid">
       ${modelDescriptions[lang].map((d, i) => {
         const [name, ...rest] = d.split(': ');
-        return `<div class="tile"><img src="${T.asset('img/' + modelImages[i])}" alt="${name}" loading="lazy"><h4>${name}</h4><p>${rest.join(': ')}</p></div>`;
+        return `<div class="tile">${T.renderImg(modelImages[i], name)}<h4>${name}</h4><p>${rest.join(': ')}</p></div>`;
       }).join('')}
     </div>
   </div>`;
