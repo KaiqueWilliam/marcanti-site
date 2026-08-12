@@ -111,7 +111,7 @@ function renderHeader(lang, currentPath) {
   </div>
   <div class="main-header">
     <div class="container">
-      <a class="logo" href="${url(lang, '')}"><img src="${asset('img/logo-marcanti.png')}" alt="Marcanti" width="145" height="50"></a>
+      <a class="logo" href="${url(lang, '')}"><img src="${asset('img/logo-marcanti.png')}" alt="Marcanti" width="500" height="157"></a>
       <nav class="main-nav">
         <ul>${navTree.map((item) => renderNavItem(item, lang, currentPath)).join('')}</ul>
       </nav>
@@ -187,7 +187,7 @@ function renderHead(lang, meta) {
 <meta name="description" content="${meta.description || ''}">
 <link rel="canonical" href="https://marcanti.ind.br${url(lang, meta.path)}">
 ${hreflangs}
-<link rel="icon" href="${asset('img/logo-marcanti.png')}">
+<link rel="icon" href="${asset('img/favicon-marcanti.png')}">
 ${heroPreload}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
