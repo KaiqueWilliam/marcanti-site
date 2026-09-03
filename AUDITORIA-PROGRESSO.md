@@ -4,13 +4,15 @@ Documento de rastreamento. Base: `Marcanti_Auditoria_Site_Copy_SEO` (25/08/2026)
 feita sobre o site WordPress/Elementor antigo. **Este repositório é a recriação
 estática** que substitui aquele site — as correções entram nos fontes em
 `build/data/site.js`, `build/templates.js` e `build/pages/*.js`, e o site é
-regerado com `node build/build.js` (28 páginas × 3 idiomas = 84 arquivos).
+regerado com `node build/build.js` (29 páginas × 3 idiomas = 87 arquivos).
 
 Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído · `[--]` não se aplica a este repo
 
 ---
 
-## 1. Inventário de páginas — estado atual (validado no HTML gerado)
+## 1. Inventário de páginas — **fotografia inicial** (Etapa 1, antes das correções)
+
+> Mantido como linha de base para comparação. O estado atual de cada item está na seção 3.
 
 | # | Página / slug | Title atual (pt) | H1 | Palavras | Pendências |
 |---|---|---|---|---|---|
@@ -62,7 +64,7 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 
 ### Crítico
 - [x] **H1 ausente em 22 das 28 páginas** — Etapa 2: `pageHero({tag:'h3'})` → `'h1'` em todas; contato/catálogo `<h2>`→`<h1>`; validado: 84/84 page-langs com exatamente 1 H1 e primeira heading = H1 (audit 3.2 / 7)
-- [ ] Title da Home ainda "Espaçadores de Concreto" → "Espaçadores Plásticos para Concreto" (audit 4.1 / 7)
+- [x] Title da Home → "Espaçadores Plásticos para Concreto | Marcanti" (Etapa 9) (audit 4.1 / 7)
 - [x] **Tabelas de medida em imagem** → Etapa 4: 6 tabelas transcritas dos PNGs/jpegs do catálogo para `<table>` HTML nativa (`build/data/spec-tables.js` + `T.specTable`), nas 7 páginas de produto × 3 idiomas. Desenho técnico mantido ao lado como referência visual, agora com `alt` descritivo. Validado: tabelas balanceadas, `th scope=row/col` (audit 3.3 / 4.5)
 - [ ] Cadeirinha (LP + LC) abre com o texto do Multiapoio → copy própria (audit 4.5)
 
