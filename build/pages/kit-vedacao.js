@@ -68,11 +68,11 @@ function colorsSection(lang, images) {
 // =================== HUB ===================
 const hub = {
   slug: 'kit-vedacao',
-  title: { pt: 'Kit Vedação – Marcanti', en: 'Sealing Kit – Marcanti', es: 'Kit de Sellado – Marcanti' },
+  title: { pt: 'Kit de Vedação para Telha de PVC | Marcanti', en: 'Sealing Kit for PVC Roof Tiles | Marcanti', es: 'Kit de Sellado para Teja de PVC | Marcanti' },
   description: {
-    pt: 'Kit de Vedação MARCANTI para telhados: solução completa para proteção e durabilidade contra água, vento e infiltrações.',
-    en: 'MARCANTI Sealing Kit for roofs: complete solution for protection and durability against water, wind and leaks.',
-    es: 'Kit de Sellado MARCANTI para techos: solución completa para protección y durabilidad contra agua, viento e infiltraciones.',
+    pt: 'Kits de vedação e fixação para telha de PVC e perfis diversos, com e sem parafuso. Fabricante direto, entrega no Nordeste.',
+    en: 'Sealing and fixing kits for PVC roof tiles and various profiles, with and without screw. Direct from the manufacturer.',
+    es: 'Kits de sellado y fijación para teja de PVC y perfiles diversos, con y sin tornillo. Fabricante directo, entrega en el Nordeste.',
   },
   body(lang) {
     const intro = {
@@ -102,11 +102,11 @@ function crumbItems(lang, label) {
 // =================== Kit Vedação e Fixação Universal ===================
 const kitFixacaoUniversal = {
   slug: 'kit-vedacao/kit-vedacao-e-fixacao-universal',
-  title: { pt: 'Kit Vedação e Fixação Universal – Marcanti', en: 'Universal Sealing & Fixing Kit – Marcanti', es: 'Kit Universal de Sellado y Fijación – Marcanti' },
+  title: { pt: 'Kit Vedação e Fixação Universal | Marcanti', en: 'Universal Sealing and Fixing Kit | Marcanti', es: 'Kit Universal de Sellado y Fijación | Marcanti' },
   description: {
-    pt: 'Kit Vedação e Fixação Universal MARCANTI para diversos tipos de telhas, com parafuso incluso.',
-    en: 'MARCANTI Universal Sealing & Fixing Kit for various roof tile types, screw included.',
-    es: 'Kit Universal de Sellado y Fijación MARCANTI para varios tipos de tejas, con tornillo incluido.',
+    pt: 'Kit universal com parafuso incluso: substitui capa, anel de vedação e chapéu em uma peça só. Para diversos perfis de telha.',
+    en: 'Universal kit with screw included: replaces cap, sealing ring and hat with a single piece. For various roof tile profiles.',
+    es: 'Kit universal con tornillo incluido: reemplaza capa, anillo de sellado y sombrerete en una sola pieza. Para varios perfiles.',
   },
   body(lang) {
     const h3 = { pt: 'Kit Vedação e Fixação Universal', en: 'Universal Sealing & Fixing Kit', es: 'Kit Universal de Sellado y Fijación' }[lang];
@@ -130,11 +130,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
 // =================== Kit de Vedação Universal Para Diversos Tipos de Telhas ===================
 const kitUniversal = {
   slug: 'kit-vedacao/kit-de-vedacao-universal-para-diversos-tipos-de-telhas',
-  title: { pt: 'Kit de Vedação Universal Para Diversos Tipos de Telhas – Marcanti', en: 'Universal Sealing Kit for Various Roof Tile Types – Marcanti', es: 'Kit de Sellado Universal para Varios Tipos de Tejas – Marcanti' },
+  title: { pt: 'Kit de Vedação Universal sem Parafuso | Marcanti', en: 'Universal Sealing Kit without Screw | Marcanti', es: 'Kit de Sellado Universal sin Tornillo | Marcanti' },
   description: {
-    pt: 'Kit de Vedação Universal MARCANTI: solução versátil para vedação adequada em diferentes tipos de telhados. Parafuso não incluso.',
-    en: 'MARCANTI Universal Sealing Kit: versatile solution for proper sealing across different roof types. Screw not included.',
-    es: 'Kit de Sellado Universal MARCANTI: solución versátil para un sellado adecuado en diferentes tipos de techos. Tornillo no incluido.',
+    pt: 'Kit universal para diversos tipos de telha, em peça única. Parafuso não incluso — para quem já usa fixação própria.',
+    en: 'Universal kit for various roof tile types, in a single piece. Screw not included, for those who already have fasteners.',
+    es: 'Kit universal para varios tipos de teja, en pieza única. Tornillo no incluido, para quien ya usa fijación propia.',
   },
   body(lang) {
     const h3 = { pt: 'Kit de Vedação Universal Para Diversos Tipos de Telhas', en: 'Universal Sealing Kit for Various Roof Tile Types', es: 'Kit de Sellado Universal para Varios Tipos de Tejas' }[lang];
@@ -159,11 +159,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
 // =================== Kit Vedação Para Telha de PVC ===================
 const kitPvc = {
   slug: 'kit-vedacao/kit-vedacao-para-telha-de-pvc',
-  title: { pt: 'Kit Vedação Para Telha de PVC – Marcanti', en: 'Sealing Kit for PVC Roof Tiles – Marcanti', es: 'Kit de Sellado para Teja de PVC – Marcanti' },
+  title: { pt: 'Kit Vedação Telha de PVC sem Parafuso | Marcanti', en: 'PVC Tile Sealing Kit without Screw | Marcanti', es: 'Kit Sellado Teja de PVC sin Tornillo | Marcanti' },
   description: {
-    pt: 'Kit de Vedação para Telha de PVC MARCANTI: capa, anel de vedação e chapéu. Parafuso não incluso.',
-    en: 'MARCANTI Sealing Kit for PVC roof tiles: cap, sealing ring and hat. Screw not included.',
-    es: 'Kit de Sellado para Teja de PVC MARCANTI: capa, anillo de sellado y sombrerete. Tornillo no incluido.',
+    pt: 'Capa, anel de vedação e chapéu para telha de PVC, nas cores cerâmica, marfim, branco e concreto. Parafuso não incluso.',
+    en: 'Cap, sealing ring and hat for PVC roof tiles, in ceramic, ivory, white and concrete. Screw not included.',
+    es: 'Capa, anillo de sellado y sombrerete para teja de PVC, en cerámica, marfil, blanco y concreto. Tornillo no incluido.',
   },
   body(lang) {
     const h3 = { pt: 'Kit Vedação Para Telha de PVC', en: 'Sealing Kit for PVC Roof Tiles', es: 'Kit de Sellado para Teja de PVC' }[lang];
@@ -196,11 +196,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
 // =================== Kit Vedação e Fixação Para Telha de PVC ===================
 const kitPvcFixacao = {
   slug: 'kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc',
-  title: { pt: 'Kit Vedação e Fixação Para Telha de PVC – Marcanti', en: 'Sealing & Fixing Kit for PVC Roof Tiles – Marcanti', es: 'Kit de Sellado y Fijación para Teja de PVC – Marcanti' },
+  title: { pt: 'Kit Vedação e Fixação Telha de PVC | Marcanti', en: 'PVC Tile Sealing and Fixing Kit | Marcanti', es: 'Kit Sellado y Fijación Teja de PVC | Marcanti' },
   description: {
-    pt: 'Kit de Vedação e Fixação para Telha de PVC MARCANTI: instalação segura e vedação eficiente, com parafuso incluso.',
-    en: 'MARCANTI Sealing & Fixing Kit for PVC roof tiles: safe installation and efficient sealing, screw included.',
-    es: 'Kit de Sellado y Fijación para Teja de PVC MARCANTI: instalación segura y sellado eficiente, con tornillo incluido.',
+    pt: 'Kit completo com parafuso de 2,5 ou 3,5 polegadas para telha de PVC. Veda o ponto de fixação, nas quatro cores da linha.',
+    en: 'Complete kit with 2.5 or 3.5 inch screw for PVC roof tiles. Seals the fastening point, in all four colors of the range.',
+    es: 'Kit completo con tornillo de 2,5 o 3,5 pulgadas para teja de PVC. Sella el punto de fijación, en los cuatro colores.',
   },
   body(lang) {
     const h3 = { pt: 'Kit Vedação e Fixação Para Telha de PVC', en: 'Sealing & Fixing Kit for PVC Roof Tiles', es: 'Kit de Sellado y Fijación para Teja de PVC' }[lang];

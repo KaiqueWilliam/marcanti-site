@@ -67,11 +67,11 @@ function sizesSection({ paragraphs, img, table }) {
 // =================== ESPAÇADORES HUB ===================
 const hub = {
   slug: 'espacadores',
-  title: { pt: 'Espaçadores – Marcanti', en: 'Spacers – Marcanti', es: 'Espaciadores – Marcanti' },
+  title: { pt: 'Espaçadores Plásticos para Armadura | Marcanti', en: 'Plastic Spacers for Rebar | Marcanti', es: 'Espaciadores Plásticos para Armadura | Marcanti' },
   description: {
-    pt: 'Espaçadores de concreto MARCANTI: Linha Postes e Linha Construção, garantindo segurança, durabilidade e eficiência.',
-    en: 'MARCANTI concrete spacers: Pole Line and Construction Line, ensuring safety, durability and efficiency.',
-    es: 'Espaciadores de concreto MARCANTI: Línea Postes y Línea Construcción, garantizando seguridad, durabilidad y eficiencia.',
+    pt: 'Espaçadores para cobrimento de armadura: circular, cadeirinha e multiapoio. De 15 a 50 mm, bitolas de 4,2 a 25 mm. Veja a linha.',
+    en: 'Spacers for concrete cover: circular, chair and multi-support. From 15 to 50 mm, rebar from 4.2 to 25 mm. See the full range.',
+    es: 'Espaciadores para recubrimiento de armadura: circular, silla y multiapoyo. De 15 a 50 mm, varillas de 4,2 a 25 mm. Ver la línea.',
   },
   body(lang) {
     const c = {
@@ -93,11 +93,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
 // =================== LINHA POSTES HUB ===================
 const linhaPostesHub = {
   slug: 'espacadores/linha-postes',
-  title: { pt: 'Linha Postes – Marcanti', en: 'Pole Line – Marcanti', es: 'Línea Postes – Marcanti' },
+  title: { pt: 'Espaçadores para Postes e Pré-Moldados | Marcanti', en: 'Spacers for Poles and Precast | Marcanti', es: 'Espaciadores para Postes y Prefabricados | Marcanti' },
   description: {
-    pt: 'Espaçadores Linha Postes MARCANTI: Circular Fechado, Circular Aberto, Cadeirinha e Cadeirinha Pesado, para alinhamento preciso e confiável.',
-    en: 'MARCANTI Pole Line spacers: Closed Circular, Open Circular, Chair and Heavy Chair, for precise and reliable alignment.',
-    es: 'Espaciadores Línea Postes MARCANTI: Circular Cerrado, Circular Abierto, Silla y Silla Pesada, para una alineación precisa y confiable.',
+    pt: 'Circular aberto, circular fechado e cadeirinha para postes, estacas e peças de concreto pré-moldado. Fabricante na Bahia.',
+    en: 'Open circular, closed circular and chair spacers for poles, piles and precast concrete parts. Manufacturer in Bahia.',
+    es: 'Circular abierto, circular cerrado y silla para postes, pilotes y piezas de concreto prefabricado. Fabricante en Bahía.',
   },
   body(lang) {
     const intro = { pt: 'Os espaçadores de linha da MARCANTI são a escolha ideal para a construção civil, proporcionando um alinhamento preciso e confiável, garantindo a qualidade e segurança das suas instalações.', en: 'MARCANTI’s line spacers are the ideal choice for civil construction, providing precise and reliable alignment, ensuring the quality and safety of your installations.', es: 'Los espaciadores de línea de MARCANTI son la opción ideal para la construcción civil, proporcionando una alineación precisa y confiable, garantizando la calidad y seguridad de tus instalaciones.' }[lang];
@@ -119,11 +119,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
 // =================== LINHA CONSTRUÇÃO HUB ===================
 const linhaConstrucaoHub = {
   slug: 'espacadores/linha-construcao',
-  title: { pt: 'Linha Construção – Marcanti', en: 'Construction Line – Marcanti', es: 'Línea Construcción – Marcanti' },
+  title: { pt: 'Espaçadores para Laje, Viga e Pilar | Marcanti', en: 'Spacers for Slab, Beam and Column | Marcanti', es: 'Espaciadores para Losa, Viga y Pilar | Marcanti' },
   description: {
-    pt: 'Espaçadores Linha Construção MARCANTI: Multiapoio, Circular Aberto, Cadeirinha e Cadeirinha Pesado, para alinhamento preciso e confiável.',
-    en: 'MARCANTI Construction Line spacers: Multi-Support, Open Circular, Chair and Heavy Chair, for precise and reliable alignment.',
-    es: 'Espaciadores Línea Construcción MARCANTI: Multiapoyo, Circular Abierto, Silla y Silla Pesada, para una alineación precisa y confiable.',
+    pt: 'Cadeirinha, circular aberto e multiapoio para fundo de viga, laje, pilar e fundação. Cobrimento de 15 a 50 mm. Direto da fábrica.',
+    en: 'Chair, open circular and multi-support spacers for beam soffit, slab, column and foundation. Cover 15 to 50 mm. Direct from factory.',
+    es: 'Silla, circular abierto y multiapoyo para fondo de viga, losa, pilar y cimentación. Recubrimiento de 15 a 50 mm. Directo de fábrica.',
   },
   body(lang) {
     const intro = { pt: 'Os espaçadores de linha da MARCANTI são a escolha ideal para a construção civil, proporcionando um alinhamento preciso e confiável, garantindo a qualidade e segurança das suas instalações.', en: 'MARCANTI’s line spacers are the ideal choice for civil construction, providing precise and reliable alignment, ensuring the quality and safety of your installations.', es: 'Los espaciadores de línea de MARCANTI son la opción ideal para la construcción civil, proporcionando una alineación precisa y confiable, garantizando la calidad y seguridad de tus instalaciones.' }[lang];
@@ -182,16 +182,22 @@ function makeCadeirinha(line) {
         sizesSection({ paragraphs: sizesP, img: 'Title.png', table: SPEC.cadeirinha }),
       ],
     }),
-    title: {
-      pt: `Cadeirinha Linha ${isPostes ? 'Postes' : 'Construção'} – Marcanti`,
-      en: `Chair Spacer – ${isPostes ? 'Pole' : 'Construction'} Line – Marcanti`,
-      es: `Separador Silla – Línea ${isPostes ? 'Postes' : 'Construcción'} – Marcanti`,
-    },
-    description: {
-      pt: 'Espaçador tipo cadeirinha MARCANTI: maior estabilidade das armaduras na horizontal, indicado para vigas, lajes, postes e pré-moldados.',
-      en: 'MARCANTI chair-type spacer: greater stability for horizontal reinforcement, suitable for beams, slabs, poles and precast elements.',
-      es: 'Separador tipo silla MARCANTI: mayor estabilidad de las armaduras en horizontal, indicado para vigas, losas, postes y prefabricados.',
-    },
+    // Title e description diferentes por linha: as duas páginas compartilham o
+    // mesmo corpo, então sem isso o Google veria conteúdo praticamente duplicado.
+    title: isPostes
+      ? { pt: 'Espaçador Cadeirinha para Postes | Marcanti', en: 'Chair Spacer for Poles | Marcanti', es: 'Separador Silla para Postes | Marcanti' }
+      : { pt: 'Espaçador Cadeirinha 15, 20 e 30 mm | Marcanti', en: 'Chair Spacer 15, 20 and 30 mm | Marcanti', es: 'Separador Silla 15, 20 y 30 mm | Marcanti' },
+    description: isPostes
+      ? {
+        pt: 'Espaçador cadeirinha da Linha Postes, para armadura horizontal em postes e pré-moldados. Cobrimento 15, 20 e 30 mm, bitola até 16 mm.',
+        en: 'Pole Line chair spacer for horizontal reinforcement in poles and precast parts. Cover 15, 20 and 30 mm, rebar up to 16 mm.',
+        es: 'Separador silla de la Línea Postes, para armadura horizontal en postes y prefabricados. Recubrimiento 15, 20 y 30 mm, varilla hasta 16 mm.',
+      }
+      : {
+        pt: 'Espaçador cadeirinha para laje e fundo de viga. Cobrimento 15, 20 e 30 mm, bitola até 16 mm. Veja as medidas e peça cotação.',
+        en: 'Chair spacer for slabs and beam soffits. Cover 15, 20 and 30 mm, rebar up to 16 mm. See the measurements and request a quote.',
+        es: 'Separador silla para losas y fondo de viga. Recubrimiento 15, 20 y 30 mm, varilla hasta 16 mm. Ver medidas y pedir cotización.',
+      },
   };
 }
 
@@ -240,16 +246,22 @@ function makeCircularAberto(line) {
         sizesSection({ paragraphs: sizesP, img: 'Title-2.png', table: SPEC.circularAberto }),
       ],
     }),
-    title: {
-      pt: `Circular Aberto Linha ${isPostes ? 'Postes' : 'Construção'} – Marcanti`,
-      en: `Open Circular Spacer – ${isPostes ? 'Pole' : 'Construction'} Line – Marcanti`,
-      es: `Separador Circular Abierto – Línea ${isPostes ? 'Postes' : 'Construcción'} – Marcanti`,
-    },
-    description: {
-      pt: 'Espaçador Circular Aberto MARCANTI: espaçamento uniforme e seguro entre armaduras, para colunas, vigas, cortinas de contenção e pré-moldados.',
-      en: 'MARCANTI Open Circular Spacer: uniform and safe spacing between reinforcement bars, for columns, beams, retaining walls and precast elements.',
-      es: 'Separador Circular Abierto MARCANTI: espaciamiento uniforme y seguro entre armaduras, para columnas, vigas, muros de contención y prefabricados.',
-    },
+    // Título e descrição por linha, pelo mesmo motivo da cadeirinha: as duas
+    // páginas compartilham o corpo e não podem competir entre si na busca.
+    title: isPostes
+      ? { pt: 'Espaçador Circular Aberto para Postes | Marcanti', en: 'Open Circular Spacer for Poles | Marcanti', es: 'Separador Circular Abierto para Postes | Marcanti' }
+      : { pt: 'Espaçador Circular Aberto EC 15 a EC 40 | Marcanti', en: 'Open Circular Spacer EC 15 to EC 40 | Marcanti', es: 'Separador Circular Abierto EC 15 a EC 40 | Marcanti' },
+    description: isPostes
+      ? {
+        pt: 'Espaçador circular aberto da Linha Postes, para postes, estacas e cortina de contenção. Cobrimento 15 a 40 mm, bitola de 4,2 a 16 mm.',
+        en: 'Pole Line open circular spacer for poles, piles and retaining walls. Cover 15 to 40 mm, rebar from 4.2 to 16 mm.',
+        es: 'Separador circular abierto de la Línea Postes, para postes, pilotes y muros de contención. Recubrimiento 15 a 40 mm, varilla 4,2 a 16 mm.',
+      }
+      : {
+        pt: 'Espaçador circular aberto para pilar e lateral de viga. Cobrimento 15 a 40 mm, bitola de 4,2 a 16 mm. Direto do fabricante.',
+        en: 'Open circular spacer for columns and beam sides. Cover 15 to 40 mm, rebar from 4.2 to 16 mm. Direct from the manufacturer.',
+        es: 'Separador circular abierto para pilar y lateral de viga. Recubrimiento 15 a 40 mm, varilla de 4,2 a 16 mm. Directo del fabricante.',
+      },
   };
 }
 
@@ -275,11 +287,11 @@ const circularFechadoPostes = (() => {
   };
   return {
     slug: `${parentSlug}/circular-fechado-linha-postes`,
-    title: { pt: 'Circular Fechado Linha Postes – Marcanti', en: 'Closed Circular Spacer – Pole Line – Marcanti', es: 'Separador Circular Cerrado – Línea Postes – Marcanti' },
+    title: { pt: 'Espaçador Circular Fechado para Postes | Marcanti', en: 'Closed Circular Spacer for Poles | Marcanti', es: 'Separador Circular Cerrado para Postes | Marcanti' },
     description: {
-      pt: 'Espaçador Circular Fechado MARCANTI (simples e ferro duplo): centraliza e garante o cobrimento correto em postes e estacas de concreto pré-fabricado.',
-      en: 'MARCANTI Closed Circular Spacer (single and double rebar): centers and ensures proper cover for precast concrete poles and piles.',
-      es: 'Separador Circular Cerrado MARCANTI (simple y hierro doble): centra y garantiza el recubrimiento correcto en postes y pilotes de concreto prefabricado.',
+      pt: 'Espaçador circular fechado para postes e estacas de concreto pré-moldado. Cobrimento 15 e 20 mm, versões simples e ferro duplo.',
+      en: 'Closed circular spacer for precast concrete poles and piles. Cover 15 and 20 mm, single and double rebar versions.',
+      es: 'Separador circular cerrado para postes y pilotes de concreto prefabricado. Recubrimiento 15 y 20 mm, versiones simple y hierro doble.',
     },
     body(lang) {
       const crumbs = T.crumbs(lang, [
@@ -342,11 +354,11 @@ const multiapoioConstrucao = (() => {
         sizesSection({ paragraphs: sizesP, img: 'Title-3.png', table: SPEC.multiapoio }),
       ],
     }),
-    title: { pt: 'Espaçadores Multiapoio Linha Construção – Marcanti', en: 'Multi-Support Spacer – Construction Line – Marcanti', es: 'Separador Multiapoyo – Línea Construcción – Marcanti' },
+    title: { pt: 'Espaçador Multiapoio 15 a 40 mm | Marcanti', en: 'Multi-Support Spacer 15 to 40 mm | Marcanti', es: 'Separador Multiapoyo 15 a 40 mm | Marcanti' },
     description: {
-      pt: 'Espaçador Multiapoio MARCANTI, modelo centopéia, indicado para fundos de vigas, lajes, pisos e blocos de fundação.',
-      en: 'MARCANTI Multi-Support Spacer, centipede style, suitable for the base of beams, slabs, floors and foundation blocks.',
-      es: 'Separador Multiapoyo MARCANTI, modelo ciempiés, indicado para el fondo de vigas, losas, pisos y bloques de cimentación.',
+      pt: 'Espaçador multiapoio para fundo de viga, laje, piso e bloco de fundação. Seis cobrimentos, de 15 a 40 mm. Peça sua cotação.',
+      en: 'Multi-support spacer for beam soffits, slabs, floors and foundation blocks. Six covers, from 15 to 40 mm. Request a quote.',
+      es: 'Separador multiapoyo para fondo de viga, losa, piso y bloque de cimentación. Seis recubrimientos, de 15 a 40 mm. Pide cotización.',
     },
   };
 })();
@@ -387,11 +399,11 @@ const cadeirinhaPesada = (() => {
         sizesSection({ paragraphs: sizesP, img: 'WhatsApp-Image-2026-03-31-at-09.30.20.jpeg', table: SPEC.cadeirinhaPesado }),
       ],
     }),
-    title: { pt: 'Cadeirinha Pesado – Marcanti', en: 'Heavy Chair Spacer – Marcanti', es: 'Separador Silla Pesada – Marcanti' },
+    title: { pt: 'Espaçador Cadeirinha Pesado até 25 mm | Marcanti', en: 'Heavy Chair Spacer up to 25 mm | Marcanti', es: 'Separador Silla Pesada hasta 25 mm | Marcanti' },
     description: {
-      pt: 'Espaçador Cadeirinha Pesado MARCANTI: reforçado para armaduras horizontais pesadas, indicado para lajes, vigas, fundações e pré-moldados.',
-      en: 'MARCANTI Heavy Chair Spacer: reinforced for heavy horizontal reinforcement, suitable for slabs, beams, foundations and precast elements.',
-      es: 'Separador Silla Pesada MARCANTI: reforzado para armaduras horizontales pesadas, indicado para losas, vigas, cimentaciones y prefabricados.',
+      pt: 'Cadeirinha reforçada para laje espessa, sapata e bloco. Cobrimento 30 a 50 mm, bitola até 25 mm. Veja as especificações.',
+      en: 'Reinforced chair spacer for thick slabs, footings and pile caps. Cover 30 to 50 mm, rebar up to 25 mm. See the specifications.',
+      es: 'Silla reforzada para losa gruesa, zapata y bloque. Recubrimiento 30 a 50 mm, varilla hasta 25 mm. Ver las especificaciones.',
     },
   };
 })();

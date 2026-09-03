@@ -8,14 +8,14 @@ const t = (obj, lang) => obj[lang];
 const home = {
   slug: '',
   title: {
-    pt: 'Marcanti – Espaçadores de Concreto e Kits de Vedação',
-    en: 'Marcanti – Concrete Spacers and Sealing Kits',
-    es: 'Marcanti – Espaciadores de Concreto y Kits de Sellado',
+    pt: 'Espaçadores Plásticos para Concreto | Marcanti',
+    en: 'Plastic Concrete Spacers | Marcanti',
+    es: 'Espaciadores Plásticos para Concreto | Marcanti',
   },
   description: {
-    pt: 'Transformamos o plástico em produtos de alta qualidade para a construção civil e indústria: espaçadores de concreto e kits de vedação para telhas de PVC.',
-    en: 'We transform plastic into high-quality products for civil construction and industry: concrete spacers and sealing kits for PVC roof tiles.',
-    es: 'Transformamos el plástico en productos de alta calidad para la construcción civil y la industria: espaciadores de concreto y kits de sellado para tejas de PVC.',
+    pt: 'Fabricante de espaçadores plásticos e kits de vedação em Lauro de Freitas, BA. Produção própria e entrega no Nordeste. Peça sua cotação.',
+    en: 'Manufacturer of plastic spacers and sealing kits in Lauro de Freitas, Bahia. In-house production, direct from the factory. Get a quote.',
+    es: 'Fabricante de espaciadores plásticos y kits de sellado en Lauro de Freitas, BA. Producción propia y entrega en el Nordeste. Pide cotización.',
   },
   body(lang) {
     const hero = {
@@ -94,11 +94,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}
 // ---------------- QUEM SOMOS ----------------
 const quemSomos = {
   slug: 'quem-somos',
-  title: { pt: 'Quem Somos – Marcanti', en: 'About Us – Marcanti', es: 'Quiénes Somos – Marcanti' },
+  title: { pt: 'Fábrica de Injeção Plástica na Bahia | Marcanti', en: 'Plastic Injection Factory in Bahia | Marcanti', es: 'Fábrica de Inyección Plástica en Bahía | Marcanti' },
   description: {
-    pt: 'Conheça a MARCANTI: liderança em transformação de plásticos com excelência e inovação, fundada em 2012.',
-    en: 'Meet MARCANTI: leadership in plastic transformation with excellence and innovation, founded in 2012.',
-    es: 'Conoce MARCANTI: liderazgo en transformación de plásticos con excelencia e innovación, fundada en 2012.',
+    pt: 'Injeção plástica técnica para construção civil desde 2012, com fábrica própria em Lauro de Freitas, BA. Conheça a Marcanti.',
+    en: 'Technical plastic injection molding for civil construction since 2012, with our own factory in Lauro de Freitas, Bahia.',
+    es: 'Inyección plástica técnica para la construcción civil desde 2012, con fábrica propia en Lauro de Freitas, BA. Conoce Marcanti.',
   },
   body(lang) {
     const c = {
@@ -164,11 +164,11 @@ ${T.valueGrid({ values: c.values })}
 // ---------------- TECNOLOGIA ----------------
 const tecnologia = {
   slug: 'desenvolvimento-de-produtos',
-  title: { pt: 'Desenvolvimento de Produtos Plásticos – Marcanti', en: 'Plastic Product Development – Marcanti', es: 'Desarrollo de Productos Plásticos – Marcanti' },
+  title: { pt: 'Desenvolvimento de Produtos Plásticos | Marcanti', en: 'Plastic Product Development | Marcanti', es: 'Desarrollo de Productos Plásticos | Marcanti' },
   description: {
-    pt: 'Consultoria em Desenvolvimento de Produtos na Indústria de Transformações Plásticas.',
-    en: 'Product Development Consulting in the Plastics Transformation Industry.',
-    es: 'Consultoría en Desarrollo de Productos en la Industria de Transformación de Plásticos.',
+    pt: 'Da ideia à peça piloto: modelagem, estudo de eficiência e análise de custo antes do investimento em molde. Diagnóstico gratuito.',
+    en: 'From idea to pilot part: modeling, efficiency study and cost analysis before investing in a mold. Free initial diagnosis.',
+    es: 'De la idea a la pieza piloto: modelado, estudio de eficiencia y análisis de costo antes de invertir en molde. Diagnóstico gratuito.',
   },
   body(lang) {
     const c = {
@@ -273,11 +273,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}
 // ---------------- CONTATO ----------------
 const contato = {
   slug: 'contato',
-  title: { pt: 'Contato – Marcanti', en: 'Contact – Marcanti', es: 'Contacto – Marcanti' },
+  title: { pt: 'Solicite uma Cotação | Marcanti Plásticos', en: 'Request a Quote | Marcanti Plastics', es: 'Solicita una Cotización | Marcanti Plásticos' },
   description: {
-    pt: 'Entre em contato com a MARCANTI e solicite seu orçamento de espaçadores de concreto e kits de vedação.',
-    en: 'Get in touch with MARCANTI and request your quote for concrete spacers and sealing kits.',
-    es: 'Ponte en contacto con MARCANTI y solicita tu presupuesto de espaciadores de concreto y kits de sellado.',
+    pt: 'Peça cotação de espaçadores e kits de vedação direto com o fabricante. Atendimento de seg. a sex., 7h às 17h.',
+    en: 'Request a quote for spacers and sealing kits direct from the manufacturer. Mon to Fri, 7am to 5pm.',
+    es: 'Pide cotización de espaciadores y kits de sellado directo con el fabricante. De lun. a vie., 7h a 17h.',
   },
   body(lang) {
     const c = {
@@ -336,11 +336,11 @@ const contato = {
 // ---------------- SUSTENTABILIDADE ----------------
 const sustentabilidade = {
   slug: 'sustentabilidade',
-  title: { pt: 'Sustentabilidade – Marcanti', en: 'Sustainability – Marcanti', es: 'Sostenibilidad – Marcanti' },
+  title: { pt: 'Matéria-Prima Reciclável na Injeção | Marcanti', en: 'Recyclable Raw Material in Injection | Marcanti', es: 'Materia Prima Reciclable en Inyección | Marcanti' },
   description: {
-    pt: 'Na MARCANTI buscamos constantemente soluções eco-friendly na indústria de plásticos. Matéria-prima 100% reciclável.',
-    en: 'At MARCANTI we constantly pursue eco-friendly solutions in the plastics industry. 100% recyclable raw material.',
-    es: 'En MARCANTI buscamos constantemente soluciones eco-friendly en la industria de plásticos. Materia prima 100% reciclable.',
+    pt: 'Espaçadores produzidos com matéria-prima reciclável, sem perda de resistência. Menos resíduo no canteiro de obras.',
+    en: 'Spacers produced with recyclable raw material, with no loss of strength. Less waste on the construction site.',
+    es: 'Espaciadores producidos con materia prima reciclable, sin pérdida de resistencia. Menos residuos en la obra.',
   },
   body(lang) {
     const c = {
@@ -387,11 +387,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}
 // ---------------- CATALOGO ----------------
 const catalogo = {
   slug: 'catalogo-de-produtos',
-  title: { pt: 'Catálogo de Produtos – Marcanti', en: 'Product Catalog – Marcanti', es: 'Catálogo de Productos – Marcanti' },
+  title: { pt: 'Catálogo Técnico de Produtos | Marcanti', en: 'Technical Product Catalog | Marcanti', es: 'Catálogo Técnico de Productos | Marcanti' },
   description: {
-    pt: 'Baixe o catálogo completo de produtos MARCANTI: espaçadores de concreto e kits de vedação.',
-    en: 'Download the complete MARCANTI product catalog: concrete spacers and sealing kits.',
-    es: 'Descarga el catálogo completo de productos MARCANTI: espaciadores de concreto y kits de sellado.',
+    pt: 'Baixe o catálogo com as medidas de toda a linha de espaçadores e kits de vedação Marcanti: modelos, cobrimentos e bitolas.',
+    en: 'Download the catalog with measurements for the full Marcanti spacer and sealing kit range: models, covers and rebar gauges.',
+    es: 'Descarga el catálogo con las medidas de toda la línea de espaciadores y kits de sellado Marcanti: modelos, recubrimientos y calibres.',
   },
   body(lang) {
     const title = { pt: 'Faça o download do nosso catálogo', en: 'Download our catalog', es: 'Descarga nuestro catálogo' }[lang];
@@ -416,7 +416,7 @@ const catalogo = {
 // ---------------- PRIVACY POLICY ----------------
 const privacidade = {
   slug: 'politica-de-privacidade',
-  title: { pt: 'Política de Privacidade – Marcanti', en: 'Privacy Policy – Marcanti', es: 'Política de Privacidad – Marcanti' },
+  title: { pt: 'Política de Privacidade | Marcanti', en: 'Privacy Policy | Marcanti', es: 'Política de Privacidad | Marcanti' },
   description: {
     pt: 'Como a MARCANTI trata os dados pessoais coletados neste site, em conformidade com a LGPD.',
     en: 'How MARCANTI handles personal data collected on this website.',
@@ -474,7 +474,7 @@ ${T.pageHero({ title: c.title, tag: 'h1' })}
 const obrigado = {
   slug: 'obrigado',
   noindex: true,
-  title: { pt: 'Solicitação recebida – Marcanti', en: 'Request received – Marcanti', es: 'Solicitud recibida – Marcanti' },
+  title: { pt: 'Solicitação recebida | Marcanti', en: 'Request received | Marcanti', es: 'Solicitud recibida | Marcanti' },
   description: {
     pt: 'Recebemos sua solicitação de cotação. Nosso time comercial responde em até 1 dia útil.',
     en: 'We have received your quote request. Our sales team replies within 1 business day.',

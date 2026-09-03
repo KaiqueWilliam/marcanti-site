@@ -83,16 +83,16 @@ function recentPostsSection(lang, currentSlug) {
   </div>`;
 }
 
-function postShell({ slug, title, img, ctaHeading, blocks }) {
+function postShell({ slug, title, seoTitle, img, description, ctaHeading, blocks }) {
   return {
     slug: `blog/${slug}`,
-    title: { pt: `${title.pt} – Marcanti`, en: `${title.en} – Marcanti`, es: `${title.es} – Marcanti` },
+    // O <title> não precisa ser igual ao H1: quando o título do post passa dos
+    // ~60 caracteres que o Google exibe, `seoTitle` traz uma versão curta para a
+    // aba/SERP e o H1 na página continua com o título completo. Sem sufixo
+    // "| Marcanti" para não gastar caracteres.
+    title: seoTitle || title,
     image: img ? T.asset('img/' + img) : undefined,
-    description: {
-      pt: blocks.pt.find((b) => b.type === 'p').text.slice(0, 155),
-      en: blocks.en.find((b) => b.type === 'p').text.slice(0, 155),
-      es: blocks.es.find((b) => b.type === 'p').text.slice(0, 155),
-    },
+    description,
     body(lang) {
       return `
 ${T.pageHero({ eyebrow: ui.ourBlog[lang], title: title[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
@@ -115,11 +115,11 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
 // ---------------- BLOG INDEX ----------------
 const index = {
   slug: 'blog',
-  title: { pt: 'Blog – Marcanti', en: 'Blog – Marcanti', es: 'Blog – Marcanti' },
+  title: { pt: 'Blog Técnico: Espaçadores e Injeção Plástica', en: 'Technical Blog: Spacers and Plastic Injection', es: 'Blog Técnico: Espaciadores e Inyección Plástica' },
   description: {
-    pt: 'Descubra o mundo fascinante da indústria de plásticos e acompanhe as últimas tendências e inovações no blog da MARCANTI.',
-    en: 'Discover the fascinating world of the plastics industry and follow the latest trends and innovations on the MARCANTI blog.',
-    es: 'Descubre el fascinante mundo de la industria de plásticos y sigue las últimas tendencias e innovaciones en el blog de MARCANTI.',
+    pt: 'Conteúdo técnico sobre cobrimento de armadura, espaçadores, telha de PVC e injeção plástica para construção civil.',
+    en: 'Technical content on concrete cover, spacers, PVC roof tiles and plastic injection molding for civil construction.',
+    es: 'Contenido técnico sobre recubrimiento de armadura, espaciadores, teja de PVC e inyección plástica para la construcción.',
   },
   body(lang) {
     const intro = {
@@ -144,7 +144,17 @@ ${T.cardGrid({ cards, cols: 3 })}
 const post1 = postShell({
   slug: POSTS_META[0].slug,
   title: POSTS_META[0].title,
+  seoTitle: {
+    pt: 'Espaçadores Plásticos e Sustentação da Obra',
+    en: 'Plastic Spacers and Structural Support',
+    es: 'Espaciadores Plásticos y Sustentación de Obra',
+  },
   img: POSTS_META[0].img,
+  description: {
+    pt: 'Como o espaçador plástico influencia durabilidade, consumo de aço e resíduo no canteiro — e por que o cobrimento correto evita corrosão.',
+    en: 'How plastic spacers affect durability, steel consumption and site waste, and why correct concrete cover prevents corrosion.',
+    es: 'Cómo el separador plástico influye en durabilidad, consumo de acero y residuos, y por qué el recubrimiento correcto evita corrosión.',
+  },
   blocks: {
     pt: [
       { type: 'p', text: 'Os espaçadores de plástico têm um papel importante na sustentação e durabilidade das construções modernas. São componentes discretos, muitas vezes pequenos e de aparência simples, mas desempenham uma função crucial para garantir a qualidade e a integridade das estruturas.' },
@@ -193,6 +203,11 @@ const post2 = postShell({
   slug: POSTS_META[1].slug,
   title: POSTS_META[1].title,
   img: POSTS_META[1].img,
+  description: {
+    pt: 'Tipos de espaçador plástico por aplicação: armadura vertical, horizontal e malha. Onde usar cada um em fundação, laje, pilar e parede.',
+    en: 'Types of plastic spacer by application: vertical, horizontal and mesh reinforcement. Where to use each in foundations, slabs and walls.',
+    es: 'Tipos de separador plástico por aplicación: armadura vertical, horizontal y malla. Dónde usar cada uno en cimentación, losa y muro.',
+  },
   blocks: {
     pt: [
       { type: 'p', text: 'Os espaçadores de plástico são elementos utilizados na construção civil para garantir a correta posição e distância entre elementos estruturais, como barras de aço ou armaduras, dentro de estruturas de concreto armado. Eles desempenham um papel fundamental na garantia da qualidade e durabilidade das construções.' },
@@ -276,7 +291,17 @@ const post2 = postShell({
 const post3 = postShell({
   slug: POSTS_META[2].slug,
   title: POSTS_META[2].title,
+  seoTitle: {
+    pt: 'Telha de PVC: Vantagens e Kit de Vedação',
+    en: 'PVC Roof Tiles: Advantages and Sealing Kit',
+    es: 'Teja de PVC: Ventajas y Kit de Sellado',
+  },
   img: POSTS_META[2].img,
+  description: {
+    pt: 'Por que a telha de PVC é leve, resistente à umidade e durável — e o papel do kit de vedação e fixação no ponto onde o telhado vaza.',
+    en: 'Why PVC roof tiles are light, moisture-resistant and durable, and the role of the sealing and fixing kit at the leak point.',
+    es: 'Por qué la teja de PVC es ligera, resistente a la humedad y duradera, y el papel del kit de sellado en el punto de filtración.',
+  },
   ctaHeading: {
     pt: 'Se interessou pelos Kits de Vedação? Fale conosco agora e solicite seu orçamento!',
     en: 'Interested in our Sealing Kits? Contact us now and request your quote!',
@@ -342,6 +367,11 @@ const post4 = postShell({
   slug: POSTS_META[3].slug,
   title: POSTS_META[3].title,
   img: POSTS_META[3].img,
+  description: {
+    pt: 'Telha de PVC colonial, minionda, plan e trapezoidal: onde cada modelo se aplica e as cores disponíveis no kit de vedação Marcanti.',
+    en: 'Colonial, minionda, plan and trapezoidal PVC roof tiles: where each model fits and the colors available in the Marcanti sealing kit.',
+    es: 'Teja de PVC colonial, minionda, plan y trapezoidal: dónde aplica cada modelo y los colores del kit de sellado Marcanti.',
+  },
   ctaHeading: {
     pt: 'Se interessou pelos Kits de Vedação? Fale conosco agora e solicite seu orçamento!',
     en: 'Interested in our Sealing Kits? Contact us now and request your quote!',
@@ -419,6 +449,11 @@ const post5 = postShell({
   slug: POSTS_META[4].slug,
   title: POSTS_META[4].title,
   img: POSTS_META[4].img,
+  description: {
+    pt: 'Por que as cocadinhas de argamassa não atendem à NBR 6118: dimensionamento, controle de qualidade e a alternativa em espaçador plástico.',
+    en: 'Why mortar "cocadinha" spacers do not meet NBR 6118: sizing, quality control and the plastic spacer alternative.',
+    es: 'Por qué las cocaditas de mortero no cumplen la NBR 6118: dimensionamiento, control de calidad y la alternativa en separador plástico.',
+  },
   ctaHeading: {
     pt: 'Se interessou pelos nossos espaçadores? Fale conosco agora e solicite seu orçamento!',
     en: 'Interested in our spacers? Contact us now and request your quote!',
