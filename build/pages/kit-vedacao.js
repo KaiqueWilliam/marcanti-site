@@ -58,6 +58,9 @@ function modelsSection(lang) {
   </div>`;
 }
 
+const kitCategory = { pt: 'Kit de vedação para telha', en: 'Roof tile sealing kit', es: 'Kit de sellado para teja' };
+const kitMaterial = { pt: 'Plástico injetado', en: 'Injection-molded plastic', es: 'Plástico inyectado' };
+
 const colorImagesSwatch = ['color-ceramica.png', 'color-marfim.jpg', 'color-branco.jpg', 'color-concreto.jpg'];
 const colorImagesKit = ['color-kit-ceramica.png', 'color-kit-marfim.png', 'color-kit-branco.png', 'color-kit-concreto.png'];
 
@@ -108,7 +111,7 @@ const kitFixacaoUniversal = {
     en: 'Universal kit with screw included: replaces cap, sealing ring and hat with a single piece. For various roof tile profiles.',
     es: 'Kit universal con tornillo incluido: reemplaza capa, anillo de sellado y sombrerete en una sola pieza. Para varios perfiles.',
   },
-  body(lang) {
+  body(lang, meta) {
     const h3 = { pt: 'Kit Vedação e Fixação Universal', en: 'Universal Sealing & Fixing Kit', es: 'Kit Universal de Sellado y Fijación' }[lang];
     const intro = { pt: 'O Kit de Vedação para Telha de PVC da MARCANTI é a solução perfeita para garantir a estanqueidade e durabilidade do seu telhado.', en: 'MARCANTI’s Sealing Kit for PVC roof tiles is the perfect solution to ensure the water-tightness and durability of your roof.', es: 'El Kit de Sellado para Teja de PVC de MARCANTI es la solución perfecta para garantizar la estanqueidad y durabilidad de tu techo.' }[lang];
     const about = {
@@ -117,6 +120,7 @@ const kitFixacaoUniversal = {
       es: ['El Kit Universal de Sellado y Fijación para varios tipos de tejas de MARCANTI es un conjunto compuesto por el kit universal y el tornillo.', 'Es un kit que reemplaza las piezas: capa, anillo de sellado y sombrerete, en un único artículo.'],
     }[lang];
     return `
+${meta ? T.productLd({ lang, meta, name: h3, image: 'Design-sem-nome-1-hq.png', category: kitCategory[lang], material: kitMaterial[lang] }) : ''}
 ${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
@@ -136,7 +140,7 @@ const kitUniversal = {
     en: 'Universal kit for various roof tile types, in a single piece. Screw not included, for those who already have fasteners.',
     es: 'Kit universal para varios tipos de teja, en pieza única. Tornillo no incluido, para quien ya usa fijación propia.',
   },
-  body(lang) {
+  body(lang, meta) {
     const h3 = { pt: 'Kit de Vedação Universal Para Diversos Tipos de Telhas', en: 'Universal Sealing Kit for Various Roof Tile Types', es: 'Kit de Sellado Universal para Varios Tipos de Tejas' }[lang];
     const intro = { pt: 'O Kit de Vedação Universal para Diversos Tipos de Telhas da MARCANTI é uma solução versátil e eficiente para garantir a vedação adequada em diferentes tipos de telhados.', en: 'MARCANTI’s Universal Sealing Kit for Various Roof Tile Types is a versatile, efficient solution to ensure proper sealing across different roof types.', es: 'El Kit de Sellado Universal para Varios Tipos de Tejas de MARCANTI es una solución versátil y eficiente para garantizar el sellado adecuado en diferentes tipos de techos.' }[lang];
     const about = {
@@ -146,6 +150,7 @@ const kitUniversal = {
     }[lang];
     const fixLabel = { pt: 'Kit Vedação e Fixação', en: 'Sealing & Fixing Kit', es: 'Kit de Sellado y Fijación' }[lang];
     return `
+${meta ? T.productLd({ lang, meta, name: h3, image: 'Design-sem-nome-4-universal-hq.png', category: kitCategory[lang], material: kitMaterial[lang] }) : ''}
 ${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
@@ -165,7 +170,7 @@ const kitPvc = {
     en: 'Cap, sealing ring and hat for PVC roof tiles, in ceramic, ivory, white and concrete. Screw not included.',
     es: 'Capa, anillo de sellado y sombrerete para teja de PVC, en cerámica, marfil, blanco y concreto. Tornillo no incluido.',
   },
-  body(lang) {
+  body(lang, meta) {
     const h3 = { pt: 'Kit Vedação Para Telha de PVC', en: 'Sealing Kit for PVC Roof Tiles', es: 'Kit de Sellado para Teja de PVC' }[lang];
     const intro = { pt: 'O Kit de Vedação para Telha de PVC da MARCANTI é a solução perfeita para garantir a estanqueidade e durabilidade do seu telhado.', en: 'MARCANTI’s Sealing Kit for PVC roof tiles is the perfect solution to ensure the water-tightness and durability of your roof.', es: 'El Kit de Sellado para Teja de PVC de MARCANTI es la solución perfecta para garantizar la estanqueidad y durabilidad de tu techo.' }[lang];
     const about = {
@@ -181,6 +186,7 @@ const kitPvc = {
     }[lang];
     const fixLabel = { pt: 'Kit Vedação e Fixação', en: 'Sealing & Fixing Kit', es: 'Kit de Sellado y Fijación' }[lang];
     return `
+${meta ? T.productLd({ lang, meta, name: h3, image: 'Kit-Vedacao-Para-Telha-de-PVC.jpg', category: kitCategory[lang], material: kitMaterial[lang] }) : ''}
 ${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
@@ -202,7 +208,7 @@ const kitPvcFixacao = {
     en: 'Complete kit with 2.5 or 3.5 inch screw for PVC roof tiles. Seals the fastening point, in all four colors of the range.',
     es: 'Kit completo con tornillo de 2,5 o 3,5 pulgadas para teja de PVC. Sella el punto de fijación, en los cuatro colores.',
   },
-  body(lang) {
+  body(lang, meta) {
     const h3 = { pt: 'Kit Vedação e Fixação Para Telha de PVC', en: 'Sealing & Fixing Kit for PVC Roof Tiles', es: 'Kit de Sellado y Fijación para Teja de PVC' }[lang];
     const intro = { pt: 'O Kit de Vedação e Fixação para Telha de PVC da MARCANTI é a solução completa para garantir a instalação segura e vedação eficiente das suas telhas de PVC.', en: 'MARCANTI’s Sealing & Fixing Kit for PVC roof tiles is the complete solution to ensure safe installation and efficient sealing of your PVC roof tiles.', es: 'El Kit de Sellado y Fijación para Teja de PVC de MARCANTI es la solución completa para garantizar la instalación segura y el sellado eficiente de tus tejas de PVC.' }[lang];
     const about = {
@@ -217,6 +223,7 @@ const kitPvcFixacao = {
       es: ['Kit que incluye un tornillo, utilizado para fijar las tejas a la estructura del techo.', 'Se puede utilizar tanto un tornillo de 2,5″ (6,35 cm) como uno de 3,5″ (8,89 cm), según el modelo de la teja.', 'Es el tornillo el que fija el kit a la teja y a la estructura del techo.'],
     }[lang];
     return `
+${meta ? T.productLd({ lang, meta, name: h3, image: 'Kit-Vedacao-e-Fixacao-Para-Telha-de-PVC-com-vedacao.jpg', category: kitCategory[lang], material: kitMaterial[lang] }) : ''}
 ${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}

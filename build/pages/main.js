@@ -52,6 +52,7 @@ const home = {
     }[lang];
 
     return `
+${T.organizationLd(lang)}
 ${'<section class="hero" style="--hero-img:url(\'' + T.asset('img/Vigas-de-Aco-Construcao-Civil.jpg') + '\')">'}
   <div class="container">
     <div class="hero-grid">

@@ -24,13 +24,17 @@ const lineLabel = {
   construcao: { pt: 'LINHA CONSTRUÇÃO', en: 'CONSTRUCTION LINE', es: 'LÍNEA CONSTRUCCIÓN' },
 };
 
-function productShell({ slug, crumbItems, eyebrow, h3, intro, sections, extraSections = [] }) {
+const productCategory = { pt: 'Espaçador para armadura de concreto', en: 'Spacer for concrete reinforcement', es: 'Separador para armadura de concreto' };
+const productMaterial = { pt: 'Plástico injetado', en: 'Injection-molded plastic', es: 'Plástico inyectado' };
+
+function productShell({ slug, crumbItems, eyebrow, h3, intro, sections, extraSections = [], schemaImage }) {
   return {
     slug,
     title: null, // set by caller
     description: null,
-    body(lang) {
+    body(lang, meta) {
       return `
+${meta ? T.productLd({ lang, meta, name: h3[lang], image: schemaImage, category: productCategory[lang], material: productMaterial[lang] }) : ''}
 ${T.pageHero({ eyebrow: eyebrow[lang], title: h3[lang], subtitle: intro[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section>
   <div class="container">
@@ -169,6 +173,7 @@ function makeCadeirinha(line) {
       eyebrow: lineLabel[line],
       h3,
       intro: genericIntro,
+      schemaImage: 'Design-sem-nome-cadeirinha.jpg',
       sections: [
         aboutSection({
           img: 'Design-sem-nome-cadeirinha.jpg',
@@ -233,6 +238,7 @@ function makeCircularAberto(line) {
       eyebrow: lineLabel[line],
       h3,
       intro,
+      schemaImage: 'FOTO04.jpg',
       sections: [
         aboutSection({
           img: 'FOTO04.jpg',
@@ -293,13 +299,14 @@ const circularFechadoPostes = (() => {
       en: 'Closed circular spacer for precast concrete poles and piles. Cover 15 and 20 mm, single and double rebar versions.',
       es: 'Separador circular cerrado para postes y pilotes de concreto prefabricado. Recubrimiento 15 y 20 mm, versiones simple y hierro doble.',
     },
-    body(lang) {
+    body(lang, meta) {
       const crumbs = T.crumbs(lang, [
         { label: { pt: 'Espaçadores', en: 'Spacers', es: 'Espaciadores' }[lang], slug: 'espacadores' },
         { label: { pt: 'Linha Postes', en: 'Pole Line', es: 'Línea Postes' }[lang], slug: parentSlug },
         { label: h3a[lang] },
       ]);
       return `
+${meta ? T.productLd({ lang, meta, name: h3a[lang], image: 'Design-sem-nome-circular-fechado.png', category: productCategory[lang], material: productMaterial[lang] }) : ''}
 ${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3a[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">${crumbs}
   ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutA[lang], img: 'Design-sem-nome-circular-fechado.png', imgAlt: { pt: 'Espaçador plástico circular fechado da Marcanti', en: 'MARCANTI plastic closed circular spacer', es: 'Separador plástico circular cerrado de MARCANTI' }[lang] })}
@@ -341,6 +348,7 @@ const multiapoioConstrucao = (() => {
       eyebrow: lineLabel.construcao,
       h3,
       intro: genericIntro,
+      schemaImage: 'Foto01-1.jpg',
       sections: [
         aboutSection({
           img: 'Foto01-1.jpg',
@@ -386,6 +394,7 @@ const cadeirinhaPesada = (() => {
       eyebrow: { pt: '', en: '', es: '' },
       h3,
       intro: genericIntro,
+      schemaImage: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-3.jpeg',
       sections: [
         aboutSection({
           img: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-3.jpeg',

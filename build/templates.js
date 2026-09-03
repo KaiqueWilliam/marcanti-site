@@ -278,13 +278,88 @@ function pageHero({ eyebrow, title, subtitle, bg, tag = 'h1', divider = false, w
   </section>`;
 }
 
+// JSON-LD pode aparecer em qualquer lugar do documento, então cada bloco é
+// emitido junto do HTML que ele descreve — assim o dado estruturado e o visível
+// saem da mesma fonte e não têm como divergir.
+// "<" vira \u003c para que um "</script>" dentro de um texto não feche o bloco.
+function jsonLd(data) {
+  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+}
+
+const ORG_ID = `${SITE_URL}/#organization`;
+
+// Organization + LocalBusiness: sustenta a busca local (auditoria 8).
+// Falta `taxID` (CNPJ) — a Marcanti precisa fornecer.
+function organizationLd(lang) {
+  return jsonLd({
+    '@context': 'https://schema.org',
+    '@type': ['Organization', 'LocalBusiness'],
+    '@id': ORG_ID,
+    name: 'Marcanti Indústria e Comércio de Plásticos',
+    alternateName: 'Marcanti',
+    url: `${SITE_URL}${url(lang, '')}`,
+    logo: absUrl(asset('img/logo-marcanti.png')),
+    image: absUrl(asset('img/Vigas-de-Aco-Construcao-Civil.jpg')),
+    description: {
+      pt: 'Fabricante de espaçadores plásticos para armadura de concreto e kits de vedação para telha de PVC, com fábrica própria em Lauro de Freitas, Bahia.',
+      en: 'Manufacturer of plastic spacers for concrete reinforcement and sealing kits for PVC roof tiles, with its own factory in Lauro de Freitas, Bahia, Brazil.',
+      es: 'Fabricante de espaciadores plásticos para armadura de concreto y kits de sellado para teja de PVC, con fábrica propia en Lauro de Freitas, Bahía.',
+    }[lang],
+    foundingDate: '2012',
+    telephone: `+${business.whatsappNumber}`,
+    email: business.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Rua Estrela do Mar, 546 — Quadra 04, Lote 14, Galpão 02, Buraquinho',
+      addressLocality: 'Lauro de Freitas',
+      addressRegion: 'BA',
+      postalCode: '42710-570',
+      addressCountry: 'BR',
+    },
+    openingHoursSpecification: [{
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '17:00',
+    }],
+    sameAs: [business.linkedin, business.instagram],
+  });
+}
+
+// Product por página de produto (auditoria 8). Sem `offers`: a Marcanti não
+// publica preço, e inventar um só para ganhar rich snippet seria falso.
+function productLd({ lang, meta, name, image, category, material }) {
+  return jsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name,
+    description: meta.description,
+    image: absUrl(image ? asset('img/' + image) : meta.image),
+    url: `${SITE_URL}${url(lang, meta.path)}`,
+    ...(category ? { category } : {}),
+    ...(material ? { material } : {}),
+    brand: { '@type': 'Brand', name: 'Marcanti' },
+    manufacturer: { '@id': ORG_ID },
+  });
+}
+
 function crumbs(lang, items) {
   // items: [{label, slug}] slug undefined for current (last) item
   const home = ui.home[lang];
-  const parts = [`<a href="${url(lang, '')}">${home}</a>`].concat(
-    items.map((it) => (it.slug !== undefined ? `<a href="${url(lang, it.slug)}">${it.label}</a>` : `<span>${it.label}</span>`))
-  );
-  return `<div class="crumbs">${parts.join(' &raquo; ')}</div>`;
+  const all = [{ label: home, slug: '' }].concat(items);
+  const parts = all.map((it) => (it.slug !== undefined ? `<a href="${url(lang, it.slug)}">${it.label}</a>` : `<span>${it.label}</span>`));
+  // O último item da trilha não leva `item`: é a própria página (recomendação do Google).
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: all.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.label,
+      ...(it.slug !== undefined ? { item: `${SITE_URL}${url(lang, it.slug)}` } : {}),
+    })),
+  };
+  return `<div class="crumbs">${parts.join(' &raquo; ')}</div>${jsonLd(ld)}`;
 }
 
 function splitSection({ eyebrow, title, paragraphs = [], img, imgAlt, reverse = false, cta, bg, mediaClass, ctaClass = 'btn-secondary', splitClass }) {
@@ -477,4 +552,5 @@ module.exports = {
   icons, url, asset, page, renderImg,
   pageHero, crumbs, splitSection, cardGrid, stepGrid, valueGrid,
   galleryGrid, colorSwatches, infoBox, specTable, ctaBand, contactForm,
+  jsonLd, organizationLd, productLd,
 };

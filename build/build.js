@@ -23,7 +23,9 @@ for (const pageDef of pageModules) {
       image: pageDef.image || undefined, // absolute-or-relative path for og:image; falls back to hero/site default
       noindex: pageDef.noindex || undefined, // páginas de conversão (ex.: /obrigado/) não devem ranquear
     };
-    const bodyHtml = pageDef.body(lang);
+    // `meta` vai para o body também: as páginas de produto montam o JSON-LD a
+    // partir do mesmo title/description/slug que vai para o <head>.
+    const bodyHtml = pageDef.body(lang, meta);
     const html = T.page(lang, meta, bodyHtml);
     const outDir = path.join(ROOT, lang, pageDef.slug);
     fs.mkdirSync(outDir, { recursive: true });
