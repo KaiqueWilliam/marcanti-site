@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { business, waLink, navTree, topBarExtra, ui, form } = require('./data/site');
+const { business, waLink, navTree, topBarExtra, footerExtra, ui, form } = require('./data/site');
 let imageMeta = {};
 try {
   imageMeta = require('./image-meta.json');
@@ -151,6 +151,7 @@ function renderFooter(lang) {
         <ul>
           ${navTree.filter((n) => n.key !== 'contato' && n.key !== 'desenvolvimento').map((n) => `<li><a href="${url(lang, n.slug)}">${n.label[lang]}</a></li>`).join('')}
           ${(() => { const d = navTree.find((n) => n.key === 'desenvolvimento'); return `<li><a href="${url(lang, d.slug)}">${d.label[lang]}</a></li>`; })()}
+          ${footerExtra.map((n) => `<li><a href="${url(lang, n.slug)}">${n.label[lang]}</a></li>`).join('')}
         </ul>
       </div>
       <div class="footer-col">

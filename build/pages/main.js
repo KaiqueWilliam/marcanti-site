@@ -569,4 +569,115 @@ ${T.pageHero({ title: c.title, subtitle: c.lede, tag: 'h1', tint: 'blue' })}
   },
 };
 
-module.exports = [home, quemSomos, tecnologia, contato, sustentabilidade, catalogo, privacidade, obrigado];
+
+// ---------------- PÁGINA REGIONAL: SALVADOR / RMS ----------------
+// Auditoria seção 6 e 10: "espaçador plástico Salvador" é busca transacional de
+// baixa dificuldade onde nem o concorrente regional nem os nacionais estão
+// posicionados. Linkada do rodapé e do hub de espaçadores para não ficar órfã.
+const salvador = {
+  slug: 'espacadores-plasticos-salvador',
+  title: {
+    pt: 'Espaçadores Plásticos em Salvador e RMS | Marcanti',
+    en: 'Plastic Spacers in Salvador, Bahia | Marcanti',
+    es: 'Espaciadores Plásticos en Salvador, Bahía | Marcanti',
+  },
+  description: {
+    pt: 'Fabricante de espaçadores plásticos e kits de vedação em Lauro de Freitas, na Região Metropolitana de Salvador. Direto da fábrica para a obra.',
+    en: 'Manufacturer of plastic spacers and sealing kits in Lauro de Freitas, in the Salvador metropolitan region of Bahia. Direct from factory to site.',
+    es: 'Fabricante de espaciadores plásticos y kits de sellado en Lauro de Freitas, en la Región Metropolitana de Salvador. De la fábrica a la obra.',
+  },
+  body(lang) {
+    const c = {
+      pt: {
+        title: 'Espaçadores plásticos em Salvador e região metropolitana',
+        lede: 'A Marcanti fabrica em Lauro de Freitas, dentro da Região Metropolitana de Salvador. Espaçadores para armadura e kits de vedação saem da fábrica para a obra sem depender de frete vindo do Sudeste.',
+        whoTitle: 'Quem compra da Marcanti na região',
+        who: [
+          { title: 'Construtoras', text: 'Espaçadores para laje, viga, pilar e fundação, com cobrimento de 15 a 50 mm.' },
+          { title: 'Fábricas de pré-moldados', text: 'Circular aberto e fechado para postes, estacas e cruzetas de concreto.' },
+          { title: 'Lojas de material de construção', text: 'Linha completa de espaçadores e kits de vedação para revenda.' },
+          { title: 'Indústrias de telha de PVC', text: 'Kits de vedação e fixação nas quatro cores da linha.' },
+        ],
+        citiesTitle: 'Região Metropolitana de Salvador',
+        citiesText: 'A fábrica fica em Lauro de Freitas, que integra a Região Metropolitana de Salvador junto com Camaçari, Candeias, Dias d’Ávila, Itaparica, Madre de Deus, Mata de São João, Pojuca, São Francisco do Conde, São Sebastião do Passé, Simões Filho e Vera Cruz. Atendemos também o interior da Bahia e os demais estados do Nordeste.',
+        productsTitle: 'O que fornecemos',
+        spacersCta: 'Ver a linha de espaçadores',
+        kitsCta: 'Ver os kits de vedação',
+        faq: [
+          { q: 'Vocês entregam em Salvador?', a: 'Sim. A fábrica fica em Lauro de Freitas, na própria Região Metropolitana de Salvador, e atendemos toda a região, o interior da Bahia e os demais estados do Nordeste.' },
+          { q: 'Qual o prazo de entrega na região metropolitana?', a: 'O prazo depende do modelo e do volume. Informe a quantidade na cotação e retornamos com o prazo junto com o preço.' },
+          { q: 'Vocês vendem direto ou só por distribuidor?', a: 'Direto. Você compra de quem injeta a peça, sem camada de distribuidor entre o preço e a obra.' },
+        ],
+      },
+      en: {
+        title: 'Plastic spacers in Salvador and its metropolitan region',
+        lede: 'Marcanti manufactures in Lauro de Freitas, inside the Salvador metropolitan region of Bahia. Spacers for reinforcement and sealing kits go from the factory to the job site without depending on freight from the Southeast.',
+        whoTitle: 'Who buys from Marcanti in the region',
+        who: [
+          { title: 'Construction companies', text: 'Spacers for slabs, beams, columns and foundations, with cover from 15 to 50 mm.' },
+          { title: 'Precast concrete plants', text: 'Open and closed circular spacers for concrete poles, piles and crossarms.' },
+          { title: 'Building materials stores', text: 'The full spacer and sealing kit range for resale.' },
+          { title: 'PVC roof tile manufacturers', text: 'Sealing and fixing kits in all four colours of the range.' },
+        ],
+        citiesTitle: 'The Salvador metropolitan region',
+        citiesText: 'The factory is in Lauro de Freitas, part of the Salvador metropolitan region together with Camaçari, Candeias, Dias d’Ávila, Itaparica, Madre de Deus, Mata de São João, Pojuca, São Francisco do Conde, São Sebastião do Passé, Simões Filho and Vera Cruz. We also serve inland Bahia and the other states of the Brazilian Northeast.',
+        productsTitle: 'What we supply',
+        spacersCta: 'See the spacer range',
+        kitsCta: 'See the sealing kits',
+        faq: [
+          { q: 'Do you deliver in Salvador?', a: 'Yes. The factory is in Lauro de Freitas, inside the Salvador metropolitan region itself, and we serve the whole region, inland Bahia and the other states of the Northeast.' },
+          { q: 'What is the delivery time in the metropolitan region?', a: 'It depends on the model and the volume. Tell us the quantity in your quote request and we will come back with the lead time along with the price.' },
+          { q: 'Do you sell direct or only through distributors?', a: 'Direct. You buy from whoever moulds the part, with no distributor layer between the price and the job site.' },
+        ],
+      },
+      es: {
+        title: 'Espaciadores plásticos en Salvador y su región metropolitana',
+        lede: 'Marcanti fabrica en Lauro de Freitas, dentro de la Región Metropolitana de Salvador, en Bahía. Los espaciadores para armadura y los kits de sellado salen de la fábrica a la obra sin depender de flete del Sudeste.',
+        whoTitle: 'Quién compra a Marcanti en la región',
+        who: [
+          { title: 'Constructoras', text: 'Espaciadores para losa, viga, pilar y cimentación, con recubrimiento de 15 a 50 mm.' },
+          { title: 'Fábricas de prefabricados', text: 'Circular abierto y cerrado para postes, pilotes y crucetas de concreto.' },
+          { title: 'Tiendas de materiales de construcción', text: 'Línea completa de espaciadores y kits de sellado para reventa.' },
+          { title: 'Industrias de teja de PVC', text: 'Kits de sellado y fijación en los cuatro colores de la línea.' },
+        ],
+        citiesTitle: 'Región Metropolitana de Salvador',
+        citiesText: 'La fábrica está en Lauro de Freitas, que integra la Región Metropolitana de Salvador junto con Camaçari, Candeias, Dias d’Ávila, Itaparica, Madre de Deus, Mata de São João, Pojuca, São Francisco do Conde, São Sebastião do Passé, Simões Filho y Vera Cruz. Atendemos también el interior de Bahía y los demás estados del Nordeste.',
+        productsTitle: 'Qué suministramos',
+        spacersCta: 'Ver la línea de espaciadores',
+        kitsCta: 'Ver los kits de sellado',
+        faq: [
+          { q: '¿Entregan en Salvador?', a: 'Sí. La fábrica está en Lauro de Freitas, dentro de la propia Región Metropolitana de Salvador, y atendemos toda la región, el interior de Bahía y los demás estados del Nordeste.' },
+          { q: '¿Cuál es el plazo de entrega en la región metropolitana?', a: 'Depende del modelo y del volumen. Indica la cantidad en la cotización y respondemos con el plazo junto con el precio.' },
+          { q: '¿Venden directo o solo por distribuidor?', a: 'Directo. Compras a quien inyecta la pieza, sin capa de distribuidor entre el precio y la obra.' },
+        ],
+      },
+    }[lang];
+    return `
+${T.pageHero({ title: c.title, subtitle: c.lede, tag: 'h1', bg: 'Vigas-de-Aco-Construcao-Civil.jpg', warm: true, divider: true })}
+${T.valueGrid({ title: c.whoTitle, values: c.who })}
+<section class="bg-light">
+  <div class="container max-720">
+    <h2>${c.citiesTitle}</h2>
+    <p>${c.citiesText}</p>
+  </div>
+</section>
+<section>
+  <div class="container text-center">
+    <h2>${c.productsTitle}</h2>
+    <p style="margin-top:20px;">
+      <a class="btn btn-secondary" href="${T.url(lang, 'espacadores')}">${c.spacersCta}</a>
+      <a class="btn btn-secondary" href="${T.url(lang, 'kit-vedacao')}">${c.kitsCta}</a>
+    </p>
+  </div>
+</section>
+<section>
+  <div class="container max-720">
+    ${T.faqBlock({ title: ui.faqTitle[lang], items: c.faq })}
+  </div>
+</section>
+${T.ctaBand({ title: ui.receiveProposal[lang], lang })}
+`;
+  },
+};
+
+module.exports = [home, quemSomos, tecnologia, contato, sustentabilidade, catalogo, privacidade, obrigado, salvador];

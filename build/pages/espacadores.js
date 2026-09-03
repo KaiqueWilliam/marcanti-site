@@ -110,6 +110,7 @@ const hub = {
           'A linha se divide em duas: Linha Construção, para lajes, vigas, pilares e fundações; e Linha Postes, para postes, estacas e demais pré-moldados.',
         ],
         chooseTitle: 'Como escolher o modelo',
+        regional: 'Fabricamos em Lauro de Freitas: veja como atendemos <a href="REGIONAL">Salvador e a Região Metropolitana</a>.',
       },
       en: {
         eyebrow: 'Spacers',
@@ -118,6 +119,7 @@ const hub = {
           'The range splits in two: the Construction Line, for slabs, beams, columns and foundations; and the Pole Line, for poles, piles and other precast parts.',
         ],
         chooseTitle: 'How to choose the model',
+        regional: 'We manufacture in Lauro de Freitas: see how we serve <a href="REGIONAL">Salvador and its metropolitan region</a>.',
       },
       es: {
         eyebrow: 'Espaciadores',
@@ -126,6 +128,7 @@ const hub = {
           'La línea se divide en dos: Línea Construcción, para losas, vigas, pilares y cimentaciones; y Línea Postes, para postes, pilotes y demás prefabricados.',
         ],
         chooseTitle: 'Cómo elegir el modelo',
+        regional: 'Fabricamos en Lauro de Freitas: mira cómo atendemos <a href="REGIONAL">Salvador y su Región Metropolitana</a>.',
       },
     }[lang];
     const cards = [
@@ -139,6 +142,7 @@ ${T.cardGrid({ cards, cols: 2 })}
   <div class="container">
     <h2>${c.chooseTitle}</h2>
     ${T.specTable(SPEC.comoEscolher, lang)}
+    <p class="spec-table-note">${c.regional.replace('REGIONAL', T.url(lang, 'espacadores-plasticos-salvador'))}</p>
   </div>
 </section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;

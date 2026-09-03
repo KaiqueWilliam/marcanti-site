@@ -75,6 +75,12 @@ const navTree = [
   { key: 'contato', slug: 'contato', label: { pt: 'Contato', en: 'Contact', es: 'Contacto' } },
 ];
 
+// Links que ficam só no rodapé: entram na coluna de produtos para a página não
+// nascer órfã, mas sem inchar o menu principal.
+const footerExtra = [
+  { key: 'salvador', slug: 'espacadores-plasticos-salvador', label: { pt: 'Espaçadores em Salvador', en: 'Spacers in Salvador', es: 'Espaciadores en Salvador' } },
+];
+
 const topBarExtra = [
   { key: 'sustentabilidade', slug: 'sustentabilidade', label: { pt: 'Sustentabilidade', en: 'Sustainability', es: 'Sostenibilidad' } },
   { key: 'catalogo', slug: 'catalogo-de-produtos', label: { pt: 'Catálogo', en: 'Catalog', es: 'Catálogo' } },
@@ -182,4 +188,4 @@ const ui = {
   faqTitle: { pt: 'Perguntas frequentes', en: 'Frequently asked questions', es: 'Preguntas frecuentes' },
 };
 
-module.exports = { LANGS, business, waLink, navTree, topBarExtra, ui, form };
+module.exports = { LANGS, business, waLink, navTree, topBarExtra, footerExtra, ui, form };
