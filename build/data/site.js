@@ -69,7 +69,9 @@ const navTree = [
       { key: 'kit-pvc-fixacao', slug: 'kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc', label: { pt: 'Kit Vedação e Fixação Para Telha de PVC', en: 'Sealing & Fixing Kit for PVC Roof Tiles', es: 'Kit de Sellado y Fijación para Teja de PVC' } },
     ],
   },
-  { key: 'tecnologia', slug: 'tecnologia', label: { pt: 'Tecnologia', en: 'Technology', es: 'Tecnología' } },
+  // Renomeada de "Tecnologia" (auditoria 3.6): a URL e o rótulo não correspondiam
+  // ao conteúdo, que é consultoria em desenvolvimento de produtos. 301 no .htaccess.
+  { key: 'desenvolvimento', slug: 'desenvolvimento-de-produtos', label: { pt: 'Desenvolvimento de Produtos', en: 'Product Development', es: 'Desarrollo de Productos' } },
   { key: 'contato', slug: 'contato', label: { pt: 'Contato', en: 'Contact', es: 'Contacto' } },
 ];
 

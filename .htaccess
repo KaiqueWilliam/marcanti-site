@@ -57,6 +57,23 @@
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
+# ---- Redirects 301 (URLs antigas -> novas) ----
+# A regra com barra final vem antes da sem barra: o mod_alias casa por prefixo e
+# usa a primeira diretiva que bater, então a mais específica precisa vir primeiro.
+<IfModule mod_alias.c>
+  # /tecnologia/ -> /desenvolvimento-de-produtos/ (auditoria 3.6: URL e rótulo do
+  # menu não correspondiam ao conteúdo, que é consultoria em desenvolvimento).
+  Redirect 301 /pt/tecnologia/ /pt/desenvolvimento-de-produtos/
+  Redirect 301 /pt/tecnologia  /pt/desenvolvimento-de-produtos/
+  Redirect 301 /en/tecnologia/ /en/desenvolvimento-de-produtos/
+  Redirect 301 /en/tecnologia  /en/desenvolvimento-de-produtos/
+  Redirect 301 /es/tecnologia/ /es/desenvolvimento-de-produtos/
+  Redirect 301 /es/tecnologia  /es/desenvolvimento-de-produtos/
+  # Site antigo (WordPress) não tinha prefixo de idioma nas URLs.
+  Redirect 301 /tecnologia/ /pt/desenvolvimento-de-produtos/
+  Redirect 301 /tecnologia  /pt/desenvolvimento-de-produtos/
+</IfModule>
+
 # ---- Formatos modernos de imagem ----
 <IfModule mod_mime.c>
   AddType image/webp .webp

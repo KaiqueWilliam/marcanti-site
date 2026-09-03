@@ -149,8 +149,8 @@ function renderFooter(lang) {
       <div class="footer-col">
         <h5>${ui.productsLabel[lang]}</h5>
         <ul>
-          ${navTree.filter((n) => n.key !== 'contato' && n.key !== 'tecnologia').map((n) => `<li><a href="${url(lang, n.slug)}">${n.label[lang]}</a></li>`).join('')}
-          <li><a href="${url(lang, 'tecnologia')}">${navTree.find((n) => n.key === 'tecnologia').label[lang]}</a></li>
+          ${navTree.filter((n) => n.key !== 'contato' && n.key !== 'desenvolvimento').map((n) => `<li><a href="${url(lang, n.slug)}">${n.label[lang]}</a></li>`).join('')}
+          ${(() => { const d = navTree.find((n) => n.key === 'desenvolvimento'); return `<li><a href="${url(lang, d.slug)}">${d.label[lang]}</a></li>`; })()}
         </ul>
       </div>
       <div class="footer-col">

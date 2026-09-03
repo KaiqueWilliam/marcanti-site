@@ -163,8 +163,8 @@ ${T.valueGrid({ values: c.values })}
 
 // ---------------- TECNOLOGIA ----------------
 const tecnologia = {
-  slug: 'tecnologia',
-  title: { pt: 'Tecnologia – Marcanti', en: 'Technology – Marcanti', es: 'Tecnología – Marcanti' },
+  slug: 'desenvolvimento-de-produtos',
+  title: { pt: 'Desenvolvimento de Produtos Plásticos – Marcanti', en: 'Plastic Product Development – Marcanti', es: 'Desarrollo de Productos Plásticos – Marcanti' },
   description: {
     pt: 'Consultoria em Desenvolvimento de Produtos na Indústria de Transformações Plásticas.',
     en: 'Product Development Consulting in the Plastics Transformation Industry.',
@@ -173,8 +173,8 @@ const tecnologia = {
   body(lang) {
     const c = {
       pt: {
-        eyebrow: 'Tecnologia',
-        title: 'Consultoria em Desenvolvimento de Produtos',
+        eyebrow: 'Desenvolvimento de Produtos',
+        title: 'Consultoria em Desenvolvimento de Produtos Plásticos',
         paragraphs: [
           'Entender e identificar o que seu cliente necessita e manter a alta qualidade dos seus produtos, são fatores fundamentais para que sua empresa obtenha sucesso.',
           'Visando promover o desenvolvimento de produtos inovadores, a MARCANTI também realiza Consultoria em Desenvolvimento de Produtos na Indústria de Transformações Plásticas.',
@@ -195,8 +195,8 @@ const tecnologia = {
         ],
       },
       en: {
-        eyebrow: 'Technology',
-        title: 'Product Development Consulting',
+        eyebrow: 'Product Development',
+        title: 'Plastic Product Development Consulting',
         paragraphs: [
           'Understanding and identifying what your client needs, and maintaining the high quality of your products, are fundamental factors for your company’s success.',
           'Aiming to promote the development of innovative products, MARCANTI also provides Product Development Consulting in the Plastics Transformation Industry.',
@@ -217,8 +217,8 @@ const tecnologia = {
         ],
       },
       es: {
-        eyebrow: 'Tecnología',
-        title: 'Consultoría en Desarrollo de Productos',
+        eyebrow: 'Desarrollo de Productos',
+        title: 'Consultoría en Desarrollo de Productos Plásticos',
         paragraphs: [
           'Entender e identificar lo que su cliente necesita y mantener la alta calidad de sus productos son factores fundamentales para que su empresa tenga éxito.',
           'Con el objetivo de promover el desarrollo de productos innovadores, MARCANTI también ofrece Consultoría en Desarrollo de Productos en la Industria de Transformación de Plásticos.',

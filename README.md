@@ -41,7 +41,7 @@ Requer apenas Node.js instalado na máquina de quem for editar (não no servidor
 Principais arquivos-fonte:
 - `build/data/site.js` — telefone, WhatsApp, e-mail, endereço, horário, links de redes sociais, link do catálogo (Google Drive), menu de navegação e textos fixos (botões, rodapé) nos 3 idiomas.
 - `build/templates.js` — layout/HTML do cabeçalho, rodapé, e os "blocos" reutilizáveis (seções com imagem+texto, grade de cards, tabela de cores, etc.). Mexer aqui muda o layout de **todas** as páginas.
-- `build/pages/main.js` — Home, Quem Somos, Tecnologia, Contato, Sustentabilidade, Catálogo, Política de Privacidade.
+- `build/pages/main.js` — Home, Quem Somos, Desenvolvimento de Produtos, Contato, Sustentabilidade, Catálogo, Política de Privacidade.
 - `build/pages/espacadores.js` — hub de Espaçadores, Linha Postes, Linha Construção e os 6 produtos.
 - `build/pages/kit-vedacao.js` — hub de Kit Vedação e os 4 produtos.
 - `build/pages/blog.js` — índice do blog e os 5 posts.
