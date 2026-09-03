@@ -94,6 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
             status.textContent = form.dataset.success || 'Message sent successfully!';
             status.classList.add('ok');
             form.reset();
+            // A página de agradecimento tem URL própria para servir de conversão
+            // no GA4 / Google Ads; a mensagem acima cobre o caso de o atributo
+            // não existir (ou de o navegador bloquear a navegação).
+            if (form.dataset.thanks) {
+              window.location.assign(form.dataset.thanks);
+            }
           } else {
             status.textContent = form.dataset.error || 'Something went wrong. Please try again or contact us via WhatsApp.';
             status.classList.add('err');

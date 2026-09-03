@@ -80,6 +80,76 @@ const topBarExtra = [
   { key: 'catalogo', slug: 'catalogo-de-produtos', label: { pt: 'Catálogo', en: 'Catalog', es: 'Catálogo' } },
 ];
 
+// Campos do formulário de cotação (auditoria 3.7 / 4.10). Os `value` das listas
+// são slugs estáveis, iguais nos 3 idiomas: um lead vindo da página ES chega no
+// e-mail/CRM com o mesmo identificador de um lead da página PT. O contato.php
+// traduz o slug de volta para o rótulo em português na hora de montar o e-mail.
+const form = {
+  selectPlaceholder: { pt: 'Selecione...', en: 'Select...', es: 'Selecciona...' },
+  optional: { pt: 'opcional', en: 'optional', es: 'opcional' },
+  name: {
+    label: { pt: 'Nome', en: 'Name', es: 'Nombre' },
+    placeholder: { pt: 'Seu nome', en: 'Your name', es: 'Tu nombre' },
+  },
+  company: {
+    label: { pt: 'Empresa', en: 'Company', es: 'Empresa' },
+    placeholder: { pt: 'Nome da empresa', en: 'Company name', es: 'Nombre de la empresa' },
+  },
+  email: {
+    label: { pt: 'E-mail', en: 'Email', es: 'Correo electrónico' },
+    placeholder: { pt: 'seu@email.com.br', en: 'you@email.com', es: 'tu@correo.com' },
+  },
+  phone: {
+    label: { pt: 'Telefone / WhatsApp', en: 'Phone / WhatsApp', es: 'Teléfono / WhatsApp' },
+    placeholder: { pt: '(71) 9 9999-9999', en: '+55 71 99999-9999', es: '+55 71 99999-9999' },
+  },
+  city: {
+    label: { pt: 'Cidade / UF', en: 'City / State', es: 'Ciudad / Estado' },
+    placeholder: { pt: 'Salvador / BA', en: 'Salvador / BA', es: 'Salvador / BA' },
+  },
+  segment: {
+    label: { pt: 'Segmento', en: 'Segment', es: 'Segmento' },
+    options: [
+      { value: 'construtora', label: { pt: 'Construtora', en: 'Construction company', es: 'Constructora' } },
+      { value: 'pre-moldados', label: { pt: 'Fábrica de pré-moldados', en: 'Precast concrete plant', es: 'Fábrica de prefabricados' } },
+      { value: 'loja-material', label: { pt: 'Loja de material de construção', en: 'Building materials store', es: 'Tienda de materiales de construcción' } },
+      { value: 'telha-pvc', label: { pt: 'Indústria de telha de PVC', en: 'PVC roof tile manufacturer', es: 'Industria de tejas de PVC' } },
+      { value: 'terceirizacao', label: { pt: 'Terceirização de injeção', en: 'Outsourced injection molding', es: 'Tercerización de inyección' } },
+      { value: 'outro', label: { pt: 'Outro', en: 'Other', es: 'Otro' } },
+    ],
+  },
+  product: {
+    label: { pt: 'Produto de interesse', en: 'Product of interest', es: 'Producto de interés' },
+    options: [
+      { value: 'espacadores-construcao', label: { pt: 'Espaçadores – Linha Construção', en: 'Spacers – Construction Line', es: 'Espaciadores – Línea Construcción' } },
+      { value: 'espacadores-postes', label: { pt: 'Espaçadores – Linha Postes', en: 'Spacers – Pole Line', es: 'Espaciadores – Línea Postes' } },
+      { value: 'kit-vedacao', label: { pt: 'Kit de vedação', en: 'Sealing kit', es: 'Kit de sellado' } },
+      { value: 'injecao-terceirizada', label: { pt: 'Injeção terceirizada', en: 'Outsourced injection molding', es: 'Inyección tercerizada' } },
+      { value: 'nao-sei', label: { pt: 'Não sei ainda', en: 'Not sure yet', es: 'Aún no lo sé' } },
+    ],
+  },
+  quantity: {
+    label: { pt: 'Quantidade estimada', en: 'Estimated quantity', es: 'Cantidad estimada' },
+    placeholder: { pt: 'Ex.: 5.000 peças', en: 'e.g. 5,000 pieces', es: 'Ej.: 5.000 piezas' },
+  },
+  message: {
+    label: { pt: 'Mensagem', en: 'Message', es: 'Mensaje' },
+    placeholder: {
+      pt: 'Informe modelo, cobrimento e quantidade. Se ainda não tiver a especificação, descreva a aplicação.',
+      en: 'Tell us the model, concrete cover and quantity. If you do not have the spec yet, describe the application.',
+      es: 'Indica modelo, recubrimiento y cantidad. Si aún no tienes la especificación, describe la aplicación.',
+    },
+  },
+  consent: {
+    // {link} é substituído pelo <a> para a Política de Privacidade no template.
+    text: {
+      pt: 'Autorizo a Marcanti a usar meus dados para responder a esta solicitação, conforme a {link}. Posso solicitar a exclusão a qualquer momento.',
+      en: 'I authorize Marcanti to use my data to respond to this request, in accordance with the {link}. I may request deletion at any time.',
+      es: 'Autorizo a Marcanti a usar mis datos para responder a esta solicitud, conforme a la {link}. Puedo solicitar la eliminación en cualquier momento.',
+    },
+  },
+};
+
 const ui = {
   requestQuote: { pt: 'Solicitar Orçamento', en: 'Request a Quote', es: 'Solicitar Presupuesto' },
   sendMessage: { pt: 'Enviar Mensagem', en: 'Send Message', es: 'Enviar Mensaje' },
@@ -111,4 +181,4 @@ const ui = {
   availableModels: { pt: 'Modelos Disponíveis', en: 'Available Models', es: 'Modelos Disponibles' },
 };
 
-module.exports = { LANGS, business, waLink, navTree, topBarExtra, ui };
+module.exports = { LANGS, business, waLink, navTree, topBarExtra, ui, form };

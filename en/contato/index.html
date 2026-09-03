@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&amp;family=Roboto+Slab:wght@400;600;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=8ef9ed2e">
+<link rel="stylesheet" href="/assets/css/style.css?v=dff9765c">
 </head>
 <body>
 
@@ -133,32 +133,85 @@
 <section class="page-hero warm">
   <div class="container contact-layout">
     <div class="contact-card">
-      <h1>Welcome to our contact page!</h1>
+      <h1>Request a quote</h1>
       <span class="hero-divider"></span>
-      <p>Fill out this form now to request your quote, ask questions or share suggestions, and we will get back to you as soon as possible.</p><p>We look forward to assisting you, providing the best possible experience and sharing the latest innovations and solutions in civil construction. Get in touch — we are certain we will build a great partnership to grow together, stronger.</p><p>We are here to meet your needs and build a successful future.</p>
+      <p>Tell us the model, concrete cover and quantity. If you do not have the specification yet, describe the application — we will recommend the right model.</p><p>We reply during business hours, Monday to Friday, 7am to 5pm.</p>
+      <h2 class="contact-card-sub">Where we are</h2>
+      <p>Rua Estrela do Mar, 546<br>Quadra 04 – Lote 14 – Galpão 02<br>Buraquinho – Lauro de Freitas – Bahia<br>CEP: 42710-570, Brasil</p>
+      <h2 class="contact-card-sub">Opening hours</h2>
+      <p>Mon–Fri, 7am to 5pm<br>
+        <a href="mailto:contato@marcanti.ind.br">contato@marcanti.ind.br</a><br>
+        <a href="https://api.whatsapp.com/send/?phone=5571999851125&text=Hello%2C%20I%20would%20like%20to%20request%20a%20quote%20from%20MARCANTI&type=phone_number&app_absent=0" target="_blank" rel="noopener">+55 71 9 9985-1125</a></p>
     </div>
     <div>
       <form class="contact-form" action="/contato.php" method="post"
-    data-sending="Sending..." data-success="Message sent successfully! We will get back to you shortly." data-error="Something went wrong. Please try again or reach us on WhatsApp.">
+    data-sending="Sending..." data-success="Message sent successfully! We will get back to you shortly." data-error="Something went wrong. Please try again or reach us on WhatsApp."
+    data-thanks="/en/obrigado/">
     <input type="hidden" name="lang" value="en">
     <div class="hp-field"><label>Website</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+    <div class="form-row">
+      
     <div class="form-group">
       <label for="f-name">Name</label>
-      <input type="text" id="f-name" name="name" placeholder="Enter your name..." required>
+      <input type="text" id="f-name" name="name" placeholder="Your name" autocomplete="name" required>
     </div>
+      
+    <div class="form-group">
+      <label for="f-company">Company</label>
+      <input type="text" id="f-company" name="company" placeholder="Company name" autocomplete="organization" required>
+    </div>
+    </div>
+    <div class="form-row">
+      
     <div class="form-group">
       <label for="f-email">Email</label>
-      <input type="email" id="f-email" name="email" placeholder="Enter your email..." required>
+      <input type="email" id="f-email" name="email" placeholder="you@email.com" autocomplete="email" required>
+    </div>
+      
+    <div class="form-group">
+      <label for="f-phone">Phone / WhatsApp</label>
+      <input type="tel" id="f-phone" name="phone" placeholder="+55 71 99999-9999" autocomplete="tel" required>
+    </div>
+    </div>
+    <div class="form-row">
+      
+    <div class="form-group">
+      <label for="f-city">City / State</label>
+      <input type="text" id="f-city" name="city" placeholder="Salvador / BA" autocomplete="address-level2" required>
+    </div>
+      
+    <div class="form-group">
+      <label for="f-segment">Segment</label>
+      <select id="f-segment" name="segment" required>
+        <option value="">Select...</option>
+        <option value="construtora">Construction company</option><option value="pre-moldados">Precast concrete plant</option><option value="loja-material">Building materials store</option><option value="telha-pvc">PVC roof tile manufacturer</option><option value="terceirizacao">Outsourced injection molding</option><option value="outro">Other</option>
+      </select>
+    </div>
+    </div>
+    <div class="form-row">
+      
+    <div class="form-group">
+      <label for="f-product">Product of interest</label>
+      <select id="f-product" name="product" required>
+        <option value="">Select...</option>
+        <option value="espacadores-construcao">Spacers – Construction Line</option><option value="espacadores-postes">Spacers – Pole Line</option><option value="kit-vedacao">Sealing kit</option><option value="injecao-terceirizada">Outsourced injection molding</option><option value="nao-sei">Not sure yet</option>
+      </select>
+    </div>
+      
+    <div class="form-group">
+      <label for="f-quantity">Estimated quantity <span class="form-optional">(optional)</span></label>
+      <input type="text" id="f-quantity" name="quantity" placeholder="e.g. 5,000 pieces">
+    </div>
     </div>
     <div class="form-group">
-      <label for="f-phone">Phone</label>
-      <input type="tel" id="f-phone" name="phone" placeholder="Enter your phone..." required>
+      <label for="f-msg">Message <span class="form-optional">(optional)</span></label>
+      <textarea id="f-msg" name="message" rows="4" placeholder="Tell us the model, concrete cover and quantity. If you do not have the spec yet, describe the application."></textarea>
     </div>
-    <div class="form-group">
-      <label for="f-msg">Message</label>
-      <textarea id="f-msg" name="message" rows="5" placeholder="Enter your message..."></textarea>
+    <div class="form-consent">
+      <input type="checkbox" id="f-consent" name="consent" value="1" required>
+      <label for="f-consent">I authorize Marcanti to use my data to respond to this request, in accordance with the <a href="/en/politica-de-privacidade/" target="_blank" rel="noopener">Privacy Policy</a>. I may request deletion at any time.</label>
     </div>
-    <button type="submit" class="btn btn-secondary">Request your quote</button>
+    <button type="submit" class="btn btn-secondary">Request quote</button>
     <div class="form-status" role="status"></div>
   </form>
     </div>
@@ -208,6 +261,6 @@
   </div>
 </footer>
 <a class="whatsapp-float" href="https://api.whatsapp.com/send/?phone=5571999851125&text=Hello%2C%20I%20would%20like%20to%20request%20a%20quote%20from%20MARCANTI&type=phone_number&app_absent=0" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.04 3C9.37 3 3.98 8.39 3.98 15.06c0 2.23.6 4.32 1.66 6.12L3 29l8.02-2.55a12.02 12.02 0 0 0 5.02 1.1h.01c6.66 0 12.05-5.4 12.05-12.06C28.1 8.4 22.71 3 16.04 3zm7.06 17.02c-.3.85-1.72 1.62-2.37 1.7-.6.08-1.37.11-2.2-.14-.51-.16-1.16-.37-2-.73-3.52-1.52-5.82-5.06-6-5.3-.18-.24-1.43-1.9-1.43-3.62 0-1.73.9-2.58 1.23-2.93.32-.35.7-.44.93-.44.24 0 .47 0 .68.01.22.01.51-.08.8.61.3.7 1.02 2.44 1.11 2.62.09.18.15.4.03.64-.12.24-.18.4-.36.6-.18.2-.38.46-.54.62-.18.18-.37.37-.16.73.21.35.94 1.55 2.02 2.51 1.39 1.24 2.56 1.62 2.92 1.8.36.18.57.15.78-.09.21-.24.9-1.05 1.14-1.4.24-.36.48-.3.8-.18.32.12 2.06.97 2.41 1.15.35.18.59.27.68.42.09.15.09.85-.21 1.7z"/></svg></a>
-<script src="/assets/js/main.js?v=f9163eeb" defer></script>
+<script src="/assets/js/main.js?v=8cef59e4" defer></script>
 </body>
 </html>

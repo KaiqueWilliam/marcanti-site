@@ -21,6 +21,7 @@ for (const pageDef of pageModules) {
       title: pageDef.title[lang],
       description: (pageDef.description && pageDef.description[lang]) || '',
       image: pageDef.image || undefined, // absolute-or-relative path for og:image; falls back to hero/site default
+      noindex: pageDef.noindex || undefined, // páginas de conversão (ex.: /obrigado/) não devem ranquear
     };
     const bodyHtml = pageDef.body(lang);
     const html = T.page(lang, meta, bodyHtml);

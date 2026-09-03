@@ -1,6 +1,6 @@
 'use strict';
 const T = require('../templates');
-const { business, ui } = require('../data/site');
+const { business, ui, waLink } = require('../data/site');
 
 const t = (obj, lang) => obj[lang];
 
@@ -282,31 +282,34 @@ const contato = {
   body(lang) {
     const c = {
       pt: {
-        title: 'Bem-vindo(a) à nossa página de contato!',
+        title: 'Solicite uma cotação',
         paragraphs: [
-          'Preencha este formulário agora solicitando seu orçamento, dúvidas ou sugestões, que entraremos em contato com você o mais rápido possível.',
-          'Estamos ansiosos para atendê-lo(a), proporcionar a melhor experiência possível e compartilhar as últimas inovações e soluções na construção civil. Entre em contato e temos a certeza que faremos uma grande parceira para crescermos juntos e mais fortes.',
-          'Estamos aqui para atender às suas necessidades e construir um futuro de sucesso.',
+          'Informe modelo, cobrimento e quantidade. Se ainda não tiver a especificação definida, descreva a aplicação — nós indicamos o modelo adequado.',
+          'Respondemos em horário comercial, de segunda a sexta, das 7h às 17h.',
         ],
+        whereLabel: 'Onde estamos',
+        hoursLabel: 'Atendimento',
       },
       en: {
-        title: 'Welcome to our contact page!',
+        title: 'Request a quote',
         paragraphs: [
-          'Fill out this form now to request your quote, ask questions or share suggestions, and we will get back to you as soon as possible.',
-          'We look forward to assisting you, providing the best possible experience and sharing the latest innovations and solutions in civil construction. Get in touch — we are certain we will build a great partnership to grow together, stronger.',
-          'We are here to meet your needs and build a successful future.',
+          'Tell us the model, concrete cover and quantity. If you do not have the specification yet, describe the application — we will recommend the right model.',
+          'We reply during business hours, Monday to Friday, 7am to 5pm.',
         ],
+        whereLabel: 'Where we are',
+        hoursLabel: 'Opening hours',
       },
       es: {
-        title: '¡Bienvenido(a) a nuestra página de contacto!',
+        title: 'Solicita una cotización',
         paragraphs: [
-          'Completa este formulario ahora para solicitar tu presupuesto, dudas o sugerencias, y nos pondremos en contacto contigo lo antes posible.',
-          'Estamos ansiosos por atenderte, brindarte la mejor experiencia posible y compartir las últimas innovaciones y soluciones en la construcción civil. Contáctanos y estamos seguros de que formaremos una gran alianza para crecer juntos y más fuertes.',
-          'Estamos aquí para atender tus necesidades y construir un futuro de éxito.',
+          'Indica modelo, recubrimiento y cantidad. Si aún no tienes la especificación definida, describe la aplicación — nosotros indicamos el modelo adecuado.',
+          'Respondemos en horario comercial, de lunes a viernes, de 7h a 17h.',
         ],
+        whereLabel: 'Dónde estamos',
+        hoursLabel: 'Atención',
       },
     }[lang];
-    const submitLabel = { pt: 'Solicite seu orçamento', en: 'Request your quote', es: 'Solicita tu presupuesto' }[lang];
+    const submitLabel = { pt: 'Solicitar cotação', en: 'Request quote', es: 'Solicitar cotización' }[lang];
     return `
 <section class="page-hero warm">
   <div class="container contact-layout">
@@ -314,6 +317,12 @@ const contato = {
       <h1>${c.title}</h1>
       <span class="hero-divider"></span>
       ${c.paragraphs.map((p) => `<p>${p}</p>`).join('')}
+      <h2 class="contact-card-sub">${c.whereLabel}</h2>
+      <p>${business.addressLines.join('<br>')}</p>
+      <h2 class="contact-card-sub">${c.hoursLabel}</h2>
+      <p>${business.hours[lang]}<br>
+        <a href="mailto:${business.email}">${business.email}</a><br>
+        <a href="${waLink(lang)}" target="_blank" rel="noopener">${business.phoneDisplay}</a></p>
     </div>
     <div>
       ${T.contactForm(lang, submitLabel)}
@@ -458,4 +467,65 @@ ${T.pageHero({ title: c.title, tag: 'h1' })}
   },
 };
 
-module.exports = [home, quemSomos, tecnologia, contato, sustentabilidade, catalogo, privacidade];
+// ---------------- OBRIGADO (pós-envio do formulário) ----------------
+// URL própria para servir de conversão no GA4 / Google Ads: sem ela a campanha
+// não consegue medir cotação (auditoria 4.10). noindex porque é página de
+// funil, não de busca.
+const obrigado = {
+  slug: 'obrigado',
+  noindex: true,
+  title: { pt: 'Solicitação recebida – Marcanti', en: 'Request received – Marcanti', es: 'Solicitud recibida – Marcanti' },
+  description: {
+    pt: 'Recebemos sua solicitação de cotação. Nosso time comercial responde em até 1 dia útil.',
+    en: 'We have received your quote request. Our sales team replies within 1 business day.',
+    es: 'Recibimos tu solicitud de presupuesto. Nuestro equipo comercial responde en 1 día hábil.',
+  },
+  body(lang) {
+    const c = {
+      pt: {
+        title: 'Recebemos sua solicitação',
+        lede: 'Nosso time comercial responde em até 1 dia útil.',
+        faster: 'Se preferir adiantar, chame no WhatsApp:',
+        wa: 'Falar no WhatsApp',
+        next: 'Enquanto isso',
+        catalog: 'Baixar o catálogo técnico',
+        products: 'Ver a linha de espaçadores',
+      },
+      en: {
+        title: 'We have received your request',
+        lede: 'Our sales team replies within 1 business day.',
+        faster: 'To move faster, reach us on WhatsApp:',
+        wa: 'Chat on WhatsApp',
+        next: 'In the meantime',
+        catalog: 'Download the technical catalog',
+        products: 'See the spacer range',
+      },
+      es: {
+        title: 'Recibimos tu solicitud',
+        lede: 'Nuestro equipo comercial responde en un máximo de 1 día hábil.',
+        faster: 'Si prefieres adelantar, escríbenos por WhatsApp:',
+        wa: 'Hablar por WhatsApp',
+        next: 'Mientras tanto',
+        catalog: 'Descargar el catálogo técnico',
+        products: 'Ver la línea de espaciadores',
+      },
+    }[lang];
+    const wa = waLink(lang);
+    return `
+${T.pageHero({ title: c.title, subtitle: c.lede, tag: 'h1', tint: 'blue' })}
+<section>
+  <div class="container max-720 text-center">
+    <p class="lede">${c.faster} <strong>${business.phoneDisplay}</strong></p>
+    <a class="btn btn-primary" href="${wa}" target="_blank" rel="noopener">${c.wa}</a>
+    <h2 style="margin-top:48px;">${c.next}</h2>
+    <p>
+      <a class="btn btn-outline" href="${business.catalogUrl}" target="_blank" rel="noopener">${c.catalog}</a>
+      <a class="btn btn-outline" href="${T.url(lang, 'espacadores')}">${c.products}</a>
+    </p>
+  </div>
+</section>
+`;
+  },
+};
+
+module.exports = [home, quemSomos, tecnologia, contato, sustentabilidade, catalogo, privacidade, obrigado];

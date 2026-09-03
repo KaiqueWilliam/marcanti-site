@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { business, waLink, navTree, topBarExtra, ui } = require('./data/site');
+const { business, waLink, navTree, topBarExtra, ui, form } = require('./data/site');
 let imageMeta = {};
 try {
   imageMeta = require('./image-meta.json');
@@ -214,7 +214,7 @@ function renderHead(lang, meta) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(meta.title)}</title>
 <meta name="description" content="${escAttr(desc)}">
-<link rel="canonical" href="${canonical}">
+${meta.noindex ? '<meta name="robots" content="noindex, follow">\n' : ''}<link rel="canonical" href="${canonical}">
 ${hreflangs}
 <meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="Marcanti">
@@ -416,26 +416,57 @@ function ctaBand({ title, text, lang }) {
   </section>`;
 }
 
+// Formulário de cotação. Os campos de qualificação (empresa, cidade/UF, segmento,
+// produto, quantidade) existem para que o time comercial consiga priorizar e já
+// responder com cotação na primeira resposta — sem eles o lead chegava sem
+// informação suficiente (auditoria 3.7 / 4.10).
 function contactForm(lang, submitLabel) {
+  const f = form;
+  const t = (o) => o[lang];
+  const field = ({ id, name, type = 'text', cfg, required, autocomplete }) => `
+    <div class="form-group">
+      <label for="f-${id}">${t(cfg.label)}${required ? '' : ` <span class="form-optional">(${t(f.optional)})</span>`}</label>
+      <input type="${type}" id="f-${id}" name="${name}" placeholder="${escAttr(t(cfg.placeholder))}"${autocomplete ? ` autocomplete="${autocomplete}"` : ''}${required ? ' required' : ''}>
+    </div>`;
+  const select = ({ id, name, cfg }) => `
+    <div class="form-group">
+      <label for="f-${id}">${t(cfg.label)}</label>
+      <select id="f-${id}" name="${name}" required>
+        <option value="">${t(f.selectPlaceholder)}</option>
+        ${cfg.options.map((o) => `<option value="${o.value}">${t(o.label)}</option>`).join('')}
+      </select>
+    </div>`;
+  const policyLink = `<a href="${url(lang, 'politica-de-privacidade')}" target="_blank" rel="noopener">${ui.privacyPolicy[lang]}</a>`;
+  const consent = t(f.consent.text).replace('{link}', policyLink);
+
   return `<form class="contact-form" action="/contato.php" method="post"
-    data-sending="${ui.sending[lang]}" data-success="${ui.formSuccess[lang]}" data-error="${ui.formError[lang]}">
+    data-sending="${escAttr(ui.sending[lang])}" data-success="${escAttr(ui.formSuccess[lang])}" data-error="${escAttr(ui.formError[lang])}"
+    data-thanks="${url(lang, 'obrigado')}">
     <input type="hidden" name="lang" value="${lang}">
     <div class="hp-field"><label>Website</label><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
-    <div class="form-group">
-      <label for="f-name">${{ pt: 'Nome', en: 'Name', es: 'Nombre' }[lang]}</label>
-      <input type="text" id="f-name" name="name" placeholder="${{ pt: 'Digite seu nome...', en: 'Enter your name...', es: 'Escribe tu nombre...' }[lang]}" required>
+    <div class="form-row">
+      ${field({ id: 'name', name: 'name', cfg: f.name, required: true, autocomplete: 'name' })}
+      ${field({ id: 'company', name: 'company', cfg: f.company, required: true, autocomplete: 'organization' })}
+    </div>
+    <div class="form-row">
+      ${field({ id: 'email', name: 'email', type: 'email', cfg: f.email, required: true, autocomplete: 'email' })}
+      ${field({ id: 'phone', name: 'phone', type: 'tel', cfg: f.phone, required: true, autocomplete: 'tel' })}
+    </div>
+    <div class="form-row">
+      ${field({ id: 'city', name: 'city', cfg: f.city, required: true, autocomplete: 'address-level2' })}
+      ${select({ id: 'segment', name: 'segment', cfg: f.segment })}
+    </div>
+    <div class="form-row">
+      ${select({ id: 'product', name: 'product', cfg: f.product })}
+      ${field({ id: 'quantity', name: 'quantity', cfg: f.quantity, required: false })}
     </div>
     <div class="form-group">
-      <label for="f-email">${{ pt: 'Email', en: 'Email', es: 'Correo electrónico' }[lang]}</label>
-      <input type="email" id="f-email" name="email" placeholder="${{ pt: 'Digite seu email...', en: 'Enter your email...', es: 'Escribe tu correo...' }[lang]}" required>
+      <label for="f-msg">${t(f.message.label)} <span class="form-optional">(${t(f.optional)})</span></label>
+      <textarea id="f-msg" name="message" rows="4" placeholder="${escAttr(t(f.message.placeholder))}"></textarea>
     </div>
-    <div class="form-group">
-      <label for="f-phone">${{ pt: 'Telefone', en: 'Phone', es: 'Teléfono' }[lang]}</label>
-      <input type="tel" id="f-phone" name="phone" placeholder="${{ pt: 'Digite seu telefone...', en: 'Enter your phone...', es: 'Escribe tu teléfono...' }[lang]}" required>
-    </div>
-    <div class="form-group">
-      <label for="f-msg">${{ pt: 'Mensagem', en: 'Message', es: 'Mensaje' }[lang]}</label>
-      <textarea id="f-msg" name="message" rows="5" placeholder="${{ pt: 'Digite sua mensagem...', en: 'Enter your message...', es: 'Escribe tu mensaje...' }[lang]}"></textarea>
+    <div class="form-consent">
+      <input type="checkbox" id="f-consent" name="consent" value="1" required>
+      <label for="f-consent">${consent}</label>
     </div>
     <button type="submit" class="btn btn-secondary">${submitLabel || ui.sendMessage[lang]}</button>
     <div class="form-status" role="status"></div>

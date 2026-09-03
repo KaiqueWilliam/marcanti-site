@@ -3,6 +3,10 @@
  * Contact form mail handler for the Marcanti website.
  * Receives the POST from /pt|en|es/contato/ (assets/js/main.js) and sends an email via PHP mail().
  * Works out of the box on HostGator shared hosting (PHP + mail() enabled by default).
+ *
+ * The qualification fields (company, city, segment, product, quantity) exist so the
+ * sales team can prioritise the lead and quote on the first reply — see the site
+ * audit, sections 3.7 / 4.10.
  */
 
 header('Content-Type: application/json; charset=utf-8');
@@ -25,31 +29,75 @@ if (!empty($_POST['website'])) {
     respond(true);
 }
 
-$name    = trim($_POST['name'] ?? '');
-$email   = trim($_POST['email'] ?? '');
-$phone   = trim($_POST['phone'] ?? '');
-$message = trim($_POST['message'] ?? '');
-$lang    = trim($_POST['lang'] ?? 'pt');
+$field = fn($k) => trim($_POST[$k] ?? '');
 
-if ($name === '' || $email === '' || $phone === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+$name     = $field('name');
+$company  = $field('company');
+$email    = $field('email');
+$phone    = $field('phone');
+$city     = $field('city');
+$segment  = $field('segment');
+$product  = $field('product');
+$quantity = $field('quantity');
+$message  = $field('message');
+$lang     = $field('lang') ?: 'pt';
+$consent  = !empty($_POST['consent']);
+
+// The selects post stable slugs (same in every language) so a lead from the ES
+// page lands in the inbox/CRM with the same identifier as one from the PT page.
+// Anything not on these lists is discarded rather than echoed into the email.
+$segments = [
+    'construtora'   => 'Construtora',
+    'pre-moldados'  => 'Fábrica de pré-moldados',
+    'loja-material' => 'Loja de material de construção',
+    'telha-pvc'     => 'Indústria de telha de PVC',
+    'terceirizacao' => 'Terceirização de injeção',
+    'outro'         => 'Outro',
+];
+$products = [
+    'espacadores-construcao' => 'Espaçadores – Linha Construção',
+    'espacadores-postes'     => 'Espaçadores – Linha Postes',
+    'kit-vedacao'            => 'Kit de vedação',
+    'injecao-terceirizada'   => 'Injeção terceirizada',
+    'nao-sei'                => 'Não sei ainda',
+];
+
+$segmentLabel = $segments[$segment] ?? '';
+$productLabel = $products[$product] ?? '';
+
+$missingRequired = $name === '' || $company === '' || $email === '' || $phone === ''
+    || $city === '' || $segmentLabel === '' || $productLabel === ''
+    || !filter_var($email, FILTER_VALIDATE_EMAIL);
+
+// LGPD: without the explicit consent checkbox there is no lawful basis to store
+// or answer the lead, so the submission is rejected rather than silently sent.
+if ($missingRequired || !$consent) {
     http_response_code(422);
     respond(false);
 }
 
 $subjects = [
-    'pt' => 'Novo contato pelo site - MARCANTI',
-    'en' => 'New website contact - MARCANTI',
-    'es' => 'Nuevo contacto por el sitio web - MARCANTI',
+    'pt' => 'Nova cotação pelo site - MARCANTI',
+    'en' => 'New quote request - MARCANTI',
+    'es' => 'Nueva solicitud de presupuesto - MARCANTI',
 ];
 $subject = $subjects[$lang] ?? $subjects['pt'];
+$subject .= ' | ' . $segmentLabel . ' | ' . $productLabel;
 
+// Strips CR/LF so a crafted value cannot inject extra mail headers.
 $safe = fn($s) => str_replace(["\r", "\n"], ' ', $s);
 
-$body = "Nome/Name: {$name}\n"
-      . "Email: {$email}\n"
-      . "Telefone/Phone: {$phone}\n"
-      . "Idioma/Language: {$lang}\n\n"
-      . "Mensagem/Message:\n{$message}\n";
+$body = "Nome:      {$name}\n"
+      . "Empresa:   {$company}\n"
+      . "E-mail:    {$email}\n"
+      . "Telefone:  {$phone}\n"
+      . "Cidade/UF: {$city}\n"
+      . "Segmento:  {$segmentLabel}\n"
+      . "Produto:   {$productLabel}\n"
+      . "Quantidade: " . ($quantity !== '' ? $quantity : '(não informada)') . "\n"
+      . "Idioma:    {$lang}\n"
+      . "Consentimento LGPD: sim (" . date('d/m/Y H:i:s') . ")\n\n"
+      . "Mensagem:\n" . ($message !== '' ? $message : '(sem mensagem)') . "\n";
 
 $headers = "From: MARCANTI Website <no-reply@marcanti.ind.br>\r\n"
          . "Reply-To: " . $safe($email) . "\r\n"

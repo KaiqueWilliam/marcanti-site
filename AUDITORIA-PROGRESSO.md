@@ -69,9 +69,9 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 ### Alto
 - [x] Open Graph ausente em todas as páginas — Etapa 3 (audit 3.1 / 7 / 8)
 - [ ] Schema ausente — Organization, LocalBusiness, Product, BreadcrumbList, FAQPage (audit 8)
-- [ ] Form de contato sem qualificação (empresa, cidade/UF, segmento, produto, quantidade) (audit 3.7 / 4.10)
-- [ ] Form sem checkbox de consentimento LGPD + link para a política (audit 3.7 / 7)
-- [ ] Sem página de agradecimento `/obrigado/` em URL própria (audit 4.10 / 7 / 8)
+- [x] **Form de contato sem qualificação** → Etapa 8: campos empresa, cidade/UF, segmento, produto de interesse e quantidade estimada (audit 3.7 / 4.10)
+- [x] **Checkbox de consentimento LGPD** + link para a política → Etapa 8; `contato.php` rejeita (422) submissão sem consentimento
+- [x] **Página `/obrigado/`** em URL própria → Etapa 8; `noindex, follow`, JS redireciona após envio. **Falta configurar a conversão no GA4/Google Ads apontando para `/obrigado/`** (audit 4.10 / 7 / 8)
 - [x] Hierarquia de headings quebrada — Etapa 2: privacidade `h3`→`h2`; `cardGrid` card `h3`→`h2`; `.tile` `h4`→`h3`; "Posts Recentes" `h3`→`h2`; 2º produto da pág. Circular Fechado `h3`→`h2` (1 H1 só). Zero skips de nível em 84/84 (audit 3.2)
 - [x] Cadeirinha Pesado fora do menu — Etapa 2: adicionado ao submenu Linha Construção (`build/data/site.js`) (audit 2 / 7)
 
@@ -79,6 +79,7 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 - [x] **Alt text genérico/vazio** → Etapa 5: `splitSection`/`galleryGrid` ganharam parâmetro `imgAlt`/`alt`; ~30 imagens de produto, kit, cliente e aplicação agora com `alt` descritivo nos 3 idiomas (cada imagem foi inspecionada visualmente para o texto bater com a foto). Ícones decorativos de Missão/Visão/Valores mantêm `alt=""` (correto). Validado: 0 `<img>` sem alt em 84/84 (audit 3.4)
 - [x] **Imagens quebradas** (audit 3.4 "src vazio") → não se aplica: as 72 imagens referenciadas existem no repo (o problema era do site WordPress antigo)
 - [ ] **Infográficos com texto PT embutido** (`Sustentabilidade-02-1024x1024.jpg`, `Kit-Vedacao-Para-Telha-de-PVC.jpg`) aparecem iguais em EN/ES. Gap de i18n — refazer as artes ou trocar por versão neutra numa etapa de imagens.
+- [ ] **Página de contato: falta CNPJ e mapa incorporado** (audit 4.10). Endereço e horário já estão na página; CNPJ precisa ser fornecido e o mapa é decisão (iframe do Google adiciona requisição de terceiro).
 - [ ] **CDP 25-30 — Peças/embalagem** está como "Sob consulta" (a imagem do catálogo mostra "x"). Trocar pelo número real quando disponível. Arquivo: `build/data/spec-tables.js`.
 - [ ] Códigos das tabelas seguem as **imagens do catálogo** (CD / EC / ECF / EMA M / CDP), não os da auditoria 4.5 (que inventou "CDL" e bitola 12,5). Confirmar com a Marcanti que os códigos das imagens são os oficiais.
 - [ ] **og:image genérico** — páginas de produto/institucionais usam a imagem do hero (`Quem-Somos.jpg`) ou o default (`Vigas-de-Aco…jpg`). Ideal: criar `og-*.jpg` 1200×630 por seção (Espaçadores / Kit Vedação / Home) e setar `image:` nos page defs. Blog já usa a imagem própria de cada post.
@@ -132,4 +133,5 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 | 2026-09-03 | 4 | Auditoria 3.3: 6 tabelas de medida transcritas das imagens do catálogo para `<table>` HTML (`T.specTable`) nas 7 páginas de produto × 3 idiomas; desenho técnico mantido como diagrama com `alt`. Validado: 84/84 OK (1 H1, sem skips, tabelas balanceadas). | `build/data/spec-tables.js` (novo), `build/templates.js`, `build/pages/espacadores.js`, `assets/css/style.css` |
 | 2026-09-03 | 5 | Auditoria 3.4: `imgAlt`/`alt` em `splitSection`/`galleryGrid`; ~30 imagens de produto/kit/cliente/aplicação com alt descritivo nos 3 idiomas (cada foto inspecionada). Nenhuma imagem quebrada no repo. Validado: 0 `<img>` sem alt em 84/84. | `build/templates.js`, `build/pages/espacadores.js`, `build/pages/kit-vedacao.js`, `build/pages/main.js` |
 | 2026-09-03 | 6 | Auditoria 3.5 (parcial): rodapé não promete mais "indústria automobilística" (texto genérico). Missão/visão, "quatro máquinas" e "reciclável vs reciclada" ficam bloqueados nas decisões da seção 9 (#1, #2, #4). | `build/data/site.js` |
+| 2026-09-03 | 8 | Auditoria 3.7 / 4.10: formulário de cotação com campos de qualificação (empresa, cidade/UF, segmento, produto, quantidade) + consentimento LGPD; `contato.php` reescrito (whitelist de slugs, 422 sem consentimento, e-mail com labels em PT vindo de qualquer idioma); página `/obrigado/` com `noindex` e redirect por JS; copy da página de contato conforme 4.10 + endereço e horário. Validado: 87/87 páginas OK, `php -l` limpo, 6 cenários de POST testados. | `build/data/site.js`, `build/templates.js`, `build/build.js`, `build/pages/main.js`, `contato.php`, `assets/js/main.js`, `assets/css/style.css` |
 | 2026-09-03 | 7 | Auditoria 3.6: `/tecnologia/` → `/desenvolvimento-de-produtos/` (slug, title, H1, eyebrow, menu e rodapé nos 3 idiomas) + 301 no `.htaccess`; diretórios antigos removidos. Validado: 84/84 OK, zero link para a URL antiga. | `build/data/site.js`, `build/templates.js`, `build/pages/main.js`, `.htaccess`, `README.md` |
