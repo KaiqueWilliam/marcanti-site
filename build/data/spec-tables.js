@@ -94,7 +94,41 @@ const cadeirinhaPesado = {
   ],
 };
 
+// Bloco "como escolher o modelo" do hub de espaçadores (auditoria 4.3).
+// Os códigos vêm das tabelas acima, não do texto da auditoria: ela cita
+// "CDL 25-15" e "ECF 20-16", que não existem no catálogo (são CD e ECF 20-20).
+const comoEscolher = {
+  cols: [
+    { id: 'armadura', label: { pt: 'Se a armadura é', en: 'If the reinforcement is', es: 'Si la armadura es' } },
+    { id: 'use', label: { pt: 'Use', en: 'Use', es: 'Usa' } },
+    { id: 'modelos', label: { pt: 'Modelos', en: 'Models', es: 'Modelos' } },
+  ],
+  rows: [
+    {
+      armadura: { pt: 'Vertical — pilar, lateral de viga, poste', en: 'Vertical — column, beam side, pole', es: 'Vertical — pilar, lateral de viga, poste' },
+      use: { pt: 'Circular aberto ou fechado', en: 'Open or closed circular', es: 'Circular abierto o cerrado' },
+      modelos: 'EC 15 a EC 40 · ECF 15-12 a ECF 20-20',
+    },
+    {
+      armadura: { pt: 'Horizontal leve — fundo de viga, laje', en: 'Light horizontal — beam soffit, slab', es: 'Horizontal ligera — fondo de viga, losa' },
+      use: { pt: 'Cadeirinha ou multiapoio', en: 'Chair or multi-support', es: 'Silla o multiapoyo' },
+      modelos: 'CD 25-15 a CD 25-30 · EMA M15 a EMA M40',
+    },
+    {
+      armadura: { pt: 'Horizontal pesada — laje espessa, sapata, bloco', en: 'Heavy horizontal — thick slab, footing, pile cap', es: 'Horizontal pesada — losa gruesa, zapata, bloque' },
+      use: { pt: 'Cadeirinha pesado', en: 'Heavy chair', es: 'Silla pesada' },
+      modelos: 'CDP 25-30 a CDP 25-50',
+    },
+  ],
+  note: {
+    pt: 'Na dúvida, descreva a aplicação na cotação — nós indicamos o modelo.',
+    en: 'Not sure? Describe the application in your quote request and we will recommend the model.',
+    es: '¿En duda? Describe la aplicación en la cotización y nosotros indicamos el modelo.',
+  },
+};
+
 module.exports = {
+  comoEscolher,
   cadeirinha,
   circularAberto,
   circularFechado,

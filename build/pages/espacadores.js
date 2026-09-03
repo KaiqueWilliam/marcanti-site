@@ -9,10 +9,33 @@ const dimDiagramAlt = {
   es: 'Dibujo técnico del separador con las cotas de dimensión (A, B, C…) indicadas',
 };
 
-const genericIntro = {
-  pt: 'Com os espaçadores multiapoio da MARCANTI, você tem a solução perfeita para suportar e posicionar de forma precisa e estável os elementos estruturais, oferecendo máxima resistência e segurança para os seus projetos.',
-  en: 'With MARCANTI spacers, you get the perfect solution to support and position structural elements precisely and stably, offering maximum strength and safety for your projects.',
-  es: 'Con los espaciadores de MARCANTI, tienes la solución perfecta para soportar y posicionar de forma precisa y estable los elementos estructurales, ofreciendo máxima resistencia y seguridad para tus proyectos.',
+// Cada produto abre com o texto do próprio produto. Antes, cinco páginas
+// (cadeirinha nas duas linhas, circular fechado nas duas variantes e cadeirinha
+// pesado) abriam com o texto do multiapoio — auditoria 4.5.
+const introCadeirinha = {
+  pt: 'O espaçador cadeirinha sustenta a armadura horizontal na altura de cobrimento definida em projeto. Os quatro pés distribuem a carga sobre a fôrma e o encaixe superior trava o vergalhão, mantendo a barra na posição durante a concretagem.',
+  en: 'The chair spacer holds horizontal reinforcement at the concrete cover set in the design. Its four feet spread the load over the formwork and the top clip locks the rebar, keeping the bar in position while the concrete is poured.',
+  es: 'El separador silla sostiene la armadura horizontal a la altura de recubrimiento definida en el proyecto. Las cuatro patas distribuyen la carga sobre el encofrado y el encaje superior traba la varilla durante el vaciado.',
+};
+const introCadeirinhaPesado = {
+  pt: 'Cadeirinha reforçada para armadura horizontal pesada. Suporta bitolas maiores que a cadeirinha comum e mantém o cobrimento em laje espessa, sapata e bloco de fundação, onde a carga sobre o espaçador é maior.',
+  en: 'Reinforced chair spacer for heavy horizontal reinforcement. It takes larger rebar gauges than the standard chair and holds the cover in thick slabs, footings and pile caps, where the load on the spacer is higher.',
+  es: 'Silla reforzada para armadura horizontal pesada. Soporta calibres mayores que la silla común y mantiene el recubrimiento en losa gruesa, zapata y bloque de cimentación, donde la carga sobre el separador es mayor.',
+};
+const introCircularFechado = {
+  pt: 'O espaçador circular fechado envolve o vergalhão por inteiro e garante o cobrimento em todas as direções. Indicado para postes e estacas de concreto pré-fabricado, onde a peça é concretada em fôrma fechada.',
+  en: 'The closed circular spacer wraps the rebar completely and holds the cover in every direction. Suitable for precast concrete poles and piles, where the part is cast in a closed mould.',
+  es: 'El separador circular cerrado envuelve por completo la varilla y garantiza el recubrimiento en todas las direcciones. Indicado para postes y pilotes de concreto prefabricado, colados en encofrado cerrado.',
+};
+const introCircularFechadoDuplo = {
+  pt: 'Versão com alojamento central maior, para armadura com duas barras no mesmo ponto. Mesma aplicação em postes e estacas pré-fabricados.',
+  en: 'Version with a larger central housing, for reinforcement with two bars at the same point. Same application in precast poles and piles.',
+  es: 'Versión con alojamiento central mayor, para armadura con dos barras en el mismo punto. Misma aplicación en postes y pilotes prefabricados.',
+};
+const introMultiapoio = {
+  pt: 'O espaçador multiapoio, modelo centopeia, apoia a armadura horizontal em vários pontos ao longo de 120 mm. Distribui a carga e reduz o número de peças por metro em fundo de viga, laje, piso e bloco de fundação.',
+  en: 'The multi-support spacer, in the centipede style, holds horizontal reinforcement at several points along 120 mm. It spreads the load and cuts the number of pieces per metre in beam soffits, slabs, floors and foundation blocks.',
+  es: 'El separador multiapoyo, modelo ciempiés, apoya la armadura horizontal en varios puntos a lo largo de 120 mm. Distribuye la carga y reduce la cantidad de piezas por metro en fondo de viga, losa, piso y bloque de cimentación.',
 };
 const fitSystemText = {
   pt: 'Todos os espaçadores vêm com a funcionalidade de encaixar em outras peças. Isso permite algumas configurações diferentes. Veja nas fotos abaixo algumas aplicações.',
@@ -79,9 +102,30 @@ const hub = {
   },
   body(lang) {
     const c = {
-      pt: { eyebrow: 'Espaçadores', intro: 'Descubra a excelência dos espaçadores de linha para poste e linha de construção da MARCANTI, garantindo segurança, durabilidade e eficiência em suas instalações.' },
-      en: { eyebrow: 'Spacers', intro: 'Discover the excellence of MARCANTI’s pole line and construction line spacers, ensuring safety, durability and efficiency in your installations.' },
-      es: { eyebrow: 'Espaciadores', intro: 'Descubre la excelencia de los espaciadores de línea para postes y línea de construcción de MARCANTI, garantizando seguridad, durabilidad y eficiencia en tus instalaciones.' },
+      pt: {
+        eyebrow: 'Espaçadores',
+        intro: [
+          'Espaçador é a peça que garante o cobrimento — a distância entre a armadura e a face externa do concreto — definido em projeto. Também chamados de distanciadores, cobrem armadura vertical e horizontal, obra convencional e pré-moldado, com cobrimentos de 15 a 50 mm.',
+          'A linha se divide em duas: Linha Construção, para lajes, vigas, pilares e fundações; e Linha Postes, para postes, estacas e demais pré-moldados.',
+        ],
+        chooseTitle: 'Como escolher o modelo',
+      },
+      en: {
+        eyebrow: 'Spacers',
+        intro: [
+          'A spacer is the part that holds the concrete cover — the distance between the reinforcement and the outer face of the concrete — set in the design. Our range covers vertical and horizontal reinforcement, cast-in-place and precast, with covers from 15 to 50 mm.',
+          'The range splits in two: the Construction Line, for slabs, beams, columns and foundations; and the Pole Line, for poles, piles and other precast parts.',
+        ],
+        chooseTitle: 'How to choose the model',
+      },
+      es: {
+        eyebrow: 'Espaciadores',
+        intro: [
+          'El espaciador es la pieza que garantiza el recubrimiento — la distancia entre la armadura y la cara externa del concreto — definido en el proyecto. También llamados distanciadores, cubren armadura vertical y horizontal, obra convencional y prefabricado, con recubrimientos de 15 a 50 mm.',
+          'La línea se divide en dos: Línea Construcción, para losas, vigas, pilares y cimentaciones; y Línea Postes, para postes, pilotes y demás prefabricados.',
+        ],
+        chooseTitle: 'Cómo elegir el modelo',
+      },
     }[lang];
     const cards = [
       { href: T.url(lang, 'espacadores/linha-postes'), img: 'FOTO04.jpg', title: { pt: 'Linha Postes', en: 'Pole Line', es: 'Línea Postes' }[lang] },
@@ -90,6 +134,12 @@ const hub = {
     return `
 ${T.pageHero({ title: c.eyebrow, subtitle: c.intro, bg: 'Quem-Somos.jpg', tag: 'h1', divider: true, warm: true })}
 ${T.cardGrid({ cards, cols: 2 })}
+<section class="bg-light">
+  <div class="container">
+    <h2>${c.chooseTitle}</h2>
+    ${T.specTable(SPEC.comoEscolher, lang)}
+  </div>
+</section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
   },
 };
@@ -104,7 +154,11 @@ const linhaPostesHub = {
     es: 'Circular abierto, circular cerrado y silla para postes, pilotes y piezas de concreto prefabricado. Fabricante en Bahía.',
   },
   body(lang) {
-    const intro = { pt: 'Os espaçadores de linha da MARCANTI são a escolha ideal para a construção civil, proporcionando um alinhamento preciso e confiável, garantindo a qualidade e segurança das suas instalações.', en: 'MARCANTI’s line spacers are the ideal choice for civil construction, providing precise and reliable alignment, ensuring the quality and safety of your installations.', es: 'Los espaciadores de línea de MARCANTI son la opción ideal para la construcción civil, proporcionando una alineación precisa y confiable, garantizando la calidad y seguridad de tus instalaciones.' }[lang];
+    const intro = {
+      pt: 'A Linha Postes atende postes, estacas e demais peças de concreto pré-moldado: circular aberto e fechado para a armadura vertical, cadeirinha para a horizontal. Cobrimentos de 15 a 40 mm.',
+      en: 'The Pole Line covers poles, piles and other precast concrete parts: open and closed circular for vertical reinforcement, chair for horizontal. Covers from 15 to 40 mm.',
+      es: 'La Línea Postes atiende postes, pilotes y demás piezas de concreto prefabricado: circular abierto y cerrado para la armadura vertical, silla para la horizontal. Recubrimientos de 15 a 40 mm.',
+    }[lang];
     const title = { pt: 'Linha Postes', en: 'Pole Line', es: 'Línea Postes' }[lang];
     const cards = [
       { href: T.url(lang, 'espacadores/linha-postes/circular-fechado-linha-postes'), img: 'Espacador-circular-fechado-1.jpg', title: { pt: 'Circular Fechado', en: 'Closed Circular', es: 'Circular Cerrado' }[lang] },
@@ -130,7 +184,11 @@ const linhaConstrucaoHub = {
     es: 'Silla, circular abierto y multiapoyo para fondo de viga, losa, pilar y cimentación. Recubrimiento de 15 a 50 mm. Directo de fábrica.',
   },
   body(lang) {
-    const intro = { pt: 'Os espaçadores de linha da MARCANTI são a escolha ideal para a construção civil, proporcionando um alinhamento preciso e confiável, garantindo a qualidade e segurança das suas instalações.', en: 'MARCANTI’s line spacers are the ideal choice for civil construction, providing precise and reliable alignment, ensuring the quality and safety of your installations.', es: 'Los espaciadores de línea de MARCANTI son la opción ideal para la construcción civil, proporcionando una alineación precisa y confiable, garantizando la calidad y seguridad de tus instalaciones.' }[lang];
+    const intro = {
+      pt: 'A Linha Construção atende armadura vertical e horizontal em obra convencional: fundo de viga, laje, pilar, sapata, bloco de fundação e piso. Cobrimentos de 15 a 50 mm, compatíveis com bitolas de 4,2 mm a 25 mm.',
+      en: 'The Construction Line covers vertical and horizontal reinforcement in cast-in-place work: beam soffit, slab, column, footing, pile cap and floor. Covers from 15 to 50 mm, for rebar from 4.2 mm to 25 mm.',
+      es: 'La Línea Construcción atiende armadura vertical y horizontal en obra convencional: fondo de viga, losa, pilar, zapata, bloque de cimentación y piso. Recubrimientos de 15 a 50 mm, para varillas de 4,2 mm a 25 mm.',
+    }[lang];
     const title = { pt: 'Linha Construção', en: 'Construction Line', es: 'Línea Construcción' }[lang];
     const cards = [
       { href: T.url(lang, 'espacadores/linha-construcao/espacadores-multiapoio-linha-construcao'), img: 'Foto01-1.jpg', title: { pt: 'Espaçadores Multiapoio', en: 'Multi-Support Spacer', es: 'Separador Multiapoyo' }[lang] },
@@ -172,7 +230,7 @@ function makeCadeirinha(line) {
       ],
       eyebrow: lineLabel[line],
       h3,
-      intro: genericIntro,
+      intro: introCadeirinha,
       schemaImage: 'Design-sem-nome-cadeirinha.jpg',
       sections: [
         aboutSection({
@@ -307,13 +365,13 @@ const circularFechadoPostes = (() => {
       ]);
       return `
 ${meta ? T.productLd({ lang, meta, name: h3a[lang], image: 'Design-sem-nome-circular-fechado.png', category: productCategory[lang], material: productMaterial[lang] }) : ''}
-${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3a[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
+${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3a[lang], subtitle: introCircularFechado[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">${crumbs}
   ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutA[lang], img: 'Design-sem-nome-circular-fechado.png', imgAlt: { pt: 'Espaçador plástico circular fechado da Marcanti', en: 'MARCANTI plastic closed circular spacer', es: 'Separador plástico circular cerrado de MARCANTI' }[lang] })}
   <div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images: ['WhatsApp-Image-2023-08-18-at-13.37.14.jpeg', '9474da9844790fd15981a02f7a35cf16.jpg'], alt: { pt: 'Espaçador circular fechado montado na armadura de um poste', en: 'Closed circular spacer fitted on a pole reinforcement cage', es: 'Separador circular cerrado montado en la armadura de un poste' }[lang] })}</div>
   ${renderSizes(lang, { paragraphs: sizesP, img: 'Title-1.png', table: SPEC.circularFechado })}
 </div></section>
-${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3b[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h2', warm: true, divider: true })}
+${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3b[lang], subtitle: introCircularFechadoDuplo[lang], bg: 'Quem-Somos.jpg', tag: 'h2', warm: true, divider: true })}
 <section><div class="container">
     ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutB[lang], img: '4538d41e-933d-4118-89de-2b10e4e9f96a.png', imgAlt: { pt: 'Espaçador circular fechado para ferro duplo da Marcanti', en: 'MARCANTI closed circular spacer for double rebar', es: 'Separador circular cerrado para hierro doble de MARCANTI' }[lang] })}
     ${renderSizes(lang, { paragraphs: sizesP, img: 'WhatsApp-Image-2026-03-31-at-10.29.36-1024x739.jpeg', table: SPEC.circularFechadoFerroDuplo })}
@@ -347,7 +405,7 @@ const multiapoioConstrucao = (() => {
       ],
       eyebrow: lineLabel.construcao,
       h3,
-      intro: genericIntro,
+      intro: introMultiapoio,
       schemaImage: 'Foto01-1.jpg',
       sections: [
         aboutSection({
@@ -393,7 +451,7 @@ const cadeirinhaPesada = (() => {
       ],
       eyebrow: { pt: '', en: '', es: '' },
       h3,
-      intro: genericIntro,
+      intro: introCadeirinhaPesado,
       schemaImage: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-3.jpeg',
       sections: [
         aboutSection({

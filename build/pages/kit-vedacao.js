@@ -79,9 +79,9 @@ const hub = {
   },
   body(lang) {
     const intro = {
-      pt: 'O kit de vedação de telhados da MARCANTI é a solução completa para garantir a máxima proteção e durabilidade ao seu telhado. Desenvolvido com materiais de alta qualidade e tecnologia avançada, nosso kit de vedação oferece uma barreira eficaz contra a infiltração de água, vento e outros elementos indesejados.',
-      en: 'MARCANTI’s roof sealing kit is the complete solution to ensure maximum protection and durability for your roof. Developed with high-quality materials and advanced technology, our sealing kit offers an effective barrier against water infiltration, wind and other unwanted elements.',
-      es: 'El kit de sellado de techos de MARCANTI es la solución completa para garantizar la máxima protección y durabilidad de tu techo. Desarrollado con materiales de alta calidad y tecnología avanzada, nuestro kit de sellado ofrece una barrera eficaz contra la infiltración de agua, viento y otros elementos no deseados.',
+      pt: 'O ponto de fixação é onde a telha vaza. O kit de vedação da Marcanti fecha esse ponto com peça injetada própria, sem adaptação com massa ou arruela de borracha genérica. Instalação sem ferramenta especial, em versões com e sem parafuso, para telha de PVC e para perfis diversos.',
+      en: 'The fastening point is where a roof leaks. The Marcanti sealing kit closes that point with a purpose-made injected part, with no need for mortar patches or generic rubber washers. It installs without special tools, in versions with and without screw, for PVC tiles and for other profiles.',
+      es: 'El punto de fijación es donde la teja filtra. El kit de sellado de Marcanti cierra ese punto con una pieza inyectada propia, sin adaptaciones con masilla ni arandela de goma genérica. Se instala sin herramienta especial, en versiones con y sin tornillo, para teja de PVC y otros perfiles.',
     }[lang];
     const noScrew = { pt: 'Sem Parafuso', en: 'Without Screw', es: 'Sin Tornillo' }[lang];
     const withScrew = { pt: 'Com Parafuso', en: 'With Screw', es: 'Con Tornillo' }[lang];
@@ -113,7 +113,11 @@ const kitFixacaoUniversal = {
   },
   body(lang, meta) {
     const h3 = { pt: 'Kit Vedação e Fixação Universal', en: 'Universal Sealing & Fixing Kit', es: 'Kit Universal de Sellado y Fijación' }[lang];
-    const intro = { pt: 'O Kit de Vedação para Telha de PVC da MARCANTI é a solução perfeita para garantir a estanqueidade e durabilidade do seu telhado.', en: 'MARCANTI’s Sealing Kit for PVC roof tiles is the perfect solution to ensure the water-tightness and durability of your roof.', es: 'El Kit de Sellado para Teja de PVC de MARCANTI es la solución perfecta para garantizar la estanqueidad y durabilidad de tu techo.' }[lang];
+    const intro = {
+      pt: 'Kit universal com parafuso incluso, para diversos perfis de telha. Substitui capa, anel de vedação e chapéu por uma peça única.',
+      en: 'Universal kit with the screw included, for various tile profiles. It replaces cap, sealing ring and hat with a single part.',
+      es: 'Kit universal con tornillo incluido, para diversos perfiles de teja. Sustituye capa, anillo de sellado y sombrerete por una sola pieza.',
+    }[lang];
     const about = {
       pt: ['O Kit de Vedação e Fixação Universal para diversos tipos de telhas da MARCANTI é um conjunto composto pelo kit universal e o parafuso.', 'É um Kit que substitui as peças: capa, anel de vedação e chapéu, em um único item.'],
       en: ['MARCANTI’s Universal Sealing & Fixing Kit for various roof tile types is a set made up of the universal kit plus the screw.', 'It is a kit that replaces the cap, sealing ring and hat pieces with a single item.'],
@@ -142,7 +146,11 @@ const kitUniversal = {
   },
   body(lang, meta) {
     const h3 = { pt: 'Kit de Vedação Universal Para Diversos Tipos de Telhas', en: 'Universal Sealing Kit for Various Roof Tile Types', es: 'Kit de Sellado Universal para Varios Tipos de Tejas' }[lang];
-    const intro = { pt: 'O Kit de Vedação Universal para Diversos Tipos de Telhas da MARCANTI é uma solução versátil e eficiente para garantir a vedação adequada em diferentes tipos de telhados.', en: 'MARCANTI’s Universal Sealing Kit for Various Roof Tile Types is a versatile, efficient solution to ensure proper sealing across different roof types.', es: 'El Kit de Sellado Universal para Varios Tipos de Tejas de MARCANTI es una solución versátil y eficiente para garantizar el sellado adecuado en diferentes tipos de techos.' }[lang];
+    const intro = {
+      pt: 'Kit em peça única para diversos perfis de telha, sem parafuso. Para quem já usa fixação própria.',
+      en: 'Single-piece kit for various tile profiles, without screw. For those who already have their own fastener.',
+      es: 'Kit en pieza única para diversos perfiles de teja, sin tornillo. Para quien ya usa fijación propia.',
+    }[lang];
     const about = {
       pt: ['É um Kit que substitui as peças: capa, anel de vedação e chapéu, em um único item. O parafuso não está incluso.', 'Vale lembrar que para utilizar o Kit é necessário um parafuso. É ele que vai fazer a fixação do Kit na telha e na estrutura do telhado.', 'Oferecemos um Kit com o parafuso incluído. Conheça clicando no botão abaixo.'],
       en: ['It is a kit that replaces the cap, sealing ring and hat pieces with a single item. The screw is not included.', 'Keep in mind that a screw is required to use the kit — it is what fixes the kit to the roof tile and the roof structure.', 'We also offer a kit with the screw included. Check it out using the button below.'],
@@ -172,7 +180,11 @@ const kitPvc = {
   },
   body(lang, meta) {
     const h3 = { pt: 'Kit Vedação Para Telha de PVC', en: 'Sealing Kit for PVC Roof Tiles', es: 'Kit de Sellado para Teja de PVC' }[lang];
-    const intro = { pt: 'O Kit de Vedação para Telha de PVC da MARCANTI é a solução perfeita para garantir a estanqueidade e durabilidade do seu telhado.', en: 'MARCANTI’s Sealing Kit for PVC roof tiles is the perfect solution to ensure the water-tightness and durability of your roof.', es: 'El Kit de Sellado para Teja de PVC de MARCANTI es la solución perfecta para garantizar la estanqueidad y durabilidad de tu techo.' }[lang];
+    const intro = {
+      pt: 'Vedação do ponto de fixação da telha de PVC com três peças: capa, anel de vedação e chapéu. Parafuso não incluso.',
+      en: 'Seals the fastening point of a PVC roof tile with three parts: cap, sealing ring and hat. Screw not included.',
+      es: 'Sella el punto de fijación de la teja de PVC con tres piezas: capa, anillo de sellado y sombrerete. Tornillo no incluido.',
+    }[lang];
     const about = {
       pt: ['O Kit de Vedação para Telha de PVC da MARCANTI é um conjunto completo de vedação projetado especificamente para telhas de PVC.', 'Composto por três peças essenciais – capa, anel de vedação e chapéu –, este kit oferece uma solução abrangente para garantir a estanqueidade e durabilidade do seu telhado de PVC.'],
       en: ['MARCANTI’s Sealing Kit for PVC roof tiles is a complete sealing set designed specifically for PVC roof tiles.', 'Made up of three essential pieces — cap, sealing ring and hat — this kit offers a comprehensive solution to ensure the water-tightness and durability of your PVC roof.'],
@@ -210,7 +222,11 @@ const kitPvcFixacao = {
   },
   body(lang, meta) {
     const h3 = { pt: 'Kit Vedação e Fixação Para Telha de PVC', en: 'Sealing & Fixing Kit for PVC Roof Tiles', es: 'Kit de Sellado y Fijación para Teja de PVC' }[lang];
-    const intro = { pt: 'O Kit de Vedação e Fixação para Telha de PVC da MARCANTI é a solução completa para garantir a instalação segura e vedação eficiente das suas telhas de PVC.', en: 'MARCANTI’s Sealing & Fixing Kit for PVC roof tiles is the complete solution to ensure safe installation and efficient sealing of your PVC roof tiles.', es: 'El Kit de Sellado y Fijación para Teja de PVC de MARCANTI es la solución completa para garantizar la instalación segura y el sellado eficiente de tus tejas de PVC.' }[lang];
+    const intro = {
+      pt: 'Capa, anel de vedação, chapéu e parafuso no mesmo kit, para telha de PVC. Fixa a telha na estrutura e veda o furo no mesmo passo.',
+      en: 'Cap, sealing ring, hat and screw in one kit, for PVC roof tiles. It fixes the tile to the structure and seals the hole in the same step.',
+      es: 'Capa, anillo de sellado, sombrerete y tornillo en el mismo kit, para teja de PVC. Fija la teja a la estructura y sella el orificio en un solo paso.',
+    }[lang];
     const about = {
       pt: ['Esse kit é projetado especificamente para telhas de PVC, oferecendo os componentes essenciais para um telhado bem protegido e duradouro.', 'O kit inclui uma combinação de itens cuidadosamente selecionados, como perfis de vedação, parafusos e acessórios de fixação.', 'Os perfis de vedação são projetados para se encaixarem perfeitamente nas telhas de PVC, criando uma vedação confiável contra a entrada de água, poeira e outros elementos indesejados.'],
       en: ['This kit is designed specifically for PVC roof tiles, offering the essential components for a well-protected, long-lasting roof.', 'The kit includes a combination of carefully selected items, such as sealing profiles, screws and fixing accessories.', 'The sealing profiles are designed to fit perfectly onto PVC roof tiles, creating a reliable seal against water, dust and other unwanted elements.'],

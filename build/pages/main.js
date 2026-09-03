@@ -18,31 +18,45 @@ const home = {
     es: 'Fabricante de espaciadores plásticos y kits de sellado en Lauro de Freitas, BA. Producción propia y entrega en el Nordeste. Pide cotización.',
   },
   body(lang) {
+    // Auditoria 4.1: o H1 antigo era bonito e não dizia o que a empresa vende;
+    // quem chega pelo Google buscando espaçador precisa confirmar na hora que
+    // chegou no lugar certo. O CTA também passa a dizer o que acontece no clique.
     const hero = {
-      pt: { h1: 'A base das estruturas sólidas na construção civil e indústrias', p: 'Transformamos o plástico em produtos de alta qualidade para diversos setores da indústria.', cta: 'Fale com Especialistas' },
-      en: { h1: 'The foundation of solid structures in civil construction and industry', p: 'We transform plastic into high-quality products for a wide range of industrial sectors.', cta: 'Talk to Our Specialists' },
-      es: { h1: 'La base de las estructuras sólidas en la construcción civil y la industria', p: 'Transformamos el plástico en productos de alta calidad para diversos sectores de la industria.', cta: 'Habla con Especialistas' },
+      pt: { h1: 'Espaçadores plásticos para concreto, fabricados na Bahia', p: 'Fabricamos espaçadores para armadura e kits de vedação para telha de PVC desde 2012, em Lauro de Freitas. Produção própria, sem intermediário.', cta: 'Solicitar cotação' },
+      en: { h1: 'Plastic concrete spacers, made in Bahia', p: 'We have been making spacers for reinforcement and sealing kits for PVC roof tiles since 2012, in Lauro de Freitas. Our own production, no middleman.', cta: 'Request a quote' },
+      es: { h1: 'Espaciadores plásticos para concreto, fabricados en Bahía', p: 'Fabricamos espaciadores para armadura y kits de sellado para teja de PVC desde 2012, en Lauro de Freitas. Producción propia, sin intermediario.', cta: 'Solicitar cotización' },
     }[lang];
 
     const espacadoresLabel = { pt: 'Espaçadores', en: 'Spacers', es: 'Espaciadores' }[lang];
     const kitsLabel = { pt: 'Kits de Vedação', en: 'Sealing Kits', es: 'Kits de Sellado' }[lang];
 
     const sust = {
-      pt: { eyebrow: 'Sustentabilidade', title: 'Sustentabilidade', p: 'Na MARCANTI, a responsabilidade ambiental é um compromisso, por isso, nossa matéria-prima é totalmente reciclável, mantendo a alta qualidade e resistência dos nossos produtos, sem impactar no meio ambiente.' },
-      en: { eyebrow: 'Sustainability', title: 'Sustainability', p: 'At MARCANTI, environmental responsibility is a commitment — that’s why our raw material is fully recyclable, preserving the high quality and strength of our products without impacting the environment.' },
-      es: { eyebrow: 'Sostenibilidad', title: 'Sostenibilidad', p: 'En MARCANTI, la responsabilidad ambiental es un compromiso; por eso, nuestra materia prima es totalmente reciclable, manteniendo la alta calidad y resistencia de nuestros productos sin impactar el medio ambiente.' },
+      pt: { eyebrow: 'Sustentabilidade', title: 'Matéria-prima reciclável', p: 'A matéria-prima dos espaçadores e kits Marcanti é 100% reciclável. Ao fim do ciclo, volta para a cadeia de reciclagem em vez de virar resíduo.' },
+      en: { eyebrow: 'Sustainability', title: 'Recyclable raw material', p: 'The raw material in Marcanti spacers and kits is 100% recyclable. At the end of its cycle it goes back into the recycling chain instead of becoming waste.' },
+      es: { eyebrow: 'Sostenibilidad', title: 'Materia prima reciclable', p: 'La materia prima de los espaciadores y kits Marcanti es 100% reciclable. Al final del ciclo vuelve a la cadena de reciclaje en lugar de convertirse en residuo.' },
     }[lang];
 
+    // Auditoria 4.1: em vez de explicar o que o produto faz, explicar o que
+    // acontece quando o cobrimento falha — e por que argamassa não resolve.
     const espacadoresTeaser = {
-      pt: { eyebrow: 'Espaçadores', title: 'Proteja sua obra da corrosão', p: 'Os espaçadores plásticos têm como funcionalidades garantir o espaçamento e alinhamento adequados da armadura de ferro, protegendo as estruturas da corrosão e melhorando a qualidade e a durabilidade do concreto da sua construção.' },
-      en: { eyebrow: 'Spacers', title: 'Protect your project from corrosion', p: 'Plastic spacers ensure proper spacing and alignment of the steel reinforcement, protecting structures from corrosion and improving the quality and durability of your construction’s concrete.' },
-      es: { eyebrow: 'Espaciadores', title: 'Protege tu obra de la corrosión', p: 'Los espaciadores plásticos garantizan el espaciamiento y alineación adecuados de la armadura de hierro, protegiendo las estructuras de la corrosión y mejorando la calidad y durabilidad del concreto de tu construcción.' },
+      pt: { eyebrow: 'Espaçadores', title: 'Cobrimento errado é corrosão na armadura', p: [
+        'O espaçador tem uma função só: manter o cobrimento entre a armadura e a face do concreto. Quando o cobrimento falha, a armadura fica exposta à umidade e à carbonatação, e a corrosão começa a comprometer a estrutura antes do previsto em projeto.',
+        'Nossos espaçadores são injetados em plástico, com encaixe entre peças e travamento no vergalhão. Não absorvem água, não se desagregam no transporte e mantêm a medida do primeiro ao último ponto da armadura.',
+      ] },
+      en: { eyebrow: 'Spacers', title: 'Wrong cover means corroded reinforcement', p: [
+        'A spacer has one job: to hold the cover between the reinforcement and the face of the concrete. When the cover fails, the reinforcement is exposed to moisture and carbonation, and corrosion starts to compromise the structure earlier than the design assumed.',
+        'Our spacers are injection-moulded in plastic, interlocking with each other and clipping onto the rebar. They do not absorb water, do not crumble in transport, and hold the measurement from the first to the last point of the reinforcement.',
+      ] },
+      es: { eyebrow: 'Espaciadores', title: 'Recubrimiento equivocado es corrosión en la armadura', p: [
+        'El espaciador tiene una sola función: mantener el recubrimiento entre la armadura y la cara del concreto. Cuando el recubrimiento falla, la armadura queda expuesta a la humedad y a la carbonatación, y la corrosión empieza a comprometer la estructura antes de lo previsto en el proyecto.',
+        'Nuestros espaciadores son inyectados en plástico, con encaje entre piezas y trabado en la varilla. No absorben agua, no se desagregan en el transporte y mantienen la medida del primero al último punto de la armadura.',
+      ] },
     }[lang];
 
     const kitTeaser = {
-      pt: { eyebrow: 'Kit vedação', title: 'Praticidade e confiabilidade', p: 'O Kit de Vedação da MARCANTI é de simples instalação e fácil manuseio, tendo um design minimalista e cores específicas para a sua telha de PVC, que permite uma perfeita cobertura da fixação e uma ótima vedação.' },
-      en: { eyebrow: 'Sealing kit', title: 'Practicality and reliability', p: 'The MARCANTI Sealing Kit is simple to install and easy to handle, with a minimalist design and specific colors for your PVC roof tile, providing perfect fastener coverage and outstanding sealing.' },
-      es: { eyebrow: 'Kit de sellado', title: 'Practicidad y confiabilidad', p: 'El Kit de Sellado de MARCANTI es de instalación simple y fácil manejo, con un diseño minimalista y colores específicos para tu teja de PVC, permitiendo una cobertura perfecta de la fijación y un sellado excelente.' },
+      pt: { eyebrow: 'Kit vedação', title: 'Vedação da telha de PVC sem improviso', p: 'O kit de vedação da Marcanti fecha o ponto de fixação da telha com peça própria, dispensando adaptação com massa ou borracha genérica. Instalação sem ferramenta especial, com opções com e sem parafuso e cores para acompanhar a telha.' },
+      en: { eyebrow: 'Sealing kit', title: 'Sealing a PVC roof tile without improvising', p: 'The Marcanti sealing kit closes the tile fastening point with a purpose-made part, with no mortar patch or generic rubber washer. It installs without special tools, with and without screw, in colours that match the tile.' },
+      es: { eyebrow: 'Kit de sellado', title: 'Sellado de la teja de PVC sin improvisar', p: 'El kit de sellado de Marcanti cierra el punto de fijación de la teja con una pieza propia, sin adaptación con masilla ni goma genérica. Se instala sin herramienta especial, con y sin tornillo, en colores que acompañan la teja.' },
     }[lang];
 
     const clients = {
@@ -73,7 +87,7 @@ ${'<section class="hero" style="--hero-img:url(\'' + T.asset('img/Vigas-de-Aco-C
 
 ${T.splitSection({ eyebrow: sust.eyebrow, title: sust.title, paragraphs: [sust.p], img: 'Sustentabilidade-1.jpg', imgAlt: { pt: 'Muda de planta nas mãos, simbolizando o compromisso ambiental da Marcanti', en: 'Seedling held in cupped hands, symbolizing MARCANTI’s environmental commitment', es: 'Plántula sostenida en las manos, símbolo del compromiso ambiental de MARCANTI' }[lang], ctaClass: 'btn-brand', cta: { href: T.url(lang, 'sustentabilidade'), label: ui.learnMore[lang] } })}
 
-${T.splitSection({ eyebrow: espacadoresTeaser.eyebrow, title: espacadoresTeaser.title, paragraphs: [espacadoresTeaser.p], img: 'corrosao-1.jpg', imgAlt: { pt: 'Armadura de aço corroída por cobrimento de concreto insuficiente', en: 'Steel reinforcement corroded by insufficient concrete cover', es: 'Armadura de acero corroída por recubrimiento de concreto insuficiente' }[lang], reverse: true, bg: true, ctaClass: 'btn-brand', cta: { href: T.url(lang, 'espacadores'), label: ui.learnMore[lang] } })}
+${T.splitSection({ eyebrow: espacadoresTeaser.eyebrow, title: espacadoresTeaser.title, paragraphs: espacadoresTeaser.p, img: 'corrosao-1.jpg', imgAlt: { pt: 'Armadura de aço corroída por cobrimento de concreto insuficiente', en: 'Steel reinforcement corroded by insufficient concrete cover', es: 'Armadura de acero corroída por recubrimiento de concreto insuficiente' }[lang], reverse: true, bg: true, ctaClass: 'btn-brand', cta: { href: T.url(lang, 'espacadores'), label: ui.learnMore[lang] } })}
 
 ${T.splitSection({ eyebrow: kitTeaser.eyebrow, title: kitTeaser.title, paragraphs: [kitTeaser.p], img: 'FOTO02-1-1.jpg', imgAlt: { pt: 'Componentes do kit de vedação Marcanti: chapéu, capa, anel de vedação e parafuso', en: 'MARCANTI sealing kit components: hat, cap, sealing ring and screw', es: 'Componentes del kit de sellado MARCANTI: sombrerete, capa, anillo de sellado y tornillo' }[lang], mediaClass: 'split-media-sm', ctaClass: 'btn-brand', cta: { href: T.url(lang, 'kit-vedacao'), label: ui.learnMore[lang] } })}
 
@@ -104,14 +118,12 @@ const quemSomos = {
   body(lang) {
     const c = {
       pt: {
-        eyebrow: 'Quem Somos',
-        subtitle: 'Liderança em Transformação de Plásticos com Excelência e Inovação',
+        eyebrow: 'Injeção plástica técnica para construção civil, desde 2012',
+        subtitle: 'Fábrica própria em Lauro de Freitas, Bahia.',
         title: 'Qualidade Superior em Peças Técnicas de Plástico para Construção Civil e Clientes Exigentes',
         paragraphs: [
-          'Fundada em 2012 por um Engenheiro Químico altamente experiente no mercado de plásticos, a MARCANTI é uma empresa que se destaca pela sua excelência. Com uma equipe técnica capacitada e um fundador com formação em mestrado, a empresa está sempre preparada para enfrentar desafios e buscar o desenvolvimento de novos negócios.',
-          'Com quatro máquinas de injeção de última geração, a MARCANTI se dedica à transformação de plásticos, focando principalmente na produção de peças técnicas para o mercado da construção civil. Além disso, a empresa também oferece serviços de terceirização da produção de peças para clientes diversos, que possuem um alto nível de exigência.',
-          'A MARCANTI busca constantemente aprimorar seus processos e se manter atualizada com as melhores práticas do mercado. Com suas modernas máquinas e um corpo técnico altamente qualificado, a empresa garante a entrega de produtos de alta qualidade, atendendo às demandas dos seus clientes de forma eficiente e confiável.',
-          'Com um histórico sólido e uma reputação de excelência, a MARCANTI se destaca como uma referência no setor de transformação de plásticos, oferecendo soluções personalizadas e inovadoras para atender às necessidades específicas de cada cliente.',
+          'A Marcanti nasceu em 2012, fundada por um engenheiro químico com mestrado e carreira construída dentro da indústria petroquímica e de transformação de plásticos. Essa origem define como a empresa opera: decisão técnica antes de decisão comercial, e produto que se justifica pela especificação.',
+          'Produzimos peças técnicas injetadas para o mercado de construção civil — espaçadores para armadura e kits de vedação para telha — em quatro máquinas de injeção. Também assumimos a produção terceirizada de peças para clientes de outros setores, com controle dimensional e repetibilidade.',
         ],
         values: [
           { title: 'Missão', text: 'Crescer prioritariamente através da Inovação.', icon: '13-blueprint.png' },
@@ -120,14 +132,12 @@ const quemSomos = {
         ],
       },
       en: {
-        eyebrow: 'About Us',
-        subtitle: 'Leadership in Plastic Transformation with Excellence and Innovation',
+        eyebrow: 'Technical plastic injection for civil construction, since 2012',
+        subtitle: 'Our own factory in Lauro de Freitas, Bahia, Brazil.',
         title: 'Superior Quality in Technical Plastic Parts for Civil Construction and Demanding Clients',
         paragraphs: [
-          'Founded in 2012 by a Chemical Engineer with extensive experience in the plastics market, MARCANTI is a company defined by excellence. With a skilled technical team and a founder holding a master’s degree, the company is always ready to face challenges and pursue new business development.',
-          'With four state-of-the-art injection molding machines, MARCANTI is dedicated to plastic transformation, focusing mainly on producing technical parts for the civil construction market. The company also offers outsourced parts production services for a variety of clients with high standards.',
-          'MARCANTI constantly seeks to improve its processes and stay up to date with the best market practices. With its modern machinery and a highly qualified technical staff, the company guarantees the delivery of high-quality products, meeting client demands efficiently and reliably.',
-          'With a solid track record and a reputation for excellence, MARCANTI stands out as a reference in the plastics transformation sector, offering personalized and innovative solutions to meet each client’s specific needs.',
+          'Marcanti was founded in 2012 by a chemical engineer with a master’s degree and a career built inside the petrochemical and plastics processing industry. That origin shapes how the company works: the technical decision comes before the commercial one, and a product has to justify itself on specification.',
+          'We produce technical injection-moulded parts for the civil construction market — spacers for reinforcement and sealing kits for roof tiles — on four injection moulding machines. We also take on outsourced parts production for clients in other sectors, with dimensional control and repeatability.',
         ],
         values: [
           { title: 'Mission', text: 'To grow primarily through Innovation.', icon: '13-blueprint.png' },
@@ -136,14 +146,12 @@ const quemSomos = {
         ],
       },
       es: {
-        eyebrow: 'Quiénes Somos',
-        subtitle: 'Liderazgo en Transformación de Plásticos con Excelencia e Innovación',
+        eyebrow: 'Inyección plástica técnica para la construcción civil, desde 2012',
+        subtitle: 'Fábrica propia en Lauro de Freitas, Bahía.',
         title: 'Calidad Superior en Piezas Técnicas de Plástico para la Construcción Civil y Clientes Exigentes',
         paragraphs: [
-          'Fundada en 2012 por un Ingeniero Químico altamente experimentado en el mercado de plásticos, MARCANTI es una empresa que se destaca por su excelencia. Con un equipo técnico capacitado y un fundador con formación de maestría, la empresa está siempre preparada para enfrentar desafíos y buscar el desarrollo de nuevos negocios.',
-          'Con cuatro máquinas de inyección de última generación, MARCANTI se dedica a la transformación de plásticos, enfocándose principalmente en la producción de piezas técnicas para el mercado de la construcción civil. Además, la empresa también ofrece servicios de tercerización de producción de piezas para diversos clientes con un alto nivel de exigencia.',
-          'MARCANTI busca constantemente perfeccionar sus procesos y mantenerse actualizada con las mejores prácticas del mercado. Con sus modernas máquinas y un equipo técnico altamente calificado, la empresa garantiza la entrega de productos de alta calidad, atendiendo las demandas de sus clientes de forma eficiente y confiable.',
-          'Con un historial sólido y una reputación de excelencia, MARCANTI se destaca como referencia en el sector de transformación de plásticos, ofreciendo soluciones personalizadas e innovadoras para atender las necesidades específicas de cada cliente.',
+          'Marcanti nació en 2012, fundada por un ingeniero químico con maestría y una carrera construida dentro de la industria petroquímica y de transformación de plásticos. Ese origen define cómo opera la empresa: decisión técnica antes que decisión comercial, y producto que se justifica por la especificación.',
+          'Producimos piezas técnicas inyectadas para el mercado de la construcción civil — espaciadores para armadura y kits de sellado para teja — en cuatro máquinas de inyección. También asumimos la producción tercerizada de piezas para clientes de otros sectores, con control dimensional y repetibilidad.',
         ],
         values: [
           { title: 'Misión', text: 'Crecer prioritariamente a través de la Innovación.', icon: '13-blueprint.png' },
@@ -155,8 +163,8 @@ const quemSomos = {
 
     return `
 ${T.pageHero({ title: c.eyebrow, subtitle: c.subtitle, bg: 'Quem-Somos.jpg', tag: 'h1', divider: true, warm: true })}
-${T.splitSection({ title: c.title, paragraphs: c.paragraphs.slice(0, 2), img: 'FOTO05.jpg', imgAlt: { pt: 'Espaçadores plásticos multiapoio produzidos pela Marcanti', en: 'Multi-support plastic spacers produced by MARCANTI', es: 'Separadores plásticos multiapoyo producidos por MARCANTI' }[lang], splitClass: 'split-roomy' })}
-${T.splitSection({ paragraphs: c.paragraphs.slice(2), img: 'Quem-Somos.jpg', imgAlt: { pt: 'Engenheiro analisando as plantas de um projeto de construção', en: 'Engineer reviewing the blueprints of a construction project', es: 'Ingeniero analizando los planos de un proyecto de construcción' }[lang], reverse: true, splitClass: 'split-roomy' })}
+${T.splitSection({ title: c.title, paragraphs: [c.paragraphs[0]], img: 'FOTO05.jpg', imgAlt: { pt: 'Espaçadores plásticos multiapoio produzidos pela Marcanti', en: 'Multi-support plastic spacers produced by MARCANTI', es: 'Separadores plásticos multiapoyo producidos por MARCANTI' }[lang], splitClass: 'split-roomy' })}
+${T.splitSection({ paragraphs: [c.paragraphs[1]], img: 'Quem-Somos.jpg', imgAlt: { pt: 'Engenheiro analisando as plantas de um projeto de construção', en: 'Engineer reviewing the blueprints of a construction project', es: 'Ingeniero analizando los planos de un proyecto de construcción' }[lang], reverse: true, splitClass: 'split-roomy' })}
 ${T.valueGrid({ values: c.values })}
 `;
   },
@@ -177,8 +185,7 @@ const tecnologia = {
         eyebrow: 'Desenvolvimento de Produtos',
         title: 'Consultoria em Desenvolvimento de Produtos Plásticos',
         paragraphs: [
-          'Entender e identificar o que seu cliente necessita e manter a alta qualidade dos seus produtos, são fatores fundamentais para que sua empresa obtenha sucesso.',
-          'Visando promover o desenvolvimento de produtos inovadores, a MARCANTI também realiza Consultoria em Desenvolvimento de Produtos na Indústria de Transformações Plásticas.',
+          'Da ideia à peça piloto. A Marcanti desenvolve produtos injetados para empresas que precisam substituir um componente, reduzir o custo de uma peça ou criar um item novo — com análise técnica e de viabilidade financeira antes do investimento em molde.',
         ],
         title2: 'Consultoria em Desenvolvimento de Produtos na Indústria de Transformações Plásticas',
         paragraphs2: [
@@ -199,8 +206,7 @@ const tecnologia = {
         eyebrow: 'Product Development',
         title: 'Plastic Product Development Consulting',
         paragraphs: [
-          'Understanding and identifying what your client needs, and maintaining the high quality of your products, are fundamental factors for your company’s success.',
-          'Aiming to promote the development of innovative products, MARCANTI also provides Product Development Consulting in the Plastics Transformation Industry.',
+          'From idea to pilot part. Marcanti develops injection-moulded products for companies that need to replace a component, bring a part’s cost down or create a new item — with technical and financial feasibility analysis before any investment in tooling.',
         ],
         title2: 'Product Development Consulting in the Plastics Transformation Industry',
         paragraphs2: [
@@ -221,8 +227,7 @@ const tecnologia = {
         eyebrow: 'Desarrollo de Productos',
         title: 'Consultoría en Desarrollo de Productos Plásticos',
         paragraphs: [
-          'Entender e identificar lo que su cliente necesita y mantener la alta calidad de sus productos son factores fundamentales para que su empresa tenga éxito.',
-          'Con el objetivo de promover el desarrollo de productos innovadores, MARCANTI también ofrece Consultoría en Desarrollo de Productos en la Industria de Transformación de Plásticos.',
+          'De la idea a la pieza piloto. Marcanti desarrolla productos inyectados para empresas que necesitan sustituir un componente, reducir el costo de una pieza o crear un artículo nuevo — con análisis técnico y de viabilidad financiera antes de invertir en el molde.',
         ],
         title2: 'Consultoría en Desarrollo de Productos en la Industria de Transformación de Plásticos',
         paragraphs2: [
@@ -345,34 +350,34 @@ const sustentabilidade = {
   },
   body(lang) {
     const c = {
+      // Auditoria 4.9: fora o bloco sobre a sigla ESG e o "eco-friendly", que não
+      // diziam nada concreto. Escrito na versão "reciclável", que é o que o site
+      // afirma hoje; se a seção 9 #1 confirmar "reciclada", é troca de palavra.
       pt: {
-        eyebrow: 'Sustentabilidade',
-        intro: 'Comprometidos com um futuro sustentável, na MARCANTI buscamos constantemente soluções eco-friendly na indústria de plásticos para preservar o meio ambiente e criar um impacto positivo na sociedade.',
-        title: 'Nosso processo sustentável',
+        eyebrow: 'Matéria-prima reciclável na injeção plástica',
+        intro: 'A matéria-prima usada na produção dos espaçadores e kits Marcanti é 100% reciclável.',
+        title: 'Escolha técnica antes de ser ambiental',
         paragraphs: [
-          'Pensando em uma forma de medir o desempenho de sustentabilidade da MARCANTI, nossa empresa é pautada no ESG (Environmental, Social e Governance), que diz respeito à integração da geração de valor econômico aliado à preocupação com as questões ambientais, sociais e de governança corporativa.',
-          'Nossos princípios e valores estão muito ligados à responsabilidade e comprometimento social e ambiental com o mercado que atuamos, nossos clientes, colaboradores e fornecedores.',
-          'Nossa matéria-prima é 100% reciclável, mantendo a alta qualidade e resistência dos nossos produtos, sem impactar no meio ambiente.',
+          'O material entrega a resistência e a estabilidade dimensional exigidas pela aplicação e, ao fim do ciclo, volta para a cadeia de reciclagem em vez de virar resíduo.',
+          'Espaçador plástico também reduz resíduo no canteiro. Diferente da alternativa em argamassa, não se desagrega no transporte nem no manuseio, o que significa menos perda por embalagem e menos entulho gerado na obra.',
         ],
       },
       en: {
-        eyebrow: 'Sustainability',
-        intro: 'Committed to a sustainable future, at MARCANTI we constantly pursue eco-friendly solutions in the plastics industry to preserve the environment and create a positive impact on society.',
-        title: 'Our sustainable process',
+        eyebrow: 'Recyclable raw material in plastic injection',
+        intro: 'The raw material used to produce Marcanti spacers and kits is 100% recyclable.',
+        title: 'A technical choice before an environmental one',
         paragraphs: [
-          'As a way to measure MARCANTI’s sustainability performance, our company is guided by ESG (Environmental, Social and Governance) principles, which integrate the generation of economic value with concern for environmental, social and corporate governance issues.',
-          'Our principles and values are deeply tied to responsibility and social and environmental commitment toward the market we serve, our clients, employees and suppliers.',
-          'Our raw material is 100% recyclable, preserving the high quality and strength of our products without impacting the environment.',
+          'The material delivers the strength and dimensional stability the application demands and, at the end of its cycle, goes back into the recycling chain instead of becoming waste.',
+          'Plastic spacers also cut waste on site. Unlike the mortar alternative, they do not crumble in transport or handling, which means less loss per pack and less rubble generated on the job.',
         ],
       },
       es: {
-        eyebrow: 'Sostenibilidad',
-        intro: 'Comprometidos con un futuro sostenible, en MARCANTI buscamos constantemente soluciones eco-friendly en la industria de plásticos para preservar el medio ambiente y crear un impacto positivo en la sociedad.',
-        title: 'Nuestro proceso sostenible',
+        eyebrow: 'Materia prima reciclable en la inyección plástica',
+        intro: 'La materia prima usada en la producción de los espaciadores y kits Marcanti es 100% reciclable.',
+        title: 'Una elección técnica antes que ambiental',
         paragraphs: [
-          'Como una forma de medir el desempeño de sostenibilidad de MARCANTI, nuestra empresa se guía por el ESG (Environmental, Social and Governance), que integra la generación de valor económico junto con la preocupación por las cuestiones ambientales, sociales y de gobernanza corporativa.',
-          'Nuestros principios y valores están muy ligados a la responsabilidad y el compromiso social y ambiental con el mercado en el que actuamos, nuestros clientes, colaboradores y proveedores.',
-          'Nuestra materia prima es 100% reciclable, manteniendo la alta calidad y resistencia de nuestros productos, sin impactar el medio ambiente.',
+          'El material entrega la resistencia y la estabilidad dimensional que exige la aplicación y, al final del ciclo, vuelve a la cadena de reciclaje en lugar de convertirse en residuo.',
+          'El separador plástico también reduce residuos en la obra. A diferencia de la alternativa en mortero, no se desagrega en el transporte ni en el manejo, lo que significa menos pérdida por embalaje y menos escombro generado.',
         ],
       },
     }[lang];
