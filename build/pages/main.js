@@ -123,12 +123,12 @@ const quemSomos = {
         title: 'Qualidade Superior em Peças Técnicas de Plástico para Construção Civil e Clientes Exigentes',
         paragraphs: [
           'A Marcanti nasceu em 2012, fundada por um engenheiro químico com mestrado e carreira construída dentro da indústria petroquímica e de transformação de plásticos. Essa origem define como a empresa opera: decisão técnica antes de decisão comercial, e produto que se justifica pela especificação.',
-          'Produzimos peças técnicas injetadas para o mercado de construção civil — espaçadores para armadura e kits de vedação para telha — em quatro máquinas de injeção. Também assumimos a produção terceirizada de peças para clientes de outros setores, com controle dimensional e repetibilidade.',
+          'Produzimos peças técnicas injetadas para o mercado de construção civil — espaçadores para armadura e kits de vedação para telha — e também assumimos a produção terceirizada de peças para clientes de outros setores, com controle dimensional e repetibilidade.',
         ],
         values: [
-          { title: 'Missão', text: 'Crescer prioritariamente através da Inovação.', icon: '13-blueprint.png' },
-          { title: 'Visão', text: 'Ser referência na fabricação de seus produtos visando ultrapassar a expectativa dos seus clientes.', icon: '29-engineer.png' },
-          { title: 'Princípios e Valores', text: 'Utilizar a ética e transparência em todos os processos internos e externos, cuidando dos seus talentos e do meio ambiente.', icon: '02-ruler.png' },
+          { title: 'Missão', text: 'Entregar inovação e qualidade na produção e comercialização de peças plásticas, atendendo às expectativas dos clientes.', icon: '13-blueprint.png' },
+          { title: 'Visão', text: 'Ser reconhecida como a melhor empresa de injeção plástica em inovação de produtos e processos.', icon: '29-engineer.png' },
+          { title: 'Valores', text: 'Segurança · Saúde e bem-estar · Ética e respeito · Resolutividade · Sustentabilidade', icon: '02-ruler.png' },
         ],
       },
       en: {
@@ -137,12 +137,12 @@ const quemSomos = {
         title: 'Superior Quality in Technical Plastic Parts for Civil Construction and Demanding Clients',
         paragraphs: [
           'Marcanti was founded in 2012 by a chemical engineer with a master’s degree and a career built inside the petrochemical and plastics processing industry. That origin shapes how the company works: the technical decision comes before the commercial one, and a product has to justify itself on specification.',
-          'We produce technical injection-moulded parts for the civil construction market — spacers for reinforcement and sealing kits for roof tiles — on four injection moulding machines. We also take on outsourced parts production for clients in other sectors, with dimensional control and repeatability.',
+          'We produce technical injection-moulded parts for the civil construction market — spacers for reinforcement and sealing kits for roof tiles — and we also take on outsourced parts production for clients in other sectors, with dimensional control and repeatability.',
         ],
         values: [
-          { title: 'Mission', text: 'To grow primarily through Innovation.', icon: '13-blueprint.png' },
-          { title: 'Vision', text: 'To be a reference in manufacturing our products, aiming to exceed our clients’ expectations.', icon: '29-engineer.png' },
-          { title: 'Principles and Values', text: 'To act with ethics and transparency in all internal and external processes, while caring for our people and the environment.', icon: '02-ruler.png' },
+          { title: 'Mission', text: 'To deliver innovation and quality in the production and sale of plastic parts, meeting our clients’ expectations.', icon: '13-blueprint.png' },
+          { title: 'Vision', text: 'To be recognised as the best plastic injection moulding company in product and process innovation.', icon: '29-engineer.png' },
+          { title: 'Values', text: 'Safety · Health and wellbeing · Ethics and respect · Resolutiveness · Sustainability', icon: '02-ruler.png' },
         ],
       },
       es: {
@@ -151,12 +151,12 @@ const quemSomos = {
         title: 'Calidad Superior en Piezas Técnicas de Plástico para la Construcción Civil y Clientes Exigentes',
         paragraphs: [
           'Marcanti nació en 2012, fundada por un ingeniero químico con maestría y una carrera construida dentro de la industria petroquímica y de transformación de plásticos. Ese origen define cómo opera la empresa: decisión técnica antes que decisión comercial, y producto que se justifica por la especificación.',
-          'Producimos piezas técnicas inyectadas para el mercado de la construcción civil — espaciadores para armadura y kits de sellado para teja — en cuatro máquinas de inyección. También asumimos la producción tercerizada de piezas para clientes de otros sectores, con control dimensional y repetibilidad.',
+          'Producimos piezas técnicas inyectadas para el mercado de la construcción civil — espaciadores para armadura y kits de sellado para teja — y también asumimos la producción tercerizada de piezas para clientes de otros sectores, con control dimensional y repetibilidad.',
         ],
         values: [
-          { title: 'Misión', text: 'Crecer prioritariamente a través de la Innovación.', icon: '13-blueprint.png' },
-          { title: 'Visión', text: 'Ser referencia en la fabricación de sus productos, buscando superar las expectativas de sus clientes.', icon: '29-engineer.png' },
-          { title: 'Principios y Valores', text: 'Utilizar la ética y la transparencia en todos los procesos internos y externos, cuidando a su talento humano y al medio ambiente.', icon: '02-ruler.png' },
+          { title: 'Misión', text: 'Entregar innovación y calidad en la producción y comercialización de piezas plásticas, atendiendo las expectativas de los clientes.', icon: '13-blueprint.png' },
+          { title: 'Visión', text: 'Ser reconocida como la mejor empresa de inyección plástica en innovación de productos y procesos.', icon: '29-engineer.png' },
+          { title: 'Valores', text: 'Seguridad · Salud y bienestar · Ética y respeto · Resolutividad · Sostenibilidad', icon: '02-ruler.png' },
         ],
       },
     }[lang];
