@@ -88,8 +88,11 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 - [ ] Alt text genérico/vazio em imagens de produto (audit 3.4 / 7)
 - [ ] `/tecnologia/` → renomear para `/desenvolvimento-de-produtos/` + 301 + rótulo do menu (audit 3.6 / 4.7)
 - [x] Erro "produzilo" — no repo (`build/pages/main.js`) já está "produzi-lo" (audit 3.6)
-- [ ] Rodapé promete "indústria automobilística" sem página (`ui.aboutFooter`) (audit 3.5)
-- [ ] Quem Somos: missão/visão divergem do institucional + "quatro máquinas" (audit 3.5 / 9 #2, #4)
+- [x] Rodapé prometia "indústria automobilística" sem página → Etapa 6: `ui.aboutFooter` agora diz "construção civil e para a indústria" (genérico, condiz com a terceirização citada em Quem Somos) (audit 3.5)
+- [ ] **BLOQUEADO (seção 9 #2)** — Quem Somos: missão/visão divergem do material institucional. Precisa da decisão do cliente antes de reescrever.
+- [ ] **BLOQUEADO (seção 9 #4)** — Quem Somos: "quatro máquinas de injeção". Manter como prova de porte ou trocar por formulação neutra?
+- [ ] **BLOQUEADO (seção 9 #1)** — Home + Sustentabilidade: "matéria-prima 100% reciclável" vs "reciclada" do material interno. São afirmações diferentes.
+- [x] Rodapé "Política de Privacidade" era texto puro → já é link no repo (`renderFooter`)
 - [ ] Meta descriptions com "alta qualidade"/"excelência"/"eco-friendly" — aplicar seção 5 (audit 4 / 5)
 - [ ] Páginas de produto sem breadcrumb com schema (audit 7) — breadcrumb visual já existe
 - [ ] Home: teaser "Proteja sua obra da corrosão" → copy da seção 4.1 (audit 4.1)
@@ -128,3 +131,4 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 | 2026-09-03 | 3 | Auditoria 3.1: descriptions já existiam → adicionadas tags Open Graph + Twitter Card nas 84 páginas (og:image = imagem do post no blog, hero/default nas demais, com guarda de tamanho mínimo 600px); helper de escape corrige `&` sem escape no `<head>` EN. Validado: 84/84 com og:* completo, og:url == canonical, `<head>` válido. | `build/templates.js`, `build/build.js`, `build/pages/blog.js` |
 | 2026-09-03 | 4 | Auditoria 3.3: 6 tabelas de medida transcritas das imagens do catálogo para `<table>` HTML (`T.specTable`) nas 7 páginas de produto × 3 idiomas; desenho técnico mantido como diagrama com `alt`. Validado: 84/84 OK (1 H1, sem skips, tabelas balanceadas). | `build/data/spec-tables.js` (novo), `build/templates.js`, `build/pages/espacadores.js`, `assets/css/style.css` |
 | 2026-09-03 | 5 | Auditoria 3.4: `imgAlt`/`alt` em `splitSection`/`galleryGrid`; ~30 imagens de produto/kit/cliente/aplicação com alt descritivo nos 3 idiomas (cada foto inspecionada). Nenhuma imagem quebrada no repo. Validado: 0 `<img>` sem alt em 84/84. | `build/templates.js`, `build/pages/espacadores.js`, `build/pages/kit-vedacao.js`, `build/pages/main.js` |
+| 2026-09-03 | 6 | Auditoria 3.5 (parcial): rodapé não promete mais "indústria automobilística" (texto genérico). Missão/visão, "quatro máquinas" e "reciclável vs reciclada" ficam bloqueados nas decisões da seção 9 (#1, #2, #4). | `build/data/site.js` |

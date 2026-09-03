@@ -94,7 +94,7 @@ const ui = {
   ourBlog: { pt: 'Nosso Blog', en: 'Our Blog', es: 'Nuestro Blog' },
   siteTitleSuffix: { pt: '– Marcanti', en: '– Marcanti', es: '– Marcanti' },
   privacyPolicy: { pt: 'Política de Privacidade', en: 'Privacy Policy', es: 'Política de Privacidad' },
-  aboutFooter: { pt: 'Transformamos o plástico em material técnico para aplicação na construção civil e indústria automobilística.', en: 'We transform plastic into technical material for civil construction and the automotive industry.', es: 'Transformamos el plástico en material técnico para la construcción civil y la industria automotriz.' },
+  aboutFooter: { pt: 'Transformamos o plástico em material técnico para a construção civil e para a indústria.', en: 'We transform plastic into technical material for civil construction and industry.', es: 'Transformamos el plástico en material técnico para la construcción civil y la industria.' },
   whereWeAre: { pt: 'Onde Estamos:', en: 'Where We Are:', es: 'Dónde Estamos:' },
   productsLabel: { pt: 'Produtos', en: 'Products', es: 'Productos' },
   contactUsLabel: { pt: 'Fale Conosco', en: 'Contact Us', es: 'Contáctanos' },
