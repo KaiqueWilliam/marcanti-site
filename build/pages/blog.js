@@ -73,7 +73,7 @@ function shareSection(lang, slug, title) {
 function recentPostsSection(lang, currentSlug) {
   const others = POSTS_META.filter((p) => p.slug !== currentSlug).slice(0, 4);
   return `<div class="recent-posts">
-    <h3>${ui.recentPosts[lang]}</h3>
+    <h2>${ui.recentPosts[lang]}</h2>
     <div class="card-grid">
       ${others.map((p) => `<a class="card" href="${T.url(lang, 'blog/' + p.slug)}">
         ${T.renderImg(p.img, p.title[lang])}
@@ -83,10 +83,11 @@ function recentPostsSection(lang, currentSlug) {
   </div>`;
 }
 
-function postShell({ slug, title, ctaHeading, blocks }) {
+function postShell({ slug, title, img, ctaHeading, blocks }) {
   return {
     slug: `blog/${slug}`,
     title: { pt: `${title.pt} – Marcanti`, en: `${title.en} – Marcanti`, es: `${title.es} – Marcanti` },
+    image: img ? T.asset('img/' + img) : undefined,
     description: {
       pt: blocks.pt.find((b) => b.type === 'p').text.slice(0, 155),
       en: blocks.en.find((b) => b.type === 'p').text.slice(0, 155),
@@ -94,7 +95,7 @@ function postShell({ slug, title, ctaHeading, blocks }) {
     },
     body(lang) {
       return `
-${T.pageHero({ eyebrow: ui.ourBlog[lang], title: title[lang], bg: 'Quem-Somos.jpg', tag: 'h2', warm: true, divider: true })}
+${T.pageHero({ eyebrow: ui.ourBlog[lang], title: title[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section>
   <div class="container">
     ${T.crumbs(lang, [{ label: ui.ourBlog[lang], slug: 'blog' }, { label: title[lang] }])}
@@ -133,7 +134,7 @@ const index = {
       linkLabel: ui.readMore[lang],
     }));
     return `
-${T.pageHero({ title: { pt: 'Blog', en: 'Blog', es: 'Blog' }[lang], subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', divider: true, warm: true })}
+${T.pageHero({ title: { pt: 'Blog', en: 'Blog', es: 'Blog' }[lang], subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', divider: true, warm: true })}
 ${T.cardGrid({ cards, cols: 3 })}
 `;
   },
@@ -143,6 +144,7 @@ ${T.cardGrid({ cards, cols: 3 })}
 const post1 = postShell({
   slug: POSTS_META[0].slug,
   title: POSTS_META[0].title,
+  img: POSTS_META[0].img,
   blocks: {
     pt: [
       { type: 'p', text: 'Os espaçadores de plástico têm um papel importante na sustentação e durabilidade das construções modernas. São componentes discretos, muitas vezes pequenos e de aparência simples, mas desempenham uma função crucial para garantir a qualidade e a integridade das estruturas.' },
@@ -190,6 +192,7 @@ const post1 = postShell({
 const post2 = postShell({
   slug: POSTS_META[1].slug,
   title: POSTS_META[1].title,
+  img: POSTS_META[1].img,
   blocks: {
     pt: [
       { type: 'p', text: 'Os espaçadores de plástico são elementos utilizados na construção civil para garantir a correta posição e distância entre elementos estruturais, como barras de aço ou armaduras, dentro de estruturas de concreto armado. Eles desempenham um papel fundamental na garantia da qualidade e durabilidade das construções.' },
@@ -273,6 +276,7 @@ const post2 = postShell({
 const post3 = postShell({
   slug: POSTS_META[2].slug,
   title: POSTS_META[2].title,
+  img: POSTS_META[2].img,
   ctaHeading: {
     pt: 'Se interessou pelos Kits de Vedação? Fale conosco agora e solicite seu orçamento!',
     en: 'Interested in our Sealing Kits? Contact us now and request your quote!',
@@ -337,6 +341,7 @@ const post3 = postShell({
 const post4 = postShell({
   slug: POSTS_META[3].slug,
   title: POSTS_META[3].title,
+  img: POSTS_META[3].img,
   ctaHeading: {
     pt: 'Se interessou pelos Kits de Vedação? Fale conosco agora e solicite seu orçamento!',
     en: 'Interested in our Sealing Kits? Contact us now and request your quote!',
@@ -413,6 +418,7 @@ const post4 = postShell({
 const post5 = postShell({
   slug: POSTS_META[4].slug,
   title: POSTS_META[4].title,
+  img: POSTS_META[4].img,
   ctaHeading: {
     pt: 'Se interessou pelos nossos espaçadores? Fale conosco agora e solicite seu orçamento!',
     en: 'Interested in our spacers? Contact us now and request your quote!',

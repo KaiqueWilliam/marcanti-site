@@ -1,6 +1,13 @@
 'use strict';
 const T = require('../templates');
 const { ui } = require('../data/site');
+const SPEC = require('../data/spec-tables');
+
+const dimDiagramAlt = {
+  pt: 'Desenho técnico do espaçador com as cotas de dimensão (A, B, C…) indicadas',
+  en: 'Technical drawing of the spacer with the dimension callouts (A, B, C…) marked',
+  es: 'Dibujo técnico del separador con las cotas de dimensión (A, B, C…) indicadas',
+};
 
 const genericIntro = {
   pt: 'Com os espaçadores multiapoio da MARCANTI, você tem a solução perfeita para suportar e posicionar de forma precisa e estável os elementos estruturais, oferecendo máxima resistência e segurança para os seus projetos.',
@@ -24,7 +31,7 @@ function productShell({ slug, crumbItems, eyebrow, h3, intro, sections, extraSec
     description: null,
     body(lang) {
       return `
-${T.pageHero({ eyebrow: eyebrow[lang], title: h3[lang], subtitle: intro[lang], bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ eyebrow: eyebrow[lang], title: h3[lang], subtitle: intro[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section>
   <div class="container">
     ${T.crumbs(lang, crumbItems(lang))}
@@ -37,14 +44,24 @@ ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
   };
 }
 
-function aboutSection({ img, paragraphs }) {
-  return (lang) => T.splitSection({ title: ui.aboutProduct[lang], paragraphs: paragraphs[lang], img });
+function aboutSection({ img, imgAlt, paragraphs }) {
+  return (lang) => T.splitSection({ title: ui.aboutProduct[lang], paragraphs: paragraphs[lang], img, imgAlt: imgAlt && imgAlt[lang] });
 }
-function fitSection({ images }) {
-  return (lang) => `<div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images })}</div>`;
+function fitSection({ images, alt }) {
+  return (lang) => `<div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images, alt: alt && alt[lang] })}</div>`;
 }
-function sizesSection({ paragraphs, img }) {
-  return (lang) => `<div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(paragraphs[lang])}</div>${img ? `<div>${T.renderImg(img, '', { style: 'border-radius:8px;' })}</div>` : ''}</div></div>`;
+function renderSizes(lang, { paragraphs, img, table }) {
+  return `<div class="section-tight">
+    <h2>${ui.availableSizes[lang]}</h2>
+    <div class="split">
+      <div>${T.infoBox(paragraphs[lang])}</div>
+      ${img ? `<div>${T.renderImg(img, dimDiagramAlt[lang], { style: 'border-radius:8px;' })}</div>` : ''}
+    </div>
+    ${table ? T.specTable(table, lang) : ''}
+  </div>`;
+}
+function sizesSection({ paragraphs, img, table }) {
+  return (lang) => renderSizes(lang, { paragraphs, img, table });
 }
 
 // =================== ESPAÇADORES HUB ===================
@@ -67,7 +84,7 @@ const hub = {
       { href: T.url(lang, 'espacadores/linha-construcao'), img: 'Foto01-1.jpg', title: { pt: 'Linha Construção', en: 'Construction Line', es: 'Línea Construcción' }[lang] },
     ].map((c2) => ({ ...c2, linkLabel: ui.viewProduct[lang] }));
     return `
-${T.pageHero({ title: c.eyebrow, subtitle: c.intro, bg: 'Quem-Somos.jpg', tag: 'h3', divider: true, warm: true })}
+${T.pageHero({ title: c.eyebrow, subtitle: c.intro, bg: 'Quem-Somos.jpg', tag: 'h1', divider: true, warm: true })}
 ${T.cardGrid({ cards, cols: 2 })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
   },
@@ -92,7 +109,7 @@ const linhaPostesHub = {
       { href: T.url(lang, 'espacadores/cadeirinha-pesada'), img: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-2.jpeg', title: { pt: 'Cadeirinha Pesado', en: 'Heavy Chair Spacer', es: 'Separador Silla Pesada' }[lang] },
     ].map((c) => ({ ...c, linkLabel: ui.viewProduct[lang] }));
     return `
-${T.pageHero({ title, subtitle: intro, tag: 'h3', bg: 'Quem-Somos.jpg', warm: true, divider: true })}
+${T.pageHero({ title, subtitle: intro, tag: 'h1', bg: 'Quem-Somos.jpg', warm: true, divider: true })}
 <section><div class="container">${T.crumbs(lang, [{ label: { pt: 'Espaçadores', en: 'Spacers', es: 'Espaciadores' }[lang], slug: 'espacadores' }, { label: title }])}</div></section>
 ${T.cardGrid({ cards, cols: 4 })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
@@ -118,7 +135,7 @@ const linhaConstrucaoHub = {
       { href: T.url(lang, 'espacadores/cadeirinha-pesada'), img: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-4.jpeg', title: { pt: 'Cadeirinha Pesado', en: 'Heavy Chair Spacer', es: 'Separador Silla Pesada' }[lang] },
     ].map((c) => ({ ...c, linkLabel: ui.viewProduct[lang] }));
     return `
-${T.pageHero({ title, subtitle: intro, tag: 'h3', bg: 'Quem-Somos.jpg', warm: true, divider: true })}
+${T.pageHero({ title, subtitle: intro, tag: 'h1', bg: 'Quem-Somos.jpg', warm: true, divider: true })}
 <section><div class="container">${T.crumbs(lang, [{ label: { pt: 'Espaçadores', en: 'Spacers', es: 'Espaciadores' }[lang], slug: 'espacadores' }, { label: title }])}</div></section>
 ${T.cardGrid({ cards, cols: 4 })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
@@ -153,9 +170,16 @@ function makeCadeirinha(line) {
       h3,
       intro: genericIntro,
       sections: [
-        aboutSection({ img: 'Design-sem-nome-cadeirinha.jpg', paragraphs: about }),
-        fitSection({ images: ['D_NQ_NP_995317-MLB27759536075_072018-O-1.webp', 'Aplicacao-Cadeirinha.jpg'] }),
-        sizesSection({ paragraphs: sizesP, img: 'Title.png' }),
+        aboutSection({
+          img: 'Design-sem-nome-cadeirinha.jpg',
+          imgAlt: { pt: 'Espaçador plástico tipo cadeirinha da Marcanti', en: 'MARCANTI plastic chair-type spacer', es: 'Separador plástico tipo silla de MARCANTI' },
+          paragraphs: about,
+        }),
+        fitSection({
+          images: ['D_NQ_NP_995317-MLB27759536075_072018-O-1.webp', 'Aplicacao-Cadeirinha.jpg'],
+          alt: { pt: 'Espaçador cadeirinha sustentando a armadura horizontal', en: 'Chair spacer supporting horizontal reinforcement', es: 'Separador silla sosteniendo la armadura horizontal' },
+        }),
+        sizesSection({ paragraphs: sizesP, img: 'Title.png', table: SPEC.cadeirinha }),
       ],
     }),
     title: {
@@ -204,9 +228,16 @@ function makeCircularAberto(line) {
       h3,
       intro,
       sections: [
-        aboutSection({ img: 'FOTO04.jpg', paragraphs: about }),
-        fitSection({ images: ['Encaixe-Circula-01.jpg', 'Encaixe-Circula-02.jpg', 'Encaixe-Circula-03.jpg'] }),
-        sizesSection({ paragraphs: sizesP, img: 'Title-2.png' }),
+        aboutSection({
+          img: 'FOTO04.jpg',
+          imgAlt: { pt: 'Espaçador plástico circular aberto da Marcanti', en: 'MARCANTI plastic open circular spacer', es: 'Separador plástico circular abierto de MARCANTI' },
+          paragraphs: about,
+        }),
+        fitSection({
+          images: ['Encaixe-Circula-01.jpg', 'Encaixe-Circula-02.jpg', 'Encaixe-Circula-03.jpg'],
+          alt: { pt: 'Encaixe do espaçador circular aberto no vergalhão', en: 'Open circular spacer clipped onto the rebar', es: 'Encaje del separador circular abierto en la varilla' },
+        }),
+        sizesSection({ paragraphs: sizesP, img: 'Title-2.png', table: SPEC.circularAberto }),
       ],
     }),
     title: {
@@ -257,16 +288,16 @@ const circularFechadoPostes = (() => {
         { label: h3a[lang] },
       ]);
       return `
-${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3a[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3a[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">${crumbs}
-  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutA[lang], img: 'Design-sem-nome-circular-fechado.png' })}
-  <div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images: ['WhatsApp-Image-2023-08-18-at-13.37.14.jpeg', '9474da9844790fd15981a02f7a35cf16.jpg'] })}</div>
-  <div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(sizesP[lang])}</div><div>${T.renderImg('Title-1.png', '', { style: 'border-radius:8px;' })}</div></div></div>
+  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutA[lang], img: 'Design-sem-nome-circular-fechado.png', imgAlt: { pt: 'Espaçador plástico circular fechado da Marcanti', en: 'MARCANTI plastic closed circular spacer', es: 'Separador plástico circular cerrado de MARCANTI' }[lang] })}
+  <div class="section-tight">${T.galleryGrid({ title: ui.fitSystem[lang], subtitle: fitSystemText[lang], images: ['WhatsApp-Image-2023-08-18-at-13.37.14.jpeg', '9474da9844790fd15981a02f7a35cf16.jpg'], alt: { pt: 'Espaçador circular fechado montado na armadura de um poste', en: 'Closed circular spacer fitted on a pole reinforcement cage', es: 'Separador circular cerrado montado en la armadura de un poste' }[lang] })}</div>
+  ${renderSizes(lang, { paragraphs: sizesP, img: 'Title-1.png', table: SPEC.circularFechado })}
 </div></section>
-${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3b[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ eyebrow: lineLabel.postes[lang], title: h3b[lang], subtitle: genericIntro[lang], bg: 'Quem-Somos.jpg', tag: 'h2', warm: true, divider: true })}
 <section><div class="container">
-    ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutB[lang], img: '4538d41e-933d-4118-89de-2b10e4e9f96a.png' })}
-    <div class="section-tight"><h2>${ui.availableSizes[lang]}</h2><div class="split"><div>${T.infoBox(sizesP[lang])}</div><div>${T.renderImg('WhatsApp-Image-2026-03-31-at-10.29.36-1024x739.jpeg', '', { style: 'border-radius:8px;' })}</div></div></div>
+    ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: aboutB[lang], img: '4538d41e-933d-4118-89de-2b10e4e9f96a.png', imgAlt: { pt: 'Espaçador circular fechado para ferro duplo da Marcanti', en: 'MARCANTI closed circular spacer for double rebar', es: 'Separador circular cerrado para hierro doble de MARCANTI' }[lang] })}
+    ${renderSizes(lang, { paragraphs: sizesP, img: 'WhatsApp-Image-2026-03-31-at-10.29.36-1024x739.jpeg', table: SPEC.circularFechadoFerroDuplo })}
 </div></section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
     },
@@ -299,9 +330,16 @@ const multiapoioConstrucao = (() => {
       h3,
       intro: genericIntro,
       sections: [
-        aboutSection({ img: 'Foto01-1.jpg', paragraphs: about }),
-        fitSection({ images: ['Sistema-de-enxaixe-01.jpg', 'Sistema-de-enxaixe-02.jpg', 'Aplicacao-01-1.jpg', 'Aplicacao-02-1.jpg', 'Aplicacao-03-1.jpg'] }),
-        sizesSection({ paragraphs: sizesP, img: 'Title-3.png' }),
+        aboutSection({
+          img: 'Foto01-1.jpg',
+          imgAlt: { pt: 'Espaçador plástico multiapoio (modelo centopeia) da Marcanti', en: 'MARCANTI multi-support (centipede) plastic spacer', es: 'Separador plástico multiapoyo (modelo ciempiés) de MARCANTI' },
+          paragraphs: about,
+        }),
+        fitSection({
+          images: ['Sistema-de-enxaixe-01.jpg', 'Sistema-de-enxaixe-02.jpg', 'Aplicacao-01-1.jpg', 'Aplicacao-02-1.jpg', 'Aplicacao-03-1.jpg'],
+          alt: { pt: 'Espaçador multiapoio no fundo da armadura de uma laje', en: 'Multi-support spacer under a slab reinforcement mesh', es: 'Separador multiapoyo bajo la armadura de una losa' },
+        }),
+        sizesSection({ paragraphs: sizesP, img: 'Title-3.png', table: SPEC.multiapoio }),
       ],
     }),
     title: { pt: 'Espaçadores Multiapoio Linha Construção – Marcanti', en: 'Multi-Support Spacer – Construction Line – Marcanti', es: 'Separador Multiapoyo – Línea Construcción – Marcanti' },
@@ -337,9 +375,16 @@ const cadeirinhaPesada = (() => {
       h3,
       intro: genericIntro,
       sections: [
-        aboutSection({ img: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-3.jpeg', paragraphs: about }),
-        fitSection({ images: ['D_NQ_NP_995317-MLB27759536075_072018-O-1.webp', 'Aplicacao-Cadeirinha.jpg'] }),
-        sizesSection({ paragraphs: sizesP, img: 'WhatsApp-Image-2026-03-31-at-09.30.20.jpeg' }),
+        aboutSection({
+          img: 'WhatsApp-Image-2026-032-30-at-10.26s.18-1-3.jpeg',
+          imgAlt: { pt: 'Espaçador cadeirinha pesado reforçado da Marcanti', en: 'MARCANTI reinforced heavy chair spacer', es: 'Separador silla pesada reforzado de MARCANTI' },
+          paragraphs: about,
+        }),
+        fitSection({
+          images: ['D_NQ_NP_995317-MLB27759536075_072018-O-1.webp', 'Aplicacao-Cadeirinha.jpg'],
+          alt: { pt: 'Espaçador cadeirinha pesado sustentando armadura horizontal pesada', en: 'Heavy chair spacer supporting heavy horizontal reinforcement', es: 'Separador silla pesada sosteniendo armadura horizontal pesada' },
+        }),
+        sizesSection({ paragraphs: sizesP, img: 'WhatsApp-Image-2026-03-31-at-09.30.20.jpeg', table: SPEC.cadeirinhaPesado }),
       ],
     }),
     title: { pt: 'Cadeirinha Pesado – Marcanti', en: 'Heavy Chair Spacer – Marcanti', es: 'Separador Silla Pesada – Marcanti' },

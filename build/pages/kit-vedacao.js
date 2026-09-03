@@ -52,7 +52,7 @@ function modelsSection(lang) {
     <div class="tile-grid">
       ${modelDescriptions[lang].map((d, i) => {
         const [name, ...rest] = d.split(': ');
-        return `<div class="tile">${T.renderImg(modelImages[i], name)}<h4>${name}</h4><p>${rest.join(': ')}</p></div>`;
+        return `<div class="tile">${T.renderImg(modelImages[i], name)}<h3>${name}</h3><p>${rest.join(': ')}</p></div>`;
       }).join('')}
     </div>
   </div>`;
@@ -89,7 +89,7 @@ const hub = {
       { href: T.url(lang, 'kit-vedacao/kit-vedacao-e-fixacao-universal'), img: 'Design-sem-nome-1-hq.png', title: { pt: 'Kit Vedação e Fixação Universal (Para Diversos Tipos de Telhas)', en: 'Universal Sealing & Fixing Kit (For Various Roof Tile Types)', es: 'Kit Universal de Sellado y Fijación (Para Varios Tipos de Tejas)' }[lang], text: withScrew },
     ].map((c) => ({ ...c, linkLabel: ui.viewProduct[lang] }));
     return `
-${T.pageHero({ title: { pt: 'Kit Vedação', en: 'Sealing Kit', es: 'Kit de Sellado' }[lang], subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', divider: true, warm: true })}
+${T.pageHero({ title: { pt: 'Kit Vedação', en: 'Sealing Kit', es: 'Kit de Sellado' }[lang], subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', divider: true, warm: true })}
 ${T.cardGrid({ cards, cols: 2, imgFit: 'contain' })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
   },
@@ -117,10 +117,10 @@ const kitFixacaoUniversal = {
       es: ['El Kit Universal de Sellado y Fijación para varios tipos de tejas de MARCANTI es un conjunto compuesto por el kit universal y el tornillo.', 'Es un kit que reemplaza las piezas: capa, anillo de sellado y sombrerete, en un único artículo.'],
     }[lang];
     return `
-${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
-  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Design-sem-nome-1-hq.png' })}
+  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Design-sem-nome-1-hq.png', imgAlt: { pt: 'Kit de vedação e fixação universal da Marcanti', en: 'MARCANTI universal sealing and fixing kit', es: 'Kit universal de sellado y fijación de MARCANTI' }[lang] })}
   ${colorsSection(lang)}
 </div></section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
@@ -146,10 +146,10 @@ const kitUniversal = {
     }[lang];
     const fixLabel = { pt: 'Kit Vedação e Fixação', en: 'Sealing & Fixing Kit', es: 'Kit de Sellado y Fijación' }[lang];
     return `
-${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
-  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Design-sem-nome-4-universal-hq.png', cta: { href: T.url(lang, 'kit-vedacao/kit-vedacao-e-fixacao-universal'), label: fixLabel } })}
+  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Design-sem-nome-4-universal-hq.png', imgAlt: { pt: 'Kit de vedação universal da Marcanti para diversos tipos de telha', en: 'MARCANTI universal sealing kit for various roof tile types', es: 'Kit de sellado universal de MARCANTI para varios tipos de teja' }[lang], cta: { href: T.url(lang, 'kit-vedacao/kit-vedacao-e-fixacao-universal'), label: fixLabel } })}
   ${colorsSection(lang)}
 </div></section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
@@ -181,10 +181,10 @@ const kitPvc = {
     }[lang];
     const fixLabel = { pt: 'Kit Vedação e Fixação', en: 'Sealing & Fixing Kit', es: 'Kit de Sellado y Fijación' }[lang];
     return `
-${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
-  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Kit-Vedacao-Para-Telha-de-PVC.jpg' })}
+  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Kit-Vedacao-Para-Telha-de-PVC.jpg', imgAlt: { pt: 'Kit de vedação para telha de PVC da Marcanti: capa, anel de vedação e chapéu', en: 'MARCANTI sealing kit for PVC roof tiles: cap, sealing ring and hat', es: 'Kit de sellado para teja de PVC de MARCANTI: capa, anillo de sellado y sombrerete' }[lang] })}
   <div class="section-tight">${T.splitSection({ title: noScrewTitle, paragraphs: noScrewP, img: 'Copia-de-Title.png', cta: { href: T.url(lang, 'kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc'), label: fixLabel } })}</div>
   ${colorsSection(lang, colorImagesKit)}
   ${modelsSection(lang)}
@@ -217,10 +217,10 @@ const kitPvcFixacao = {
       es: ['Kit que incluye un tornillo, utilizado para fijar las tejas a la estructura del techo.', 'Se puede utilizar tanto un tornillo de 2,5″ (6,35 cm) como uno de 3,5″ (8,89 cm), según el modelo de la teja.', 'Es el tornillo el que fija el kit a la teja y a la estructura del techo.'],
     }[lang];
     return `
-${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h3', warm: true, divider: true })}
+${T.pageHero({ title: h3, subtitle: intro, bg: 'Quem-Somos.jpg', tag: 'h1', warm: true, divider: true })}
 <section><div class="container">
   ${T.crumbs(lang, crumbItems(lang, h3))}
-  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Kit-Vedacao-e-Fixacao-Para-Telha-de-PVC-com-vedacao.jpg' })}
+  ${T.splitSection({ title: ui.aboutProduct[lang], paragraphs: about, img: 'Kit-Vedacao-e-Fixacao-Para-Telha-de-PVC-com-vedacao.jpg', imgAlt: { pt: 'Kit de vedação e fixação para telha de PVC da Marcanti, com parafuso', en: 'MARCANTI sealing and fixing kit for PVC roof tiles, with screw', es: 'Kit de sellado y fijación para teja de PVC de MARCANTI, con tornillo' }[lang] })}
   <div class="section-tight">${T.splitSection({ title: withFixTitle, paragraphs: withFixP, img: 'Kit-Vedacao-Para-Telha-de-PVC-com-fixacao.jpg' })}</div>
   ${colorsSection(lang, colorImagesKit)}
   ${modelsSection(lang)}

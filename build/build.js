@@ -20,6 +20,7 @@ for (const pageDef of pageModules) {
       path: pageDef.slug,
       title: pageDef.title[lang],
       description: (pageDef.description && pageDef.description[lang]) || '',
+      image: pageDef.image || undefined, // absolute-or-relative path for og:image; falls back to hero/site default
     };
     const bodyHtml = pageDef.body(lang);
     const html = T.page(lang, meta, bodyHtml);

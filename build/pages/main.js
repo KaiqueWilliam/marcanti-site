@@ -70,18 +70,18 @@ ${'<section class="hero" style="--hero-img:url(\'' + T.asset('img/Vigas-de-Aco-C
   </div>
 </section>
 
-${T.splitSection({ eyebrow: sust.eyebrow, title: sust.title, paragraphs: [sust.p], img: 'Sustentabilidade-1.jpg', ctaClass: 'btn-brand', cta: { href: T.url(lang, 'sustentabilidade'), label: ui.learnMore[lang] } })}
+${T.splitSection({ eyebrow: sust.eyebrow, title: sust.title, paragraphs: [sust.p], img: 'Sustentabilidade-1.jpg', imgAlt: { pt: 'Muda de planta nas mãos, simbolizando o compromisso ambiental da Marcanti', en: 'Seedling held in cupped hands, symbolizing MARCANTI’s environmental commitment', es: 'Plántula sostenida en las manos, símbolo del compromiso ambiental de MARCANTI' }[lang], ctaClass: 'btn-brand', cta: { href: T.url(lang, 'sustentabilidade'), label: ui.learnMore[lang] } })}
 
-${T.splitSection({ eyebrow: espacadoresTeaser.eyebrow, title: espacadoresTeaser.title, paragraphs: [espacadoresTeaser.p], img: 'corrosao-1.jpg', reverse: true, bg: true, ctaClass: 'btn-brand', cta: { href: T.url(lang, 'espacadores'), label: ui.learnMore[lang] } })}
+${T.splitSection({ eyebrow: espacadoresTeaser.eyebrow, title: espacadoresTeaser.title, paragraphs: [espacadoresTeaser.p], img: 'corrosao-1.jpg', imgAlt: { pt: 'Armadura de aço corroída por cobrimento de concreto insuficiente', en: 'Steel reinforcement corroded by insufficient concrete cover', es: 'Armadura de acero corroída por recubrimiento de concreto insuficiente' }[lang], reverse: true, bg: true, ctaClass: 'btn-brand', cta: { href: T.url(lang, 'espacadores'), label: ui.learnMore[lang] } })}
 
-${T.splitSection({ eyebrow: kitTeaser.eyebrow, title: kitTeaser.title, paragraphs: [kitTeaser.p], img: 'FOTO02-1-1.jpg', mediaClass: 'split-media-sm', ctaClass: 'btn-brand', cta: { href: T.url(lang, 'kit-vedacao'), label: ui.learnMore[lang] } })}
+${T.splitSection({ eyebrow: kitTeaser.eyebrow, title: kitTeaser.title, paragraphs: [kitTeaser.p], img: 'FOTO02-1-1.jpg', imgAlt: { pt: 'Componentes do kit de vedação Marcanti: chapéu, capa, anel de vedação e parafuso', en: 'MARCANTI sealing kit components: hat, cap, sealing ring and screw', es: 'Componentes del kit de sellado MARCANTI: sombrerete, capa, anillo de sellado y tornillo' }[lang], mediaClass: 'split-media-sm', ctaClass: 'btn-brand', cta: { href: T.url(lang, 'kit-vedacao'), label: ui.learnMore[lang] } })}
 
 <section class="bg-light">
   <div class="container text-center">
     <h2>${clients.title}</h2>
     <p class="clients-note">${clients.note}</p>
     <div class="clients-grid">
-      ${['client-direcional.png', 'client-precon.png', 'client-lacom.png', 'client-civil.png'].map((file) => `<div class="client-slot">${T.renderImg(file, '')}</div>`).join('')}
+      ${[['client-direcional.png', 'Direcional'], ['client-precon.png', 'Precon'], ['client-lacom.png', 'LA.com'], ['client-civil.png', 'Civil']].map(([file, name]) => `<div class="client-slot">${T.renderImg(file, { pt: `Logo ${name}`, en: `${name} logo`, es: `Logo ${name}` }[lang])}</div>`).join('')}
     </div>
   </div>
 </section>
@@ -153,9 +153,9 @@ const quemSomos = {
     }[lang];
 
     return `
-${T.pageHero({ title: c.eyebrow, subtitle: c.subtitle, bg: 'Quem-Somos.jpg', tag: 'h3', divider: true, warm: true })}
-${T.splitSection({ title: c.title, paragraphs: c.paragraphs.slice(0, 2), img: 'FOTO05.jpg', splitClass: 'split-roomy' })}
-${T.splitSection({ paragraphs: c.paragraphs.slice(2), img: 'Quem-Somos.jpg', reverse: true, splitClass: 'split-roomy' })}
+${T.pageHero({ title: c.eyebrow, subtitle: c.subtitle, bg: 'Quem-Somos.jpg', tag: 'h1', divider: true, warm: true })}
+${T.splitSection({ title: c.title, paragraphs: c.paragraphs.slice(0, 2), img: 'FOTO05.jpg', imgAlt: { pt: 'Espaçadores plásticos multiapoio produzidos pela Marcanti', en: 'Multi-support plastic spacers produced by MARCANTI', es: 'Separadores plásticos multiapoyo producidos por MARCANTI' }[lang], splitClass: 'split-roomy' })}
+${T.splitSection({ paragraphs: c.paragraphs.slice(2), img: 'Quem-Somos.jpg', imgAlt: { pt: 'Engenheiro analisando as plantas de um projeto de construção', en: 'Engineer reviewing the blueprints of a construction project', es: 'Ingeniero analizando los planos de un proyecto de construcción' }[lang], reverse: true, splitClass: 'split-roomy' })}
 ${T.valueGrid({ values: c.values })}
 `;
   },
@@ -258,7 +258,7 @@ const tecnologia = {
     </div>
   </div>
 </section>
-${T.splitSection({ title: c.title2, paragraphs: c.paragraphs2, img: 'men-engineers-standing-outdoors-on-construction-si-small.jpg', cta: consultantsCta, ctaClass: 'btn-primary' })}
+${T.splitSection({ title: c.title2, paragraphs: c.paragraphs2, img: 'men-engineers-standing-outdoors-on-construction-si-small.jpg', imgAlt: { pt: 'Dois engenheiros com colete e capacete analisando um tablet em obra de estrutura metálica', en: 'Two engineers in hi-vis vests and hard hats reviewing a tablet on a steel-frame construction site', es: 'Dos ingenieros con chaleco y casco revisando una tableta en una obra de estructura metálica' }[lang], cta: consultantsCta, ctaClass: 'btn-primary' })}
 <section>
   <div class="container text-center">
     <h2 class="max-720 mx-auto">${c.title3}</h2>
@@ -311,7 +311,7 @@ const contato = {
 <section class="page-hero warm">
   <div class="container contact-layout">
     <div class="contact-card">
-      <h2>${c.title}</h2>
+      <h1>${c.title}</h1>
       <span class="hero-divider"></span>
       ${c.paragraphs.map((p) => `<p>${p}</p>`).join('')}
     </div>
@@ -368,8 +368,8 @@ const sustentabilidade = {
     }[lang];
 
     return `
-${T.pageHero({ title: c.eyebrow, subtitle: c.intro, tag: 'h3', bg: 'Sustentabilidade.jpg', warm: true, divider: true, opacity: 0.85 })}
-${T.splitSection({ title: c.title, paragraphs: c.paragraphs, img: 'Sustentabilidade-02-1024x1024.jpg' })}
+${T.pageHero({ title: c.eyebrow, subtitle: c.intro, tag: 'h1', bg: 'Sustentabilidade.jpg', warm: true, divider: true, opacity: 0.85 })}
+${T.splitSection({ title: c.title, paragraphs: c.paragraphs, img: 'Sustentabilidade-02-1024x1024.jpg', imgAlt: { pt: 'Diagrama do ciclo de reciclagem dos espaçadores Marcanti: consumo, coleta, processamento, fabricação e reutilização na obra', en: 'Diagram of the MARCANTI spacer recycling cycle: consumption, collection, processing, manufacturing and reuse on site', es: 'Diagrama del ciclo de reciclaje de los separadores MARCANTI: consumo, recolección, procesamiento, fabricación y reutilización en obra' }[lang] })}
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}
 `;
   },
@@ -395,7 +395,7 @@ const catalogo = {
 <section class="text-center">
   <div class="container">
     <span class="eyebrow">${{ pt: 'Catálogo', en: 'Catalog', es: 'Catálogo' }[lang]}</span>
-    <h2>${title}</h2>
+    <h1>${title}</h1>
     <p class="lede max-720 mx-auto">${sub}</p>
     <a class="btn btn-secondary" style="margin-top:16px;" href="${business.catalogUrl}" target="_blank" rel="noopener">${ui.downloadCatalog[lang]}</a>
   </div>
@@ -451,7 +451,7 @@ ${T.pageHero({ title: c.title, tag: 'h1' })}
 <section>
   <div class="container max-720">
     <p class="lede">${c.intro}</p>
-    ${c.sections.map((s) => `<h3>${s.h}</h3><p>${s.p}</p>`).join('')}
+    ${c.sections.map((s) => `<h2>${s.h}</h2><p>${s.p}</p>`).join('')}
   </div>
 </section>
 `;

@@ -48,6 +48,14 @@ const icons = {
 const url = (lang, slug) => `/${lang}/${slug ? slug + '/' : ''}`;
 const asset = (p) => `/assets/${p}`;
 
+const SITE_URL = 'https://marcanti.ind.br';
+// Escapes text for HTML element content / attribute values. Head tags (title,
+// description, Open Graph) can legitimately carry "&" — e.g. "Sealing & Fixing" —
+// which must be encoded or link-preview crawlers (WhatsApp, LinkedIn) choke on it.
+const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const escAttr = (s) => esc(s).replace(/"/g, '&quot;');
+const absUrl = (p) => (p && /^https?:\/\//.test(p) ? p : SITE_URL + (p || ''));
+
 // Renders <picture> with AVIF/WebP siblings (when optimize-images produced smaller
 // versions) falling back to the original file, plus width/height to prevent layout
 // shift. `file` is just the basename inside assets/img/ (e.g. "Foto01-1.jpg").
@@ -174,23 +182,57 @@ function renderFooter(lang) {
 }
 
 function renderHead(lang, meta) {
-  const hreflangs = ['pt', 'en', 'es'].map((l) => `<link rel="alternate" hreflang="${l}" href="https://marcanti.ind.br${url(l, meta.path)}">`).join('\n  ');
+  const canonical = SITE_URL + url(lang, meta.path);
+  const hreflangs = ['pt', 'en', 'es'].map((l) => `<link rel="alternate" hreflang="${l}" href="${SITE_URL}${url(l, meta.path)}">`).join('\n  ');
   const heroPreload = meta.preloadImage
     ? `<link rel="preload" as="image" href="${meta.preloadImage}" fetchpriority="high">\n`
+    : '';
+  const desc = meta.description || '';
+  const ogType = /^blog\/.+/.test(meta.path || '') ? 'article' : 'website';
+  const ogLocale = { pt: 'pt_BR', en: 'en_US', es: 'es_ES' }[lang];
+  const ogAltLocales = ['pt_BR', 'en_US', 'es_ES']
+    .filter((l) => l !== ogLocale)
+    .map((l) => `<meta property="og:locale:alternate" content="${l}">`)
+    .join('\n');
+  const OG_DEFAULT = asset('img/Vigas-de-Aco-Construcao-Civil.jpg');
+  let ogImgPath = meta.image || meta.preloadImage || OG_DEFAULT;
+  let ogImgMeta = imageMeta[ogImgPath.split('/').pop()] || {};
+  // Link-preview crawlers show a tiny thumbnail (or nothing) below ~600px wide —
+  // fall back to the site default when the chosen image is known to be small.
+  if (ogImgMeta.width && ogImgMeta.width < 600) {
+    ogImgPath = OG_DEFAULT;
+    ogImgMeta = imageMeta[ogImgPath.split('/').pop()] || {};
+  }
+  const ogImage = absUrl(ogImgPath);
+  const ogImgDims = ogImgMeta.width && ogImgMeta.height
+    ? `\n<meta property="og:image:width" content="${ogImgMeta.width}">\n<meta property="og:image:height" content="${ogImgMeta.height}">`
     : '';
   return `<!DOCTYPE html>
 <html lang="${lang === 'pt' ? 'pt-BR' : lang === 'en' ? 'en' : 'es'}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${meta.title}</title>
-<meta name="description" content="${meta.description || ''}">
-<link rel="canonical" href="https://marcanti.ind.br${url(lang, meta.path)}">
+<title>${esc(meta.title)}</title>
+<meta name="description" content="${escAttr(desc)}">
+<link rel="canonical" href="${canonical}">
 ${hreflangs}
+<meta property="og:type" content="${ogType}">
+<meta property="og:site_name" content="Marcanti">
+<meta property="og:locale" content="${ogLocale}">
+${ogAltLocales}
+<meta property="og:title" content="${escAttr(meta.title)}">
+<meta property="og:description" content="${escAttr(desc)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${escAttr(ogImage)}">
+<meta property="og:image:alt" content="${escAttr(meta.title)}">${ogImgDims}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escAttr(meta.title)}">
+<meta name="twitter:description" content="${escAttr(desc)}">
+<meta name="twitter:image" content="${escAttr(ogImage)}">
 <link rel="icon" href="${asset('img/favicon-marcanti.png')}">
 ${heroPreload}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&amp;family=Roboto+Slab:wght@400;600;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${asset('css/style.css')}?v=${ASSET_VERSION.css}">
 </head>`;
 }
@@ -245,10 +287,10 @@ function crumbs(lang, items) {
   return `<div class="crumbs">${parts.join(' &raquo; ')}</div>`;
 }
 
-function splitSection({ eyebrow, title, paragraphs = [], img, reverse = false, cta, bg, mediaClass, ctaClass = 'btn-secondary', splitClass }) {
+function splitSection({ eyebrow, title, paragraphs = [], img, imgAlt, reverse = false, cta, bg, mediaClass, ctaClass = 'btn-secondary', splitClass }) {
   return `<section${bg ? ' class="bg-light"' : ''}>
     <div class="container split${reverse ? ' reverse' : ''}${splitClass ? ' ' + splitClass : ''}">
-      <div class="split-media${mediaClass ? ' ' + mediaClass : ''}">${renderImg(img, title || '')}</div>
+      <div class="split-media${mediaClass ? ' ' + mediaClass : ''}">${renderImg(img, imgAlt || title || '')}</div>
       <div class="split-content">
         ${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}
         ${title ? `<h2>${title}</h2>` : ''}
@@ -272,7 +314,7 @@ function cardGrid({ eyebrow, title, subtitle, cards, cols, imgFit }) {
         ${cards.map((c) => `<a class="card" href="${c.href}">
           ${renderImg(c.img, c.title)}
           <div class="card-body">
-            <h3>${c.title}</h3>
+            <h2>${c.title}</h2>
             ${c.text ? `<p>${c.text}</p>` : ''}
             <span class="card-link">${c.linkLabel} &rarr;</span>
           </div>
@@ -311,8 +353,11 @@ function valueGrid({ eyebrow, title, values }) {
   </section>`;
 }
 
-function galleryGrid({ title, subtitle, images, lang }) {
-  const slides = images.map((file) => `<div class="carousel-slide">${renderImg(file, '')}</div>`).join('');
+function galleryGrid({ title, subtitle, images, alt, lang }) {
+  const slides = images.map((file, i) => {
+    const a = alt ? (images.length > 1 ? `${alt} (${i + 1})` : alt) : '';
+    return `<div class="carousel-slide">${renderImg(file, a)}</div>`;
+  }).join('');
   return `<div class="gallery-block">
     ${title ? `<h2>${title}</h2>` : ''}
     ${subtitle ? `<p class="lede">${subtitle}</p>` : ''}
@@ -342,6 +387,23 @@ function colorSwatches({ title, colors, note, images }) {
 
 function infoBox(paragraphs) {
   return `<div class="info-box">${paragraphs.map((p) => `<p>${p}</p>`).join('')}</div>`;
+}
+
+// Renders a spec object (see build/data/spec-tables.js) as a real, indexable HTML
+// table. Cell values are strings or { pt, en, es } objects. First column is a row
+// header (scope="row"); column headers use scope="col".
+function specTable(spec, lang) {
+  const cell = (v) => esc(v && typeof v === 'object' && !Array.isArray(v) ? (v[lang] != null ? v[lang] : v.pt || '') : (v != null ? v : ''));
+  const head = spec.cols.map((c) => `<th scope="col">${cell(c.label)}</th>`).join('');
+  const body = spec.rows.map((r) => {
+    const cells = spec.cols.map((c, i) => {
+      const val = cell(r[c.id]) || '&mdash;';
+      return i === 0 ? `<th scope="row">${val}</th>` : `<td>${val}</td>`;
+    }).join('');
+    return `<tr>${cells}</tr>`;
+  }).join('');
+  const note = spec.note ? `<p class="spec-table-note">${cell(spec.note)}</p>` : '';
+  return `<div class="spec-table-wrap"><table class="spec-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>${note}`;
 }
 
 function ctaBand({ title, text, lang }) {
@@ -383,5 +445,5 @@ function contactForm(lang, submitLabel) {
 module.exports = {
   icons, url, asset, page, renderImg,
   pageHero, crumbs, splitSection, cardGrid, stepGrid, valueGrid,
-  galleryGrid, colorSwatches, infoBox, ctaBand, contactForm,
+  galleryGrid, colorSwatches, infoBox, specTable, ctaBand, contactForm,
 };

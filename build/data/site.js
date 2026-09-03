@@ -53,6 +53,7 @@ const navTree = [
         key: 'linha-construcao', slug: 'espacadores/linha-construcao', label: { pt: 'Linha Construção', en: 'Construction Line', es: 'Línea Construcción' },
         children: [
           { key: 'cadeirinha-construcao', slug: 'espacadores/linha-construcao/cadeirinha-linha-construcao', label: { pt: 'Cadeirinha Linha Construção', en: 'Chair Spacer – Construction Line', es: 'Separador Silla – Línea Construcción' } },
+          { key: 'cadeirinha-pesada', slug: 'espacadores/cadeirinha-pesada', label: { pt: 'Cadeirinha Pesado', en: 'Heavy Chair Spacer', es: 'Separador Silla Pesada' } },
           { key: 'circular-aberto-construcao', slug: 'espacadores/linha-construcao/circular-aberto-linha-construcao', label: { pt: 'Circular Aberto Linha Construção', en: 'Open Circular Spacer – Construction Line', es: 'Separador Circular Abierto – Línea Construcción' } },
           { key: 'multiapoio-construcao', slug: 'espacadores/linha-construcao/espacadores-multiapoio-linha-construcao', label: { pt: 'Espaçadores Multiapoio Linha Construção', en: 'Multi-Support Spacer – Construction Line', es: 'Separador Multiapoyo – Línea Construcción' } },
         ],
