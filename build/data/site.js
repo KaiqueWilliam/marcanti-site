@@ -179,6 +179,7 @@ const ui = {
   availableSizes: { pt: 'Tamanhos Disponíveis', en: 'Available Sizes', es: 'Tamaños Disponibles' },
   availableColors: { pt: 'Cores Disponíveis', en: 'Available Colors', es: 'Colores Disponibles' },
   availableModels: { pt: 'Modelos Disponíveis', en: 'Available Models', es: 'Modelos Disponibles' },
+  faqTitle: { pt: 'Perguntas frequentes', en: 'Frequently asked questions', es: 'Preguntas frecuentes' },
 };
 
 module.exports = { LANGS, business, waLink, navTree, topBarExtra, ui, form };

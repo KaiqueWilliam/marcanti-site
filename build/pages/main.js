@@ -59,6 +59,39 @@ const home = {
       es: { eyebrow: 'Kit de sellado', title: 'Sellado de la teja de PVC sin improvisar', p: 'El kit de sellado de Marcanti cierra el punto de fijación de la teja con una pieza propia, sin adaptación con masilla ni goma genérica. Se instala sin herramienta especial, con y sin tornillo, en colores que acompañan la teja.' },
     }[lang];
 
+    // Auditoria 4.1: a home não dava um único motivo para preferir a Marcanti.
+    // Os anos são calculados a partir de 2012 para o texto não envelhecer.
+    const anos = new Date().getFullYear() - 2012;
+    const porque = {
+      pt: {
+        title: 'Fábrica em Lauro de Freitas, entrega no Nordeste',
+        values: [
+          { title: 'Fabricante direto', text: 'Você compra de quem injeta a peça. Sem camada de distribuidor entre o preço e a obra.' },
+          { title: 'Desde 2012', text: `${anos} anos fornecendo para construtoras, fábricas de pré-moldados e lojas de material de construção.` },
+          { title: 'Produção regional', text: 'Produção na Bahia. Prazo de entrega medido em dias, não em semanas de frete vindo do Sudeste.' },
+          { title: 'Capacidade sob demanda', text: 'Além do catálogo, produzimos peça técnica sob projeto para outros setores.' },
+        ],
+      },
+      en: {
+        title: 'Factory in Lauro de Freitas, delivery across the Northeast',
+        values: [
+          { title: 'Direct manufacturer', text: 'You buy from whoever moulds the part. No distributor layer between the price and the job site.' },
+          { title: 'Since 2012', text: `${anos} years supplying construction companies, precast plants and building materials stores.` },
+          { title: 'Regional production', text: 'Production in Bahia. Delivery measured in days, not in weeks of freight coming from the Southeast.' },
+          { title: 'Capacity on demand', text: 'Beyond the catalogue, we produce technical parts to the client’s own design for other sectors.' },
+        ],
+      },
+      es: {
+        title: 'Fábrica en Lauro de Freitas, entrega en el Nordeste',
+        values: [
+          { title: 'Fabricante directo', text: 'Compras a quien inyecta la pieza. Sin capa de distribuidor entre el precio y la obra.' },
+          { title: 'Desde 2012', text: `${anos} años suministrando a constructoras, fábricas de prefabricados y tiendas de materiales de construcción.` },
+          { title: 'Producción regional', text: 'Producción en Bahía. Plazo de entrega medido en días, no en semanas de flete desde el Sudeste.' },
+          { title: 'Capacidad bajo demanda', text: 'Además del catálogo, producimos pieza técnica bajo proyecto del cliente para otros sectores.' },
+        ],
+      },
+    }[lang];
+
     const clients = {
       pt: { title: 'Empresas que utilizam nossos produtos', note: 'Construtoras, indústrias e distribuidores em toda a Bahia e no Brasil confiam nos produtos MARCANTI.' },
       en: { title: 'Companies that use our products', note: 'Construction companies, industries and distributors across Bahia and Brazil rely on MARCANTI products.' },
@@ -90,6 +123,8 @@ ${T.splitSection({ eyebrow: sust.eyebrow, title: sust.title, paragraphs: [sust.p
 ${T.splitSection({ eyebrow: espacadoresTeaser.eyebrow, title: espacadoresTeaser.title, paragraphs: espacadoresTeaser.p, img: 'corrosao-1.jpg', imgAlt: { pt: 'Armadura de aço corroída por cobrimento de concreto insuficiente', en: 'Steel reinforcement corroded by insufficient concrete cover', es: 'Armadura de acero corroída por recubrimiento de concreto insuficiente' }[lang], reverse: true, bg: true, ctaClass: 'btn-brand', cta: { href: T.url(lang, 'espacadores'), label: ui.learnMore[lang] } })}
 
 ${T.splitSection({ eyebrow: kitTeaser.eyebrow, title: kitTeaser.title, paragraphs: [kitTeaser.p], img: 'FOTO02-1-1.jpg', imgAlt: { pt: 'Componentes do kit de vedação Marcanti: chapéu, capa, anel de vedação e parafuso', en: 'MARCANTI sealing kit components: hat, cap, sealing ring and screw', es: 'Componentes del kit de sellado MARCANTI: sombrerete, capa, anillo de sellado y tornillo' }[lang], mediaClass: 'split-media-sm', ctaClass: 'btn-brand', cta: { href: T.url(lang, 'kit-vedacao'), label: ui.learnMore[lang] } })}
+
+${T.valueGrid({ title: porque.title, values: porque.values })}
 
 <section class="bg-light">
   <div class="container text-center">

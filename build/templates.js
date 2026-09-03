@@ -343,6 +343,25 @@ function productLd({ lang, meta, name, image, category, material }) {
   });
 }
 
+// Bloco de perguntas frequentes + FAQPage. O JSON-LD sai das mesmas perguntas
+// que aparecem na página: o Google exige que o conteúdo marcado esteja visível.
+function faqBlock({ title, items }) {
+  const html = items.map((it) => `<div class="faq-item"><h3>${it.q}</h3><p>${it.a}</p></div>`).join('');
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((it) => ({
+      '@type': 'Question',
+      name: it.q,
+      acceptedAnswer: { '@type': 'Answer', text: it.a },
+    })),
+  };
+  return `<div class="section-tight">
+    <h2>${title}</h2>
+    <div class="faq-list">${html}</div>
+  </div>${jsonLd(ld)}`;
+}
+
 function crumbs(lang, items) {
   // items: [{label, slug}] slug undefined for current (last) item
   const home = ui.home[lang];
@@ -552,5 +571,5 @@ module.exports = {
   icons, url, asset, page, renderImg,
   pageHero, crumbs, splitSection, cardGrid, stepGrid, valueGrid,
   galleryGrid, colorSwatches, infoBox, specTable, ctaBand, contactForm,
-  jsonLd, organizationLd, productLd,
+  jsonLd, organizationLd, productLd, faqBlock,
 };

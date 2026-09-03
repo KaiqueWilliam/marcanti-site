@@ -50,7 +50,7 @@ const lineLabel = {
 const productCategory = { pt: 'Espaçador para armadura de concreto', en: 'Spacer for concrete reinforcement', es: 'Separador para armadura de concreto' };
 const productMaterial = { pt: 'Plástico injetado', en: 'Injection-molded plastic', es: 'Plástico inyectado' };
 
-function productShell({ slug, crumbItems, eyebrow, h3, intro, sections, extraSections = [], schemaImage }) {
+function productShell({ slug, crumbItems, eyebrow, h3, intro, sections, extraSections = [], schemaImage, faq }) {
   return {
     slug,
     title: null, // set by caller
@@ -64,6 +64,7 @@ ${T.pageHero({ eyebrow: eyebrow[lang], title: h3[lang], subtitle: intro[lang], b
     ${T.crumbs(lang, crumbItems(lang))}
     ${sections.map((s) => s(lang)).join('')}
     ${extraSections.map((s) => s(lang)).join('')}
+    ${faq ? T.faqBlock({ title: ui.faqTitle[lang], items: faq[lang] }) : ''}
   </div>
 </section>
 ${T.ctaBand({ title: ui.receiveProposal[lang], lang })}`;
@@ -220,6 +221,26 @@ function makeCadeirinha(line) {
     en: ['Each model has two cover sizes, “A” and “B”, according to your needs.', 'It can be used with rebar of various gauges, up to 12.5mm.'],
     es: ['Cada modelo tiene dos tamaños de recubrimiento “A” y “B”, según tu necesidad.', 'Puede utilizarse en varillas de diferentes calibres, hasta 12,5 mm.'],
   };
+  const faq = {
+    pt: [
+      { q: 'Qual a diferença entre a cadeirinha e a cadeirinha pesado?', a: 'A cadeirinha (CD) atende bitolas até 16 mm em fundo de viga e laje. A cadeirinha pesado (CDP) é reforçada, suporta bitolas até 25 mm e é indicada para laje espessa, sapata e bloco de fundação.' },
+      { q: 'Os espaçadores encaixam entre si?', a: 'Sim. Todos os modelos da linha encaixam uns nos outros, o que permite montar cobrimentos combinados sem precisar de um modelo específico para cada altura de projeto.' },
+      { q: 'Quantas peças vêm por embalagem?', a: 'A quantidade varia conforme o modelo. Informe o modelo na cotação e enviamos a embalagem padrão junto com o preço.' },
+      { q: 'Vocês vendem para fora da Bahia?', a: 'Sim. Atendemos Bahia, Sergipe e demais estados do Nordeste.' },
+    ],
+    en: [
+      { q: 'What is the difference between the chair and the heavy chair spacer?', a: 'The chair spacer (CD) takes rebar up to 16 mm in beam soffits and slabs. The heavy chair (CDP) is reinforced, takes rebar up to 25 mm and is meant for thick slabs, footings and pile caps.' },
+      { q: 'Do the spacers interlock with each other?', a: 'Yes. Every model in the range clips into the others, which lets you build combined covers without needing a specific model for each design height.' },
+      { q: 'How many pieces come per pack?', a: 'The quantity varies by model. Tell us the model in your quote request and we will send the standard pack size along with the price.' },
+      { q: 'Do you sell outside Bahia?', a: 'Yes. We serve Bahia, Sergipe and the other states in the Brazilian Northeast.' },
+    ],
+    es: [
+      { q: '¿Cuál es la diferencia entre la silla y la silla pesada?', a: 'El separador silla (CD) admite varillas de hasta 16 mm en fondo de viga y losa. La silla pesada (CDP) es reforzada, admite varillas de hasta 25 mm y está indicada para losa gruesa, zapata y bloque de cimentación.' },
+      { q: '¿Los separadores encajan entre sí?', a: 'Sí. Todos los modelos de la línea encajan unos con otros, lo que permite montar recubrimientos combinados sin necesitar un modelo específico para cada altura de proyecto.' },
+      { q: '¿Cuántas piezas vienen por embalaje?', a: 'La cantidad varía según el modelo. Indica el modelo en la cotización y enviamos el embalaje estándar junto con el precio.' },
+      { q: '¿Venden fuera de Bahía?', a: 'Sí. Atendemos Bahía, Sergipe y los demás estados del Nordeste de Brasil.' },
+    ],
+  };
   return {
     ...productShell({
       slug: `${parentSlug}/cadeirinha-linha-${line}`,
@@ -232,6 +253,7 @@ function makeCadeirinha(line) {
       h3,
       intro: introCadeirinha,
       schemaImage: 'Design-sem-nome-cadeirinha.jpg',
+      faq,
       sections: [
         aboutSection({
           img: 'Design-sem-nome-cadeirinha.jpg',
