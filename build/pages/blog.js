@@ -50,11 +50,17 @@ const POSTS_META = [
   },
 ];
 
-function renderBlocks(blocks) {
+// Link interno contextual do post para a página de produto (auditoria 7).
+// No texto do post, [[slug|rótulo]] vira um <a> para a URL daquele idioma —
+// assim a marcação fica legível na fonte e a URL nunca sai errada.
+const linkTokens = (text, lang) =>
+  text.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, (_, slug, label) => `<a href="${T.url(lang, slug)}">${label}</a>`);
+
+function renderBlocks(blocks, lang) {
   return blocks.map((b) => {
-    if (b.type === 'p') return `<p>${b.text}</p>`;
-    if (b.type === 'ul') return `<ul class="icon-list">${b.items.map((i) => `<li>${i}</li>`).join('')}</ul>`;
-    if (b.type === 'h2') return `<h2>${b.text}</h2>`;
+    if (b.type === 'p') return `<p>${linkTokens(b.text, lang)}</p>`;
+    if (b.type === 'ul') return `<ul class="icon-list">${b.items.map((i) => `<li>${linkTokens(i, lang)}</li>`).join('')}</ul>`;
+    if (b.type === 'h2') return `<h2>${linkTokens(b.text, lang)}</h2>`;
     return '';
   }).join('');
 }
@@ -100,7 +106,7 @@ ${T.pageHero({ eyebrow: ui.ourBlog[lang], title: title[lang], bg: 'Quem-Somos.jp
   <div class="container">
     ${T.crumbs(lang, [{ label: ui.ourBlog[lang], slug: 'blog' }, { label: title[lang] }])}
     <div class="blog-post-body">
-      ${renderBlocks(blocks[lang])}
+      ${renderBlocks(blocks[lang], lang)}
       ${ctaHeading ? `<h2>${ctaHeading[lang]}</h2>` : ''}
       ${shareSection(lang, slug, title[lang])}
       ${recentPostsSection(lang, slug)}
@@ -158,39 +164,39 @@ const post1 = postShell({
   blocks: {
     pt: [
       { type: 'p', text: 'Os espaçadores de plástico têm um papel importante na sustentação e durabilidade das construções modernas. São componentes discretos, muitas vezes pequenos e de aparência simples, mas desempenham uma função crucial para garantir a qualidade e a integridade das estruturas.' },
-      { type: 'p', text: 'Os espaçadores de plástico são utilizados em diversos contextos na construção civil, mas são mais comumente empregados na montagem de armaduras em estruturas de concreto armado. Sua principal função é manter o espaçamento adequado entre as barras de aço que compõem a armadura, garantindo que elas estejam corretamente posicionadas em relação ao concreto circundante.' },
+      { type: 'p', text: 'Os [[espacadores|espaçadores de plástico]] são utilizados em diversos contextos na construção civil, mas são mais comumente empregados na montagem de armaduras em estruturas de concreto armado. Sua principal função é manter o espaçamento adequado entre as barras de aço que compõem a armadura, garantindo que elas estejam corretamente posicionadas em relação ao concreto circundante.' },
       { type: 'p', text: 'Além de sua função de suporte e espaçamento, esses dispositivos têm impacto direto na sustentabilidade das construções, e aqui estão alguns pontos importantes:' },
       { type: 'ul', items: [
         'Redução do consumo de aço: ao utilizar espaçadores, é possível garantir que a quantidade correta de aço seja utilizada em cada estrutura, evitando desperdícios. O uso eficiente dos recursos é uma prática essencial para tornar a indústria da construção mais sustentável.',
         'Durabilidade das estruturas: o correto posicionamento das armaduras com o auxílio dos espaçadores contribui para a durabilidade das construções. O concreto armado é vulnerável à corrosão das barras de aço, que pode ocorrer caso haja contato direto entre as barras e o concreto. Os espaçadores ajudam a evitar esse problema, aumentando a vida útil da estrutura.',
         'Eficiência energética: estruturas bem projetadas e executadas com o auxílio de espaçadores adequados podem resultar em edificações mais eficientes energeticamente, já que uma estrutura bem montada reduz as chances de problemas futuros, como vazamentos ou rachaduras.',
-        'Redução de resíduos: os espaçadores de plástico podem ser reutilizados em algumas situações, reduzindo a quantidade de resíduos de construção gerados. Além disso, os materiais plásticos utilizados na fabricação desses dispositivos podem ser reciclados.',
+        'Redução de resíduos: os espaçadores de plástico podem ser reutilizados em algumas situações, reduzindo a quantidade de resíduos de construção gerados. Além disso, os [[sustentabilidade|materiais plásticos utilizados na fabricação desses dispositivos podem ser reciclados]].',
         'Peso leve: o uso de espaçadores de plástico também facilita a logística da construção, uma vez que esses componentes são leves e fáceis de manusear, reduzindo o consumo de combustível durante o transporte.',
       ] },
       { type: 'p', text: 'Em resumo, os espaçadores de plástico desempenham um papel essencial na sustentação das construções, contribuindo para a durabilidade, eficiência energética e redução de resíduos. Ao serem utilizados de forma consciente e responsável, esses dispositivos ajudam a promover a construção de edificações mais sustentáveis e amigas do meio ambiente.' },
     ],
     en: [
       { type: 'p', text: 'Plastic spacers play an important role in the structural support and durability of modern buildings. They are discreet components, often small and simple-looking, yet they perform a crucial function in ensuring the quality and integrity of structures.' },
-      { type: 'p', text: 'Plastic spacers are used in various contexts in civil construction, but are most commonly employed in assembling reinforcement in reinforced concrete structures. Their main function is to maintain proper spacing between the steel bars that make up the reinforcement, ensuring they are correctly positioned relative to the surrounding concrete.' },
+      { type: 'p', text: '[[espacadores|Plastic spacers]] are used in various contexts in civil construction, but are most commonly employed in assembling reinforcement in reinforced concrete structures. Their main function is to maintain proper spacing between the steel bars that make up the reinforcement, ensuring they are correctly positioned relative to the surrounding concrete.' },
       { type: 'p', text: 'Besides their support and spacing function, these devices have a direct impact on the sustainability of buildings — here are some important points:' },
       { type: 'ul', items: [
         'Reduced steel consumption: by using spacers, it is possible to ensure the correct amount of steel is used in each structure, avoiding waste. Efficient use of resources is an essential practice for making the construction industry more sustainable.',
         'Structural durability: correctly positioning the reinforcement with the help of spacers contributes to the durability of buildings. Reinforced concrete is vulnerable to corrosion of the steel bars, which can occur if there is direct contact between the bars and the concrete. Spacers help prevent this problem, extending the structure’s service life.',
         'Energy efficiency: well-designed structures built with proper spacers can result in more energy-efficient buildings, since a well-assembled structure reduces the chances of future problems such as leaks or cracks.',
-        'Waste reduction: plastic spacers can be reused in some situations, reducing the amount of construction waste generated. In addition, the plastic materials used to manufacture these devices can be recycled.',
+        'Waste reduction: plastic spacers can be reused in some situations, reducing the amount of construction waste generated. In addition, the [[sustentabilidade|plastic materials used to manufacture these devices can be recycled]].',
         'Light weight: the use of plastic spacers also facilitates construction logistics, since these components are lightweight and easy to handle, reducing fuel consumption during transport.',
       ] },
       { type: 'p', text: 'In summary, plastic spacers play an essential role in supporting buildings, contributing to durability, energy efficiency and waste reduction. When used consciously and responsibly, these devices help promote the construction of more sustainable, environmentally friendly buildings.' },
     ],
     es: [
       { type: 'p', text: 'Los espaciadores de plástico cumplen un papel importante en la sustentación y durabilidad de las construcciones modernas. Son componentes discretos, muchas veces pequeños y de apariencia simple, pero desempeñan una función crucial para garantizar la calidad y la integridad de las estructuras.' },
-      { type: 'p', text: 'Los espaciadores de plástico se utilizan en diversos contextos de la construcción civil, pero se emplean más comúnmente en el montaje de armaduras en estructuras de concreto armado. Su función principal es mantener el espaciamiento adecuado entre las barras de acero que componen la armadura, garantizando que estén correctamente posicionadas respecto al concreto circundante.' },
+      { type: 'p', text: 'Los [[espacadores|espaciadores de plástico]] se utilizan en diversos contextos de la construcción civil, pero se emplean más comúnmente en el montaje de armaduras en estructuras de concreto armado. Su función principal es mantener el espaciamiento adecuado entre las barras de acero que componen la armadura, garantizando que estén correctamente posicionadas respecto al concreto circundante.' },
       { type: 'p', text: 'Además de su función de soporte y espaciamiento, estos dispositivos tienen un impacto directo en la sostenibilidad de las construcciones. Estos son algunos puntos importantes:' },
       { type: 'ul', items: [
         'Reducción del consumo de acero: al utilizar espaciadores, es posible garantizar que se use la cantidad correcta de acero en cada estructura, evitando desperdicios. El uso eficiente de los recursos es una práctica esencial para hacer más sostenible la industria de la construcción.',
         'Durabilidad de las estructuras: el correcto posicionamiento de las armaduras con la ayuda de los espaciadores contribuye a la durabilidad de las construcciones. El concreto armado es vulnerable a la corrosión de las barras de acero, que puede ocurrir si hay contacto directo entre las barras y el concreto. Los espaciadores ayudan a evitar este problema, aumentando la vida útil de la estructura.',
         'Eficiencia energética: estructuras bien diseñadas y ejecutadas con espaciadores adecuados pueden resultar en edificaciones más eficientes energéticamente, ya que una estructura bien montada reduce las posibilidades de problemas futuros, como filtraciones o grietas.',
-        'Reducción de residuos: los espaciadores de plástico pueden reutilizarse en algunas situaciones, reduciendo la cantidad de residuos de construcción generados. Además, los materiales plásticos utilizados en su fabricación pueden reciclarse.',
+        'Reducción de residuos: los espaciadores de plástico pueden reutilizarse en algunas situaciones, reduciendo la cantidad de residuos de construcción generados. Además, los [[sustentabilidade|materiales plásticos utilizados en su fabricación pueden reciclarse]].',
         'Peso ligero: el uso de espaciadores de plástico también facilita la logística de la construcción, ya que estos componentes son livianos y fáciles de manejar, reduciendo el consumo de combustible durante el transporte.',
       ] },
       { type: 'p', text: 'En resumen, los espaciadores de plástico desempeñan un papel esencial en la sustentación de las construcciones, contribuyendo a la durabilidad, la eficiencia energética y la reducción de residuos. Utilizados de forma consciente y responsable, estos dispositivos ayudan a promover la construcción de edificaciones más sostenibles y amigables con el medio ambiente.' },
@@ -213,8 +219,8 @@ const post2 = postShell({
       { type: 'p', text: 'Os espaçadores de plástico são elementos utilizados na construção civil para garantir a correta posição e distância entre elementos estruturais, como barras de aço ou armaduras, dentro de estruturas de concreto armado. Eles desempenham um papel fundamental na garantia da qualidade e durabilidade das construções.' },
       { type: 'p', text: 'Tipos comuns de espaçadores de plástico:' },
       { type: 'ul', items: [
-        'Espaçadores para armaduras verticais: são utilizados para manter as barras de aço em uma posição vertical correta, mantendo-as afastadas das formas de concreto durante a concretagem. Os principais utilizados são os Espaçadores Circular Aberto e Circular Fechado.',
-        'Espaçadores para armaduras horizontais: são usados para manter a distância adequada entre camadas de armadura em pisos ou lajes de concreto, evitando o surgimento de fissuras indesejadas. Alguns exemplos são os Espaçadores tipo Cadeirinha e Multiapoio.',
+        'Espaçadores para armaduras verticais: são utilizados para manter as barras de aço em uma posição vertical correta, mantendo-as afastadas das formas de concreto durante a concretagem. Os principais utilizados são os [[espacadores/linha-construcao/circular-aberto-linha-construcao|Espaçadores Circular Aberto]] e [[espacadores/linha-postes/circular-fechado-linha-postes|Circular Fechado]].',
+        'Espaçadores para armaduras horizontais: são usados para manter a distância adequada entre camadas de armadura em pisos ou lajes de concreto, evitando o surgimento de fissuras indesejadas. Alguns exemplos são os [[espacadores/linha-construcao/cadeirinha-linha-construcao|Espaçadores tipo Cadeirinha]] e [[espacadores/linha-construcao/espacadores-multiapoio-linha-construcao|Multiapoio]].',
         'Espaçadores para malhas de concreto: utilizados para posicionar adequadamente malhas de concreto, armaduras em forma de treliça usadas principalmente em pisos industriais e pavimentos. Os principais exemplos também são os Espaçadores tipo Cadeirinha e Multiapoio.',
       ] },
       { type: 'p', text: 'Aplicações específicas:' },
@@ -238,8 +244,8 @@ const post2 = postShell({
       { type: 'p', text: 'Plastic spacers are elements used in civil construction to ensure the correct position and distance between structural elements, such as steel bars or reinforcement, within reinforced concrete structures. They play a fundamental role in guaranteeing the quality and durability of buildings.' },
       { type: 'p', text: 'Common types of plastic spacers:' },
       { type: 'ul', items: [
-        'Spacers for vertical reinforcement: used to keep steel bars in a correct vertical position, keeping them away from the concrete formwork during pouring. The main ones used are the Open Circular and Closed Circular spacers.',
-        'Spacers for horizontal reinforcement: used to maintain proper distance between reinforcement layers in concrete floors or slabs, preventing unwanted cracks. Examples include the Chair-type and Multi-Support spacers.',
+        'Spacers for vertical reinforcement: used to keep steel bars in a correct vertical position, keeping them away from the concrete formwork during pouring. The main ones used are the [[espacadores/linha-construcao/circular-aberto-linha-construcao|Open Circular]] and [[espacadores/linha-postes/circular-fechado-linha-postes|Closed Circular]] spacers.',
+        'Spacers for horizontal reinforcement: used to maintain proper distance between reinforcement layers in concrete floors or slabs, preventing unwanted cracks. Examples include the [[espacadores/linha-construcao/cadeirinha-linha-construcao|Chair-type]] and [[espacadores/linha-construcao/espacadores-multiapoio-linha-construcao|Multi-Support]] spacers.',
         'Spacers for concrete mesh: used to properly position concrete mesh — truss-shaped reinforcement mainly used in industrial floors and pavements. The main examples are also the Chair-type and Multi-Support spacers.',
       ] },
       { type: 'p', text: 'Specific applications:' },
@@ -263,8 +269,8 @@ const post2 = postShell({
       { type: 'p', text: 'Los espaciadores de plástico son elementos utilizados en la construcción civil para garantizar la correcta posición y distancia entre elementos estructurales, como barras de acero o armaduras, dentro de estructuras de concreto armado. Cumplen un papel fundamental para garantizar la calidad y durabilidad de las construcciones.' },
       { type: 'p', text: 'Tipos comunes de espaciadores de plástico:' },
       { type: 'ul', items: [
-        'Espaciadores para armaduras verticales: se utilizan para mantener las barras de acero en una posición vertical correcta, manteniéndolas alejadas de los encofrados durante el vaciado. Los principales son los Espaciadores Circular Abierto y Circular Cerrado.',
-        'Espaciadores para armaduras horizontales: se usan para mantener la distancia adecuada entre capas de armadura en pisos o losas de concreto, evitando la aparición de fisuras no deseadas. Algunos ejemplos son los espaciadores tipo Silla y Multiapoyo.',
+        'Espaciadores para armaduras verticales: se utilizan para mantener las barras de acero en una posición vertical correcta, manteniéndolas alejadas de los encofrados durante el vaciado. Los principales son los [[espacadores/linha-construcao/circular-aberto-linha-construcao|Espaciadores Circular Abierto]] y [[espacadores/linha-postes/circular-fechado-linha-postes|Circular Cerrado]].',
+        'Espaciadores para armaduras horizontales: se usan para mantener la distancia adecuada entre capas de armadura en pisos o losas de concreto, evitando la aparición de fisuras no deseadas. Algunos ejemplos son los [[espacadores/linha-construcao/cadeirinha-linha-construcao|espaciadores tipo Silla]] y [[espacadores/linha-construcao/espacadores-multiapoio-linha-construcao|Multiapoyo]].',
         'Espaciadores para mallas de concreto: utilizados para posicionar adecuadamente mallas de concreto, armaduras en forma de celosía usadas principalmente en pisos industriales y pavimentos. Los principales ejemplos también son los espaciadores tipo Silla y Multiapoyo.',
       ] },
       { type: 'p', text: 'Aplicaciones específicas:' },
@@ -317,7 +323,7 @@ const post3 = postShell({
         'Durabilidade: quando bem fabricadas e instaladas, as telhas de PVC podem ter uma vida útil considerável, geralmente durando entre 20 e 25 anos, sem precisar de substituição.',
       ] },
       { type: 'p', text: 'Fonte: ABITELHA' },
-      { type: 'p', text: 'Quanto aos Kits de Vedação e Fixação, eles são extremamente importantes para garantir o bom desempenho e a durabilidade das telhas de PVC na cobertura. Esses kits geralmente incluem elementos como parafusos especiais, chapéu e calhas, que desempenham funções essenciais:' },
+      { type: 'p', text: 'Quanto aos [[kit-vedacao|Kits de Vedação e Fixação]], eles são extremamente importantes para garantir o bom desempenho e a durabilidade das telhas de PVC na cobertura. Esses kits geralmente incluem elementos como parafusos especiais, chapéu e calhas, que desempenham funções essenciais:' },
       { type: 'ul', items: [
         'Vedação: os kits de vedação ajudam a proteger o interior do telhado contra a entrada de água, poeira e outros elementos indesejados. São fundamentais para evitar vazamentos e infiltrações.',
         'Fixação adequada: os parafusos e outros componentes do kit de fixação são projetados para prender firmemente as telhas ao ripamento do telhado, garantindo que fiquem seguras mesmo em condições de ventos fortes.',
@@ -334,7 +340,7 @@ const post3 = postShell({
         'Durability: when well manufactured and installed, PVC tiles can have a considerable service life, typically lasting between 20 and 25 years without needing replacement.',
       ] },
       { type: 'p', text: 'Source: ABITELHA' },
-      { type: 'p', text: 'As for Sealing & Fixing Kits, they are extremely important to ensure the good performance and durability of PVC tiles on the roof. These kits generally include elements such as special screws, hat pieces and gutters, which perform essential functions:' },
+      { type: 'p', text: 'As for [[kit-vedacao|Sealing & Fixing Kits]], they are extremely important to ensure the good performance and durability of PVC tiles on the roof. These kits generally include elements such as special screws, hat pieces and gutters, which perform essential functions:' },
       { type: 'ul', items: [
         'Sealing: sealing kits help protect the inside of the roof against the entry of water, dust and other unwanted elements. They are essential to prevent leaks and infiltration.',
         'Proper fixing: the screws and other components of the fixing kit are designed to firmly attach the tiles to the roof battens, ensuring they stay secure even in strong wind conditions.',
@@ -351,7 +357,7 @@ const post3 = postShell({
         'Durabilidad: cuando están bien fabricadas e instaladas, las tejas de PVC pueden tener una vida útil considerable, generalmente entre 20 y 25 años, sin necesidad de sustitución.',
       ] },
       { type: 'p', text: 'Fuente: ABITELHA' },
-      { type: 'p', text: 'En cuanto a los Kits de Sellado y Fijación, son extremadamente importantes para garantizar el buen desempeño y la durabilidad de las tejas de PVC en la cubierta. Estos kits generalmente incluyen elementos como tornillos especiales, sombrerete y canaletas, que cumplen funciones esenciales:' },
+      { type: 'p', text: 'En cuanto a los [[kit-vedacao|Kits de Sellado y Fijación]], son extremadamente importantes para garantizar el buen desempeño y la durabilidad de las tejas de PVC en la cubierta. Estos kits generalmente incluyen elementos como tornillos especiales, sombrerete y canaletas, que cumplen funciones esenciales:' },
       { type: 'ul', items: [
         'Sellado: los kits de sellado ayudan a proteger el interior del techo contra la entrada de agua, polvo y otros elementos no deseados. Son fundamentales para evitar filtraciones.',
         'Fijación adecuada: los tornillos y otros componentes del kit de fijación están diseñados para sujetar firmemente las tejas al listonado del techo, garantizando que permanezcan seguras incluso con vientos fuertes.',
@@ -397,7 +403,7 @@ const post4 = postShell({
         'Concreto: uma cor mais neutra e que cai muito bem em ambientes modernos e em lugares mais frios.',
       ] },
       { type: 'p', text: 'É importante mencionar que as cores disponíveis podem variar entre diferentes marcas e regiões. Ao escolher a cor da telha, considere também o clima local, o design geral da construção e quaisquer restrições estabelecidas pelas normas locais de planejamento e construção.' },
-      { type: 'p', text: 'Também temos todos esses modelos e cores para o Kit de Vedação e Fixação para telhas de PVC. Faça logo a sua cotação!' },
+      { type: 'p', text: 'Também temos todos esses modelos e cores para o [[kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc|Kit de Vedação e Fixação para telhas de PVC]]. Faça logo a sua cotação!' },
     ],
     en: [
       { type: 'p', text: 'PVC (Polyvinyl Chloride) roof tiles are a popular roofing option due to their durability, light weight, ease of installation and weather resistance. They are commonly used in various types of construction, from residences to industrial and commercial facilities. Let’s explore some important aspects of their use, main models and colors.' },
@@ -418,7 +424,7 @@ const post4 = postShell({
         'Concrete: a more neutral color that looks great in modern settings and colder climates.',
       ] },
       { type: 'p', text: 'It’s worth noting that available colors may vary between different brands and regions. When choosing the tile color, also consider the local climate, the overall design of the building, and any restrictions set by local planning and building codes.' },
-      { type: 'p', text: 'We also carry all these models and colors for the Sealing & Fixing Kit for PVC roof tiles. Get your quote today!' },
+      { type: 'p', text: 'We also carry all these models and colors for the [[kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc|Sealing & Fixing Kit for PVC roof tiles]]. Get your quote today!' },
     ],
     es: [
       { type: 'p', text: 'Las tejas de PVC (Policloruro de Vinilo) son una opción popular para cubiertas debido a su durabilidad, ligereza, facilidad de instalación y resistencia a la intemperie. Se utilizan comúnmente en diversos tipos de construcciones, desde viviendas hasta instalaciones industriales y comerciales. Exploremos algunos aspectos importantes sobre su uso, principales modelos y colores.' },
@@ -439,7 +445,7 @@ const post4 = postShell({
         'Concreto: un color más neutro que combina muy bien en ambientes modernos y en lugares más fríos.',
       ] },
       { type: 'p', text: 'Es importante mencionar que los colores disponibles pueden variar entre diferentes marcas y regiones. Al elegir el color de la teja, considera también el clima local, el diseño general de la construcción y cualquier restricción establecida por las normas locales de planeamiento y construcción.' },
-      { type: 'p', text: 'También contamos con todos estos modelos y colores para el Kit de Sellado y Fijación para tejas de PVC. ¡Solicita ya tu cotización!' },
+      { type: 'p', text: 'También contamos con todos estos modelos y colores para el [[kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc|Kit de Sellado y Fijación para tejas de PVC]]. ¡Solicita ya tu cotización!' },
     ],
   },
 });
@@ -468,7 +474,7 @@ const post5 = postShell({
       { type: 'p', text: 'Controle de qualidade: as cocadinhas apresentam variações de tamanho, forma e resistência, uma vez que são produzidas de forma artesanal ou em pequenas fábricas. Essa falta de padronização dificulta o controle de qualidade e a garantia de que os espaçadores atendam aos requisitos estabelecidos.' },
       { type: 'p', text: 'Alternativas mais eficientes: existem no mercado uma variedade de espaçadores de concreto, principalmente espaçadores de plásticos, certificados e projetados de acordo com as normas técnicas, que oferecem melhor desempenho estrutural e garantem a qualidade da obra. Aqui na MARCANTI, esses espaçadores são produzidos em larga escala e passam por um rigoroso controle de qualidade, proporcionando mais confiabilidade e segurança para os nossos clientes!' },
       { type: 'p', text: 'Para não colocar sua obra em risco, você deve parar de usar as cocadinhas!' },
-      { type: 'p', text: 'Procure a MARCANTI e solicite agora mesmo seu orçamento dos espaçadores de plástico!' },
+      { type: 'p', text: 'Procure a MARCANTI e solicite agora mesmo seu orçamento dos [[espacadores|espaçadores de plástico]]!' },
       { type: 'p', text: 'Fonte: ABITELHA' },
     ],
     en: [
@@ -479,7 +485,7 @@ const post5 = postShell({
       { type: 'p', text: 'Quality control: cocadinhas show variations in size, shape and strength, since they are made by hand or in small workshops. This lack of standardization makes quality control difficult and hinders any guarantee that the spacers meet established requirements.' },
       { type: 'p', text: 'More efficient alternatives: the market offers a variety of concrete spacers — mainly plastic spacers — that are certified and designed according to technical standards, offering better structural performance and ensuring the quality of the work. Here at MARCANTI, these spacers are produced at scale and undergo rigorous quality control, providing greater reliability and safety for our clients!' },
       { type: 'p', text: 'To avoid putting your project at risk, you should stop using cocadinhas!' },
-      { type: 'p', text: 'Reach out to MARCANTI and request your plastic spacer quote right now!' },
+      { type: 'p', text: 'Reach out to MARCANTI and request your [[espacadores|plastic spacer]] quote right now!' },
       { type: 'p', text: 'Source: ABITELHA' },
     ],
     es: [
@@ -490,7 +496,7 @@ const post5 = postShell({
       { type: 'p', text: 'Control de calidad: las cocaditas presentan variaciones de tamaño, forma y resistencia, ya que se producen de forma artesanal o en pequeños talleres. Esta falta de estandarización dificulta el control de calidad y la garantía de que los espaciadores cumplan con los requisitos establecidos.' },
       { type: 'p', text: 'Alternativas más eficientes: en el mercado existe una variedad de espaciadores de concreto, principalmente espaciadores de plástico, certificados y diseñados conforme a las normas técnicas, que ofrecen mejor desempeño estructural y garantizan la calidad de la obra. Aquí en MARCANTI, estos espaciadores se producen a gran escala y pasan por un riguroso control de calidad, brindando más confiabilidad y seguridad a nuestros clientes.' },
       { type: 'p', text: '¡Para no poner en riesgo tu obra, debes dejar de usar las cocaditas!' },
-      { type: 'p', text: '¡Contacta a MARCANTI y solicita ahora mismo tu presupuesto de espaciadores de plástico!' },
+      { type: 'p', text: '¡Contacta a MARCANTI y solicita ahora mismo tu presupuesto de [[espacadores|espaciadores de plástico]]!' },
       { type: 'p', text: 'Fuente: ABITELHA' },
     ],
   },
