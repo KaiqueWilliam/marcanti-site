@@ -48,7 +48,54 @@ const POSTS_META = [
       es: '¡Deja de Usar los “Cocaditas” Ahora!',
     },
   },
+  {
+    slug: 'cobrimento-de-armadura-como-escolher-o-espacador',
+    img: 'Encaixe-Circula-01.jpg',
+    title: {
+      pt: 'Cobrimento de Armadura: Como Escolher o Espaçador Correto',
+      en: 'Concrete Cover: How to Choose the Right Spacer',
+      es: 'Recubrimiento de Armadura: Cómo Elegir el Separador Correcto',
+    },
+  },
+  {
+    slug: 'quantos-espacadores-por-m2-de-laje',
+    img: 'Aplicacao-Cadeirinha.jpg',
+    title: {
+      pt: 'Quantos Espaçadores Usar por m² de Laje',
+      en: 'How Many Spacers to Use per m² of Slab',
+      es: 'Cuántos Separadores Usar por m² de Losa',
+    },
+  },
+  {
+    slug: 'por-que-a-armadura-corroi',
+    img: 'corrosao-1.jpg',
+    title: {
+      pt: 'Por Que a Armadura Corrói — e o Que o Cobrimento Tem a Ver Com Isso',
+      en: 'Why Reinforcement Corrodes — and What Cover Has to Do With It',
+      es: 'Por Qué se Corroe la Armadura — y Qué Tiene que Ver el Recubrimiento',
+    },
+  },
+  {
+    slug: 'telha-de-pvc-vazando-no-parafuso',
+    img: 'Kit-Vedacao-Para-Telha-de-PVC-com-fixacao.jpg',
+    title: {
+      pt: 'Telha de PVC Vazando no Ponto do Parafuso: Causas e Solução',
+      en: 'PVC Roof Tile Leaking at the Screw: Causes and Solution',
+      es: 'Teja de PVC con Filtración en el Tornillo: Causas y Solución',
+    },
+  },
 ];
+
+// Slugs das páginas de destino, para os links dos posts não repetirem caminho
+// longo no meio do texto e quebrarem em silêncio se um slug mudar.
+const E = 'espacadores';
+const CA = 'espacadores/linha-construcao/circular-aberto-linha-construcao';
+const CD = 'espacadores/linha-construcao/cadeirinha-linha-construcao';
+const CDP = 'espacadores/cadeirinha-pesada';
+const MA = 'espacadores/linha-construcao/espacadores-multiapoio-linha-construcao';
+const K = 'kit-vedacao';
+const KF = 'kit-vedacao/kit-vedacao-e-fixacao-para-telha-de-pvc';
+const COC = 'blog/pare-agora-de-usar-as-cocadinhas';
 
 // Link interno contextual do post para a página de produto (auditoria 7).
 // No texto do post, [[slug|rótulo]] vira um <a> para a URL daquele idioma —
@@ -502,4 +549,373 @@ const post5 = postShell({
   },
 });
 
-module.exports = [index, post1, post2, post3, post4, post5];
+
+// ---------------- POST 6: COBRIMENTO ----------------
+const post6 = postShell({
+  slug: POSTS_META[5].slug,
+  title: POSTS_META[5].title,
+  seoTitle: {
+    pt: 'Cobrimento de Armadura e o Espaçador Correto',
+    en: 'Concrete Cover and the Right Spacer',
+    es: 'Recubrimiento de Armadura y el Separador Correcto',
+  },
+  img: POSTS_META[5].img,
+  description: {
+    pt: 'O que é cobrimento, quem define o valor e como traduzir esse número no modelo de espaçador certo para cada posição da armadura.',
+    en: 'What concrete cover is, who defines the value, and how to translate that number into the right spacer model for each rebar position.',
+    es: 'Qué es el recubrimiento, quién define el valor y cómo traducir ese número en el modelo de separador correcto para cada posición.',
+  },
+  ctaHeading: {
+    pt: 'Tem o cobrimento do projeto em mãos? Envie a lista e recebe a cotação.',
+    en: 'Have the cover from your design? Send us the list and get a quote.',
+    es: '¿Tienes el recubrimiento del proyecto? Envía la lista y recibe la cotización.',
+  },
+  blocks: {
+    pt: [
+      { type: 'p', text: 'Cobrimento é a distância entre a face externa da armadura e a superfície do concreto. É esse trecho de concreto que protege o aço — e é ele que o espaçador existe para garantir.' },
+      { type: 'h2', text: 'Quem define o cobrimento' },
+      { type: 'p', text: 'O valor não é escolha de obra: vem do projeto estrutural. A ABNT NBR 6118 estabelece cobrimentos mínimos em função da classe de agressividade ambiental do local e do tipo de elemento estrutural, e o projetista aplica esses mínimos ao dimensionar a peça. Consulte a norma e o projeto — não existe um número universal que sirva para toda obra.' },
+      { type: 'p', text: 'O que o canteiro decide é outra coisa: como fazer aquele cobrimento acontecer na prática, do primeiro ao último ponto da armadura. Aí entra o espaçador.' },
+      { type: 'h2', text: 'Do número do projeto ao modelo do espaçador' },
+      { type: 'p', text: 'Definido o cobrimento, faltam duas informações para escolher a peça: a posição da armadura e a bitola do aço.' },
+      { type: 'ul', items: [
+        'Armadura vertical — pilar, lateral de viga, poste, cortina de contenção. O espaçador precisa envolver ou abraçar a barra e apoiar na fôrma pela lateral. É o caso do [[' + CA + '|circular aberto]] e do circular fechado.',
+        'Armadura horizontal — fundo de viga, laje, piso. O espaçador precisa sustentar o peso da armadura por baixo, apoiado na fôrma. É o caso da [[' + CD + '|cadeirinha]] e do [[' + MA + '|multiapoio]].',
+        'Armadura horizontal pesada — laje espessa, sapata, bloco de fundação. A carga sobre cada ponto de apoio é maior e o modelo precisa ser reforçado, como a [[' + CDP + '|cadeirinha pesado]].',
+      ] },
+      { type: 'p', text: 'A bitola entra porque o encaixe do espaçador tem um limite: uma peça dimensionada para vergalhão fino não trava uma barra grossa, e o cobrimento deixa de ser garantido justamente onde a armadura é mais pesada.' },
+      { type: 'h2', text: 'Erros que aparecem na obra' },
+      { type: 'ul', items: [
+        'Usar sobra de argamassa no lugar do espaçador. A peça não tem dimensão controlada, absorve água e se desagrega no manuseio — [[' + COC + '|já tratamos disso em outro post]].',
+        'Escolher o modelo pelo cobrimento e esquecer a bitola. O espaçador até apoia, mas não trava a barra.',
+        'Espaçar demais os pontos de apoio. Entre um espaçador e outro a armadura cede, e o cobrimento medido no ponto de apoio não é o cobrimento real do vão.',
+        'Misturar cobrimentos na mesma peça. Se metade da laje está com 20 mm e metade com 30 mm, o projeto não foi cumprido em nenhuma das duas.',
+      ] },
+      { type: 'h2', text: 'A linha Marcanti em números' },
+      { type: 'p', text: 'Nossos [[' + E + '|espaçadores]] cobrem de 15 a 50 mm de cobrimento e bitolas de 4,2 a 25 mm, em modelos para armadura vertical e horizontal. Cada página de produto traz a tabela completa de medidas — modelo, dimensões e bitola máxima — para você conferir contra o projeto antes de pedir.' },
+    ],
+    en: [
+      { type: 'p', text: 'Concrete cover is the distance between the outer face of the reinforcement and the surface of the concrete. That layer of concrete is what protects the steel — and it is what the spacer exists to guarantee.' },
+      { type: 'h2', text: 'Who defines the cover' },
+      { type: 'p', text: 'The value is not a site decision: it comes from the structural design. In Brazil, ABNT NBR 6118 sets minimum covers according to the environmental aggressiveness class of the location and the type of structural element, and the designer applies those minimums when sizing the part. Check the standard and the design — there is no universal number that fits every job.' },
+      { type: 'p', text: 'What the site decides is a different thing: how to make that cover actually happen, from the first to the last point of the reinforcement. That is where the spacer comes in.' },
+      { type: 'h2', text: 'From the design number to the spacer model' },
+      { type: 'p', text: 'Once the cover is set, two pieces of information are still missing: the position of the reinforcement and the rebar gauge.' },
+      { type: 'ul', items: [
+        'Vertical reinforcement — column, beam side, pole, retaining wall. The spacer has to wrap or grip the bar and bear against the formwork sideways. That is the [[' + CA + '|open circular]] and the closed circular.',
+        'Horizontal reinforcement — beam soffit, slab, floor. The spacer has to carry the weight of the reinforcement from below, bearing on the formwork. That is the [[' + CD + '|chair]] and the [[' + MA + '|multi-support]].',
+        'Heavy horizontal reinforcement — thick slab, footing, pile cap. The load on each support point is higher and the model has to be reinforced, like the [[' + CDP + '|heavy chair]].',
+      ] },
+      { type: 'p', text: 'The gauge matters because the spacer clip has a limit: a part sized for thin rebar will not lock a thick bar, and the cover stops being guaranteed exactly where the reinforcement is heaviest.' },
+      { type: 'h2', text: 'Mistakes that show up on site' },
+      { type: 'ul', items: [
+        'Using leftover mortar instead of a spacer. The piece has no controlled dimension, absorbs water and crumbles in handling — [[' + COC + '|we covered that in another post]].',
+        'Choosing the model by cover and forgetting the gauge. The spacer holds the bar up, but does not lock it.',
+        'Spacing the support points too far apart. The reinforcement sags between spacers, and the cover measured at the support is not the real cover in the span.',
+        'Mixing covers in the same element. If half the slab is at 20 mm and half at 30 mm, the design was met in neither.',
+      ] },
+      { type: 'h2', text: 'The Marcanti range in numbers' },
+      { type: 'p', text: 'Our [[' + E + '|spacers]] cover 15 to 50 mm and rebar from 4.2 to 25 mm, in models for vertical and horizontal reinforcement. Every product page carries the full measurement table — model, dimensions and maximum gauge — so you can check it against the design before ordering.' },
+    ],
+    es: [
+      { type: 'p', text: 'El recubrimiento es la distancia entre la cara externa de la armadura y la superficie del concreto. Esa capa de concreto es la que protege el acero — y es la que el separador existe para garantizar.' },
+      { type: 'h2', text: 'Quién define el recubrimiento' },
+      { type: 'p', text: 'El valor no es decisión de obra: viene del proyecto estructural. En Brasil, la ABNT NBR 6118 establece recubrimientos mínimos según la clase de agresividad ambiental del lugar y el tipo de elemento estructural, y el proyectista aplica esos mínimos al dimensionar la pieza. Consulta la norma y el proyecto — no existe un número universal que sirva para toda obra.' },
+      { type: 'p', text: 'Lo que la obra decide es otra cosa: cómo hacer que ese recubrimiento ocurra en la práctica, del primero al último punto de la armadura. Ahí entra el separador.' },
+      { type: 'h2', text: 'Del número del proyecto al modelo de separador' },
+      { type: 'p', text: 'Definido el recubrimiento, faltan dos datos para elegir la pieza: la posición de la armadura y el calibre de la varilla.' },
+      { type: 'ul', items: [
+        'Armadura vertical — pilar, lateral de viga, poste, muro de contención. El separador necesita envolver o sujetar la barra y apoyar lateralmente en el encofrado. Es el caso del [[' + CA + '|circular abierto]] y del circular cerrado.',
+        'Armadura horizontal — fondo de viga, losa, piso. El separador necesita sostener el peso de la armadura por debajo, apoyado en el encofrado. Es el caso de la [[' + CD + '|silla]] y del [[' + MA + '|multiapoyo]].',
+        'Armadura horizontal pesada — losa gruesa, zapata, bloque de cimentación. La carga sobre cada punto de apoyo es mayor y el modelo necesita ser reforzado, como la [[' + CDP + '|silla pesada]].',
+      ] },
+      { type: 'p', text: 'El calibre importa porque el encaje del separador tiene un límite: una pieza dimensionada para varilla delgada no traba una barra gruesa, y el recubrimiento deja de estar garantizado justo donde la armadura es más pesada.' },
+      { type: 'h2', text: 'Errores que aparecen en obra' },
+      { type: 'ul', items: [
+        'Usar sobra de mortero en lugar del separador. La pieza no tiene dimensión controlada, absorbe agua y se desagrega al manipularla — [[' + COC + '|ya lo tratamos en otro post]].',
+        'Elegir el modelo por el recubrimiento y olvidar el calibre. El separador apoya, pero no traba la barra.',
+        'Separar demasiado los puntos de apoyo. Entre un separador y otro la armadura cede, y el recubrimiento medido en el apoyo no es el real del vano.',
+        'Mezclar recubrimientos en la misma pieza. Si media losa está con 20 mm y media con 30 mm, el proyecto no se cumplió en ninguna de las dos.',
+      ] },
+      { type: 'h2', text: 'La línea Marcanti en números' },
+      { type: 'p', text: 'Nuestros [[' + E + '|espaciadores]] cubren de 15 a 50 mm de recubrimiento y calibres de 4,2 a 25 mm, en modelos para armadura vertical y horizontal. Cada página de producto trae la tabla completa de medidas — modelo, dimensiones y calibre máximo — para verificar contra el proyecto antes de pedir.' },
+    ],
+  },
+});
+
+// ---------------- POST 7: QUANTOS ESPAÇADORES POR m² ----------------
+const post7 = postShell({
+  slug: POSTS_META[6].slug,
+  title: POSTS_META[6].title,
+  img: POSTS_META[6].img,
+  description: {
+    pt: 'Não existe número único: a quantidade depende da bitola, do peso da malha e do tipo de espaçador. Veja o que define o espaçamento entre apoios.',
+    en: 'There is no single number: quantity depends on rebar gauge, mesh weight and spacer type. Here is what actually sets the spacing between supports.',
+    es: 'No existe un número único: la cantidad depende del calibre, del peso de la malla y del tipo de separador. Qué define el espaciamiento entre apoyos.',
+  },
+  ctaHeading: {
+    pt: 'Descreva a laje na cotação que ajudamos a dimensionar a quantidade.',
+    en: 'Describe the slab in your quote request and we will help size the quantity.',
+    es: 'Describe la losa en la cotización y ayudamos a dimensionar la cantidad.',
+  },
+  blocks: {
+    pt: [
+      { type: 'p', text: 'É a pergunta mais comum na hora de comprar, e a resposta honesta é que não existe um número que sirva para toda laje. O que existe é um critério — e ele é simples de aplicar.' },
+      { type: 'h2', text: 'O critério: a armadura não pode ceder entre um apoio e outro' },
+      { type: 'p', text: 'O cobrimento que interessa não é o que você mede em cima do espaçador. É o menor cobrimento da peça inteira, que quase sempre está no meio do vão entre dois apoios, onde a armadura cede pelo próprio peso e pelo peso de quem anda sobre ela durante a concretagem.' },
+      { type: 'p', text: 'Se a malha visivelmente afunda entre dois espaçadores, o espaçamento está grande — independente de quantas peças por m² a conta deu.' },
+      { type: 'h2', text: 'O que muda a quantidade' },
+      { type: 'ul', items: [
+        'Bitola do aço. Barra fina é menos rígida e cede em vão menor. A mesma laje pede mais pontos de apoio com bitola fina do que com bitola grossa.',
+        'Peso da malha. Malha dupla ou com barras próximas carrega mais peso por metro quadrado sobre cada apoio.',
+        'Tipo de espaçador. A [[' + CD + '|cadeirinha]] apoia em um ponto. O [[' + MA + '|multiapoio]] tem 120 mm de comprimento e apoia em vários pontos ao longo dessa extensão, o que reduz o número de peças por metro.',
+        'Circulação durante a concretagem. Laje em que a equipe caminha sobre a armadura precisa de mais apoio do que laje concretada por bomba sem tráfego sobre a malha.',
+        'Rigidez da fôrma. Fôrma que flexiona sob carga muda o apoio do espaçador e, com ele, o cobrimento.',
+      ] },
+      { type: 'h2', text: 'Como decidir na prática' },
+      { type: 'p', text: 'Quem define o espaçamento é o projeto ou o engenheiro responsável, considerando esses fatores. O que dá para fazer no canteiro é conferir antes de concretar: monte um trecho, ande sobre ele como a equipe vai andar, e olhe o vão entre apoios. Se afundou, aproxime.' },
+      { type: 'p', text: 'Vale medir também nos pontos críticos — borda de laje, encontro com viga e região de maior circulação — em vez de medir só no meio de um pano tranquilo.' },
+      { type: 'h2', text: 'O erro que estraga a conta' },
+      { type: 'p', text: 'Usar peça de dimensão não controlada. Um espaçador que se desagrega no manuseio ou que varia de altura de uma peça para outra faz o cobrimento variar mesmo com o espaçamento certo — [[' + COC + '|é o problema das cocadinhas]].' },
+      { type: 'p', text: 'Nossos [[' + E + '|espaçadores]] têm altura controlada por injeção, e cada página de produto traz a tabela de medidas para você calcular em cima de valor conhecido.' },
+    ],
+    en: [
+      { type: 'p', text: 'It is the most common question at purchase time, and the honest answer is that there is no number that fits every slab. What exists is a criterion — and it is simple to apply.' },
+      { type: 'h2', text: 'The criterion: the reinforcement must not sag between supports' },
+      { type: 'p', text: 'The cover that matters is not the one you measure on top of the spacer. It is the smallest cover in the whole element, which is almost always at midspan between two supports, where the reinforcement sags under its own weight and under the weight of whoever walks on it during the pour.' },
+      { type: 'p', text: 'If the mesh visibly dips between two spacers, the spacing is too wide — no matter what the pieces-per-square-metre calculation said.' },
+      { type: 'h2', text: 'What changes the quantity' },
+      { type: 'ul', items: [
+        'Rebar gauge. A thin bar is less stiff and sags over a shorter span. The same slab needs more support points with thin rebar than with thick.',
+        'Mesh weight. A double mesh, or one with closely spaced bars, puts more weight per square metre on each support.',
+        'Spacer type. The [[' + CD + '|chair]] supports at one point. The [[' + MA + '|multi-support]] is 120 mm long and bears at several points along that length, which cuts the number of pieces per metre.',
+        'Foot traffic during the pour. A slab where the crew walks on the reinforcement needs more support than one poured by pump with no traffic on the mesh.',
+        'Formwork stiffness. Formwork that flexes under load changes how the spacer bears, and with it the cover.',
+      ] },
+      { type: 'h2', text: 'How to decide in practice' },
+      { type: 'p', text: 'The spacing is set by the design or the responsible engineer, weighing those factors. What the site can do is check before pouring: lay a stretch, walk on it the way the crew will, and look at the span between supports. If it dipped, bring them closer.' },
+      { type: 'p', text: 'It is also worth measuring at the critical points — slab edge, junction with the beam and the busiest area — instead of only in the middle of a quiet bay.' },
+      { type: 'h2', text: 'The mistake that ruins the calculation' },
+      { type: 'p', text: 'Using a piece with no controlled dimension. A spacer that crumbles in handling, or whose height varies from one piece to the next, makes the cover vary even with the right spacing — [[' + COC + '|that is the problem with mortar spacers]].' },
+      { type: 'p', text: 'Our [[' + E + '|spacers]] have injection-controlled height, and every product page carries the measurement table so you can calculate on a known value.' },
+    ],
+    es: [
+      { type: 'p', text: 'Es la pregunta más común a la hora de comprar, y la respuesta honesta es que no existe un número que sirva para toda losa. Lo que existe es un criterio — y es simple de aplicar.' },
+      { type: 'h2', text: 'El criterio: la armadura no puede ceder entre un apoyo y otro' },
+      { type: 'p', text: 'El recubrimiento que importa no es el que mides encima del separador. Es el menor recubrimiento de toda la pieza, que casi siempre está en el centro del vano entre dos apoyos, donde la armadura cede por su propio peso y por el de quien camina sobre ella durante el vaciado.' },
+      { type: 'p', text: 'Si la malla se hunde visiblemente entre dos separadores, el espaciamiento es grande — sin importar cuántas piezas por m² dio la cuenta.' },
+      { type: 'h2', text: 'Qué cambia la cantidad' },
+      { type: 'ul', items: [
+        'Calibre de la varilla. Una barra delgada es menos rígida y cede en un vano menor. La misma losa pide más puntos de apoyo con calibre delgado que con calibre grueso.',
+        'Peso de la malla. Una malla doble o con barras próximas carga más peso por metro cuadrado sobre cada apoyo.',
+        'Tipo de separador. La [[' + CD + '|silla]] apoya en un punto. El [[' + MA + '|multiapoyo]] tiene 120 mm de largo y apoya en varios puntos a lo largo de esa extensión, lo que reduce la cantidad de piezas por metro.',
+        'Circulación durante el vaciado. Una losa en la que el equipo camina sobre la armadura necesita más apoyo que una vaciada por bomba sin tránsito sobre la malla.',
+        'Rigidez del encofrado. Un encofrado que flexiona bajo carga cambia el apoyo del separador y, con él, el recubrimiento.',
+      ] },
+      { type: 'h2', text: 'Cómo decidir en la práctica' },
+      { type: 'p', text: 'Quien define el espaciamiento es el proyecto o el ingeniero responsable, considerando esos factores. Lo que se puede hacer en obra es verificar antes de vaciar: monta un tramo, camina sobre él como lo hará el equipo y observa el vano entre apoyos. Si se hundió, acércalos.' },
+      { type: 'p', text: 'Vale medir también en los puntos críticos — borde de losa, encuentro con la viga y zona de mayor circulación — en lugar de medir solo en el centro de un paño tranquilo.' },
+      { type: 'h2', text: 'El error que arruina la cuenta' },
+      { type: 'p', text: 'Usar una pieza sin dimensión controlada. Un separador que se desagrega al manipularlo, o cuya altura varía de una pieza a otra, hace variar el recubrimiento aun con el espaciamiento correcto — [[' + COC + '|es el problema de las cocaditas]].' },
+      { type: 'p', text: 'Nuestros [[' + E + '|espaciadores]] tienen altura controlada por inyección, y cada página de producto trae la tabla de medidas para calcular sobre un valor conocido.' },
+    ],
+  },
+});
+
+// ---------------- POST 8: POR QUE A ARMADURA CORRÓI ----------------
+const post8 = postShell({
+  slug: POSTS_META[7].slug,
+  title: POSTS_META[7].title,
+  seoTitle: {
+    pt: 'Por Que a Armadura Corrói e o Papel do Cobrimento',
+    en: 'Why Reinforcement Corrodes and the Role of Cover',
+    es: 'Por Qué se Corroe la Armadura y el Papel del Recubrimiento',
+  },
+  img: POSTS_META[7].img,
+  description: {
+    pt: 'O concreto protege o aço pela alcalinidade. Carbonatação e cloretos destroem essa proteção — e o cobrimento é o que decide em quanto tempo.',
+    en: 'Concrete protects steel through alkalinity. Carbonation and chlorides destroy that protection — and cover is what decides how long it takes.',
+    es: 'El concreto protege el acero por su alcalinidad. La carbonatación y los cloruros destruyen esa protección — el recubrimiento decide en cuánto tiempo.',
+  },
+  ctaHeading: {
+    pt: 'Garanta o cobrimento do projeto: solicite sua cotação.',
+    en: 'Deliver the cover your design calls for: request a quote.',
+    es: 'Garantiza el recubrimiento del proyecto: solicita tu cotización.',
+  },
+  blocks: {
+    pt: [
+      { type: 'p', text: 'Aço enferruja quando exposto a umidade e oxigênio. Dentro do concreto, não deveria enferrujar — e quando enferruja, quase sempre a causa está no cobrimento.' },
+      { type: 'h2', text: 'Por que o aço não corrói dentro do concreto' },
+      { type: 'p', text: 'O concreto é fortemente alcalino. Essa alcalinidade forma na superfície da barra uma película passivadora, uma camada muito fina que impede a reação de corrosão de avançar. Enquanto essa película existe, a armadura fica protegida mesmo em presença de umidade.' },
+      { type: 'p', text: 'A corrosão só começa quando alguma coisa destrói essa proteção. E são duas coisas, basicamente.' },
+      { type: 'h2', text: 'Carbonatação' },
+      { type: 'p', text: 'O gás carbônico do ar penetra pelos poros do concreto e reage com ele, reduzindo a alcalinidade. Essa reação avança de fora para dentro, como uma frente que caminha lentamente em direção à armadura. Quando a frente de carbonatação alcança a barra, a película passivadora se desfaz e a corrosão passa a ser possível.' },
+      { type: 'p', text: 'O cobrimento é exatamente a distância que essa frente precisa vencer. É por isso que ele não é detalhe de acabamento: é o que determina em quantos anos o problema chega até o aço.' },
+      { type: 'h2', text: 'Cloretos' },
+      { type: 'p', text: 'Em ambiente marinho — e boa parte da construção na Bahia é litorânea — há um segundo mecanismo. Os cloretos presentes no ar e na água do mar penetram no concreto e atacam a película passivadora localmente, sem precisar reduzir a alcalinidade do conjunto. A corrosão começa em pontos isolados e se aprofunda.' },
+      { type: 'p', text: 'Nos dois casos, quanto mais espesso e mais compacto o cobrimento, mais tempo o agente leva para chegar à barra.' },
+      { type: 'h2', text: 'Por que a corrosão se acelera sozinha' },
+      { type: 'p', text: 'O produto da corrosão ocupa mais volume que o aço que o originou. Essa expansão pressiona o concreto de dentro para fora, fissura o cobrimento e depois o desplaca. Com o concreto desplacado, a barra fica exposta direto ao ambiente e o processo, que era lento, passa a ser rápido.' },
+      { type: 'p', text: 'É o que se vê na foto acima: o cobrimento desplacado e a armadura à mostra, já com perda de seção.' },
+      { type: 'h2', text: 'Onde o cobrimento falha na prática' },
+      { type: 'ul', items: [
+        'Espaçamento grande demais entre apoios: a armadura cede no meio do vão e o cobrimento real fica menor que o de projeto.',
+        'Espaçador de dimensão não controlada, que varia de altura de uma peça para outra.',
+        'Espaçador que absorve água. Uma peça porosa em contato com a barra cria um caminho de umidade atravessando justamente a camada que deveria proteger.',
+        'Armadura encostada na fôrma em algum ponto, o que zera o cobrimento localmente.',
+      ] },
+      { type: 'p', text: 'Nossos [[' + E + '|espaçadores]] são injetados em plástico: não absorvem água, não se desagregam no manuseio e mantêm a mesma altura da primeira à última peça. Se você ainda está definindo o modelo, o [[blog/cobrimento-de-armadura-como-escolher-o-espacador|post sobre cobrimento]] mostra como traduzir o valor do projeto na peça certa.' },
+    ],
+    en: [
+      { type: 'p', text: 'Steel rusts when exposed to moisture and oxygen. Inside concrete, it should not — and when it does, the cause is almost always the cover.' },
+      { type: 'h2', text: 'Why steel does not corrode inside concrete' },
+      { type: 'p', text: 'Concrete is strongly alkaline. That alkalinity forms a passivating film on the surface of the bar, a very thin layer that stops the corrosion reaction from progressing. As long as that film exists, the reinforcement stays protected even in the presence of moisture.' },
+      { type: 'p', text: 'Corrosion only starts when something destroys that protection. And there are basically two things.' },
+      { type: 'h2', text: 'Carbonation' },
+      { type: 'p', text: 'Carbon dioxide from the air penetrates the pores of the concrete and reacts with it, lowering the alkalinity. That reaction advances from the outside in, like a front slowly moving towards the reinforcement. When the carbonation front reaches the bar, the passivating film breaks down and corrosion becomes possible.' },
+      { type: 'p', text: 'The cover is exactly the distance that front has to cross. That is why it is not a finishing detail: it is what determines how many years it takes for the problem to reach the steel.' },
+      { type: 'h2', text: 'Chlorides' },
+      { type: 'p', text: 'In a marine environment — and much of the construction in Bahia is coastal — there is a second mechanism. Chlorides present in sea air and water penetrate the concrete and attack the passivating film locally, without having to lower the alkalinity of the whole mass. Corrosion starts at isolated points and deepens.' },
+      { type: 'p', text: 'In both cases, the thicker and more compact the cover, the longer the agent takes to reach the bar.' },
+      { type: 'h2', text: 'Why corrosion accelerates on its own' },
+      { type: 'p', text: 'The product of corrosion takes up more volume than the steel it came from. That expansion presses the concrete from the inside out, cracks the cover and then spalls it. With the concrete spalled, the bar is exposed directly to the environment and the process, which was slow, becomes fast.' },
+      { type: 'p', text: 'That is what the photo above shows: spalled cover and exposed reinforcement, already losing section.' },
+      { type: 'h2', text: 'Where cover fails in practice' },
+      { type: 'ul', items: [
+        'Support points spaced too far apart: the reinforcement sags at midspan and the real cover ends up smaller than the design value.',
+        'A spacer with no controlled dimension, whose height varies from one piece to the next.',
+        'A spacer that absorbs water. A porous piece in contact with the bar creates a moisture path running straight through the layer that was meant to protect it.',
+        'Reinforcement touching the formwork at some point, which takes the cover to zero locally.',
+      ] },
+      { type: 'p', text: 'Our [[' + E + '|spacers]] are injection-moulded in plastic: they do not absorb water, do not crumble in handling and keep the same height from the first piece to the last. If you are still choosing the model, the [[blog/cobrimento-de-armadura-como-escolher-o-espacador|post on concrete cover]] shows how to translate the design value into the right part.' },
+    ],
+    es: [
+      { type: 'p', text: 'El acero se oxida cuando queda expuesto a humedad y oxígeno. Dentro del concreto no debería oxidarse — y cuando lo hace, la causa casi siempre está en el recubrimiento.' },
+      { type: 'h2', text: 'Por qué el acero no se corroe dentro del concreto' },
+      { type: 'p', text: 'El concreto es fuertemente alcalino. Esa alcalinidad forma en la superficie de la barra una película pasivadora, una capa muy delgada que impide que la reacción de corrosión avance. Mientras esa película existe, la armadura queda protegida incluso en presencia de humedad.' },
+      { type: 'p', text: 'La corrosión solo empieza cuando algo destruye esa protección. Y son básicamente dos cosas.' },
+      { type: 'h2', text: 'Carbonatación' },
+      { type: 'p', text: 'El dióxido de carbono del aire penetra por los poros del concreto y reacciona con él, reduciendo la alcalinidad. Esa reacción avanza de afuera hacia adentro, como un frente que camina lentamente hacia la armadura. Cuando el frente de carbonatación alcanza la barra, la película pasivadora se deshace y la corrosión pasa a ser posible.' },
+      { type: 'p', text: 'El recubrimiento es exactamente la distancia que ese frente tiene que vencer. Por eso no es un detalle de acabado: es lo que determina en cuántos años el problema llega al acero.' },
+      { type: 'h2', text: 'Cloruros' },
+      { type: 'p', text: 'En ambiente marino — y buena parte de la construcción en Bahía es costera — hay un segundo mecanismo. Los cloruros presentes en el aire y el agua de mar penetran en el concreto y atacan la película pasivadora localmente, sin necesidad de reducir la alcalinidad del conjunto. La corrosión empieza en puntos aislados y se profundiza.' },
+      { type: 'p', text: 'En ambos casos, cuanto más espeso y más compacto el recubrimiento, más tiempo tarda el agente en llegar a la barra.' },
+      { type: 'h2', text: 'Por qué la corrosión se acelera sola' },
+      { type: 'p', text: 'El producto de la corrosión ocupa más volumen que el acero que lo originó. Esa expansión presiona el concreto de adentro hacia afuera, fisura el recubrimiento y después lo desprende. Con el concreto desprendido, la barra queda expuesta directamente al ambiente y el proceso, que era lento, pasa a ser rápido.' },
+      { type: 'p', text: 'Es lo que se ve en la foto de arriba: el recubrimiento desprendido y la armadura a la vista, ya con pérdida de sección.' },
+      { type: 'h2', text: 'Dónde falla el recubrimiento en la práctica' },
+      { type: 'ul', items: [
+        'Espaciamiento demasiado grande entre apoyos: la armadura cede en el centro del vano y el recubrimiento real queda menor que el del proyecto.',
+        'Separador de dimensión no controlada, cuya altura varía de una pieza a otra.',
+        'Separador que absorbe agua. Una pieza porosa en contacto con la barra crea un camino de humedad que atraviesa justamente la capa que debería protegerla.',
+        'Armadura apoyada en el encofrado en algún punto, lo que anula el recubrimiento localmente.',
+      ] },
+      { type: 'p', text: 'Nuestros [[' + E + '|espaciadores]] son inyectados en plástico: no absorben agua, no se desagregan al manipularlos y mantienen la misma altura de la primera a la última pieza. Si aún estás definiendo el modelo, el [[blog/cobrimento-de-armadura-como-escolher-o-espacador|post sobre recubrimiento]] muestra cómo traducir el valor del proyecto en la pieza correcta.' },
+    ],
+  },
+});
+
+// ---------------- POST 9: TELHA DE PVC VAZANDO NO PARAFUSO ----------------
+const post9 = postShell({
+  slug: POSTS_META[8].slug,
+  title: POSTS_META[8].title,
+  seoTitle: {
+    pt: 'Telha de PVC Vazando no Parafuso: Causas e Solução',
+    en: 'PVC Tile Leaking at the Screw: Causes and Fix',
+    es: 'Teja de PVC con Filtración en el Tornillo: Solución',
+  },
+  img: POSTS_META[8].img,
+  description: {
+    pt: 'O furo do parafuso é o ponto fraco de qualquer telhado. No PVC, a dilatação térmica trabalha o furo. Causas comuns e como vedar de verdade.',
+    en: 'The screw hole is the weak point of any roof. In PVC, thermal expansion works the hole open. Common causes and how to seal it properly.',
+    es: 'El orificio del tornillo es el punto débil de cualquier techo. En PVC, la dilatación térmica trabaja el orificio. Causas y cómo sellarlo.',
+  },
+  ctaHeading: {
+    pt: 'Precisa resolver a vedação? Solicite sua cotação do kit.',
+    en: 'Need to fix the sealing? Request a quote for the kit.',
+    es: '¿Necesitas resolver el sellado? Solicita tu cotización del kit.',
+  },
+  blocks: {
+    pt: [
+      { type: 'p', text: 'Telhado que goteja quase nunca vaza pelo meio da telha. Vaza no furo — o único lugar onde alguém abriu a cobertura de propósito para passar o parafuso.' },
+      { type: 'h2', text: 'Por que o PVC agrava o problema' },
+      { type: 'p', text: 'O PVC tem coeficiente de dilatação térmica alto. Uma telha exposta ao sol se expande durante o dia e contrai à noite, e essa movimentação é maior que a de outros materiais de cobertura. O parafuso, fixado na estrutura, não acompanha. O resultado é que a telha trabalha contra o parafuso, ciclo após ciclo, e o furo vai abrindo.' },
+      { type: 'p', text: 'Por isso uma vedação que funcionou no primeiro mês pode falhar depois de uma estação: não é o material da vedação que necessariamente falhou, é o furo que aumentou.' },
+      { type: 'h2', text: 'As causas mais comuns' },
+      { type: 'ul', items: [
+        'Furo maior que o necessário. Broca acima do diâmetro do parafuso deixa folga que nenhuma arruela cobre bem depois que a telha começa a trabalhar.',
+        'Parafuso na parte baixa da onda. É por ali que a água escorre. O ponto de fixação tem que ficar na crista.',
+        'Arruela de borracha genérica. Sem proteção contra o sol, endurece e trinca. É a peça que costuma falhar primeiro.',
+        'Aperto excessivo. Apertar até deformar a telha em volta do furo cria um ponto de tensão permanente, e a trinca aparece a partir dele.',
+        'Cabeça do parafuso exposta. Sem uma peça cobrindo, a cabeça acumula água e a folga fica sempre em contato com ela.',
+        'Adaptação com massa ou silicone. Resolve por uma temporada e depois descola, porque a telha continua se movendo e a massa não.',
+      ] },
+      { type: 'h2', text: 'Como vedar de verdade' },
+      { type: 'p', text: 'A solução é usar uma peça projetada para o ponto de fixação, em vez de improvisar em cima dele. O [[' + K + '|kit de vedação]] da Marcanti trabalha em três partes: a capa distribui a pressão do aperto numa área maior, em vez de concentrar em volta do furo; o anel de vedação fecha a passagem; e o chapéu cobre a cabeça do parafuso, tirando ela do contato direto com a água.' },
+      { type: 'p', text: 'Como as peças são injetadas para essa função, a vedação continua fechada enquanto a telha se movimenta, que é exatamente o que a adaptação improvisada não consegue fazer.' },
+      { type: 'h2', text: 'Na hora de instalar' },
+      { type: 'ul', items: [
+        'Fure na crista da onda, nunca na parte baixa.',
+        'Use broca compatível com o parafuso, sem folga extra.',
+        'Aperte até a vedação assentar, sem deformar a telha.',
+        'Escolha a cor do kit conforme a telha — cerâmica, marfim, branco ou concreto.',
+      ] },
+      { type: 'p', text: 'Se a fixação for feita junto com a vedação, o [[' + KF + '|kit com parafuso incluso]] já traz o conjunto completo, com parafuso de 2,5 ou 3,5 polegadas conforme o modelo da telha.' },
+    ],
+    en: [
+      { type: 'p', text: 'A dripping roof almost never leaks through the middle of the tile. It leaks at the hole — the one place where someone deliberately opened the covering to pass a screw through.' },
+      { type: 'h2', text: 'Why PVC makes the problem worse' },
+      { type: 'p', text: 'PVC has a high coefficient of thermal expansion. A tile in the sun expands during the day and contracts at night, and that movement is greater than in other roofing materials. The screw, fixed to the structure, does not follow. The result is that the tile works against the screw, cycle after cycle, and the hole gradually opens up.' },
+      { type: 'p', text: 'That is why a seal that worked in the first month can fail after one season: it is not necessarily the sealing material that failed, it is the hole that got bigger.' },
+      { type: 'h2', text: 'The most common causes' },
+      { type: 'ul', items: [
+        'A hole larger than needed. A drill bit above the screw diameter leaves a gap that no washer covers well once the tile starts moving.',
+        'Screw in the valley of the wave. That is where the water runs. The fastening point has to be on the crest.',
+        'A generic rubber washer. With no protection from the sun it hardens and cracks. It is usually the first part to fail.',
+        'Over-tightening. Tightening until the tile deforms around the hole creates a permanent stress point, and the crack starts from there.',
+        'Exposed screw head. With nothing covering it, the head collects water and the gap stays in permanent contact with it.',
+        'Patching with mortar or silicone. It holds for a season and then peels off, because the tile keeps moving and the patch does not.',
+      ] },
+      { type: 'h2', text: 'How to seal it properly' },
+      { type: 'p', text: 'The fix is to use a part designed for the fastening point instead of improvising over it. The Marcanti [[' + K + '|sealing kit]] works in three parts: the cap spreads the tightening pressure over a wider area instead of concentrating it around the hole; the sealing ring closes the passage; and the hat covers the screw head, taking it out of direct contact with water.' },
+      { type: 'p', text: 'Because the parts are moulded for that job, the seal stays closed while the tile moves — which is exactly what an improvised patch cannot do.' },
+      { type: 'h2', text: 'When installing' },
+      { type: 'ul', items: [
+        'Drill on the crest of the wave, never in the valley.',
+        'Use a bit matched to the screw, with no extra clearance.',
+        'Tighten until the seal seats, without deforming the tile.',
+        'Choose the kit colour to match the tile — ceramic, ivory, white or concrete.',
+      ] },
+      { type: 'p', text: 'If the fixing is done together with the sealing, the [[' + KF + '|kit with the screw included]] comes as a complete set, with a 2.5 or 3.5 inch screw depending on the tile model.' },
+    ],
+    es: [
+      { type: 'p', text: 'Un techo que gotea casi nunca filtra por el medio de la teja. Filtra en el orificio — el único lugar donde alguien abrió la cubierta a propósito para pasar el tornillo.' },
+      { type: 'h2', text: 'Por qué el PVC agrava el problema' },
+      { type: 'p', text: 'El PVC tiene un coeficiente de dilatación térmica alto. Una teja expuesta al sol se expande durante el día y se contrae de noche, y ese movimiento es mayor que el de otros materiales de cubierta. El tornillo, fijado a la estructura, no lo acompaña. El resultado es que la teja trabaja contra el tornillo, ciclo tras ciclo, y el orificio se va abriendo.' },
+      { type: 'p', text: 'Por eso un sellado que funcionó el primer mes puede fallar después de una temporada: no es necesariamente el material del sellado el que falló, es el orificio que se agrandó.' },
+      { type: 'h2', text: 'Las causas más comunes' },
+      { type: 'ul', items: [
+        'Orificio mayor que el necesario. Una broca por encima del diámetro del tornillo deja holgura que ninguna arandela cubre bien una vez que la teja empieza a trabajar.',
+        'Tornillo en la parte baja de la onda. Es por ahí donde escurre el agua. El punto de fijación tiene que quedar en la cresta.',
+        'Arandela de goma genérica. Sin protección contra el sol, se endurece y se agrieta. Suele ser la primera pieza en fallar.',
+        'Apriete excesivo. Apretar hasta deformar la teja alrededor del orificio crea un punto de tensión permanente, y la grieta empieza ahí.',
+        'Cabeza del tornillo expuesta. Sin una pieza que la cubra, la cabeza acumula agua y la holgura queda siempre en contacto con ella.',
+        'Parche con masilla o silicona. Aguanta una temporada y después se despega, porque la teja sigue moviéndose y el parche no.',
+      ] },
+      { type: 'h2', text: 'Cómo sellar de verdad' },
+      { type: 'p', text: 'La solución es usar una pieza diseñada para el punto de fijación, en lugar de improvisar sobre él. El [[' + K + '|kit de sellado]] de Marcanti trabaja en tres partes: la capa distribuye la presión del apriete en un área mayor, en lugar de concentrarla alrededor del orificio; el anillo de sellado cierra el paso; y el sombrerete cubre la cabeza del tornillo, sacándola del contacto directo con el agua.' },
+      { type: 'p', text: 'Como las piezas están inyectadas para esa función, el sellado sigue cerrado mientras la teja se mueve, que es exactamente lo que la adaptación improvisada no consigue hacer.' },
+      { type: 'h2', text: 'A la hora de instalar' },
+      { type: 'ul', items: [
+        'Perfora en la cresta de la onda, nunca en la parte baja.',
+        'Usa una broca compatible con el tornillo, sin holgura extra.',
+        'Aprieta hasta que el sellado asiente, sin deformar la teja.',
+        'Elige el color del kit según la teja — cerámica, marfil, blanco o concreto.',
+      ] },
+      { type: 'p', text: 'Si la fijación se hace junto con el sellado, el [[' + KF + '|kit con tornillo incluido]] ya trae el conjunto completo, con tornillo de 2,5 o 3,5 pulgadas según el modelo de la teja.' },
+    ],
+  },
+});
+
+
+module.exports = [index, post1, post2, post3, post4, post5, post6, post7, post8, post9];

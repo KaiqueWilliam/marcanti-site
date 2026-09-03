@@ -4,7 +4,7 @@ Documento de rastreamento. Base: `Marcanti_Auditoria_Site_Copy_SEO` (25/08/2026)
 feita sobre o site WordPress/Elementor antigo. **Este repositório é a recriação
 estática** que substitui aquele site — as correções entram nos fontes em
 `build/data/site.js`, `build/templates.js` e `build/pages/*.js`, e o site é
-regerado com `node build/build.js` (30 páginas × 3 idiomas = 90 arquivos).
+regerado com `node build/build.js` (34 páginas × 3 idiomas = 102 arquivos).
 
 Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído · `[--]` não se aplica a este repo
 
@@ -109,7 +109,7 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 - [ ] `/injecao-plastica-terceirizada/` — Injeção plástica terceirizada (audit 4.8)
 - [ ] `/obrigado/` — agradecimento pós-formulário (audit 4.10)
 - [ ] Página regional "Espaçadores plásticos em Salvador e região" (audit 10)
-- [ ] 4 posts de blog (NBR 6118, espaçadores por m², corrosão, telha PVC vazando) (audit 10)
+- [x] **4 posts de blog** da pauta → Etapa 16: cobrimento e escolha do espaçador, quantos por m² de laje, por que a armadura corrói, telha de PVC vazando no parafuso. 414–462 palavras cada, nos 3 idiomas, com link contextual para produto. **Escritos sem reproduzir valores da NBR 6118** (o post explica o conceito e remete à norma) e sem número inventado de consumo por m² (audit 10)
 
 ---
 
@@ -135,6 +135,7 @@ Convenção de status: `[ ]` aberto · `[~]` em andamento · `[x]` concluído ·
 | 2026-09-03 | 4 | Auditoria 3.3: 6 tabelas de medida transcritas das imagens do catálogo para `<table>` HTML (`T.specTable`) nas 7 páginas de produto × 3 idiomas; desenho técnico mantido como diagrama com `alt`. Validado: 84/84 OK (1 H1, sem skips, tabelas balanceadas). | `build/data/spec-tables.js` (novo), `build/templates.js`, `build/pages/espacadores.js`, `assets/css/style.css` |
 | 2026-09-03 | 5 | Auditoria 3.4: `imgAlt`/`alt` em `splitSection`/`galleryGrid`; ~30 imagens de produto/kit/cliente/aplicação com alt descritivo nos 3 idiomas (cada foto inspecionada). Nenhuma imagem quebrada no repo. Validado: 0 `<img>` sem alt em 84/84. | `build/templates.js`, `build/pages/espacadores.js`, `build/pages/kit-vedacao.js`, `build/pages/main.js` |
 | 2026-09-03 | 6 | Auditoria 3.5 (parcial): rodapé não promete mais "indústria automobilística" (texto genérico). Missão/visão, "quatro máquinas" e "reciclável vs reciclada" ficam bloqueados nas decisões da seção 9 (#1, #2, #4). | `build/data/site.js` |
+| 2026-09-03 | 16 | Auditoria seção 10: os 4 posts da pauta escritos nos 3 idiomas (12 páginas novas), 414–462 palavras cada, com H2, listas e link contextual para as páginas de produto. Sem valores normativos e sem consumo por m² inventado. Validado: 102/102 íntegras, 525 links internos sem quebra. | `build/pages/blog.js` |
 | 2026-09-03 | 15 | Auditoria 7 e 8: link interno contextual do blog para as páginas de produto (mecanismo de token `[[slug\|rótulo]]`, 9 links nos 5 posts × 3 idiomas). Verificado que o item "converter imagens para WebP" já estava resolvido no repo (76% de economia medida), sem mudança necessária. Validado: 90/90 íntegras, 387 links internos sem quebra. | `build/pages/blog.js` |
 | 2026-09-03 | 14 | Auditoria seções 6 e 10: página regional `/espacadores-plasticos-salvador/` nos 3 idiomas (público-alvo por segmento, Região Metropolitana, FAQ com `FAQPage`, CTAs para os hubs). Novo `footerExtra` a linka de todas as páginas, mais link contextual no hub. Validado: 90/90 íntegras, títulos e descriptions dentro do limite e únicos. | `build/pages/main.js`, `build/data/site.js`, `build/templates.js`, `build/pages/espacadores.js` |
 | 2026-09-03 | 13 | Auditoria 4.5 e 4.1: bloco de perguntas frequentes nas duas páginas de cadeirinha + `FAQPage` (helper `T.faqBlock`, com a checagem de que toda pergunta marcada está visível); bloco "por que comprar da Marcanti" na home, com os anos desde 2012 calculados para o texto não envelhecer. Validado: 87/87 íntegras, 96 blocos JSON-LD. | `build/templates.js`, `build/data/site.js`, `build/pages/espacadores.js`, `build/pages/main.js`, `assets/css/style.css` |
