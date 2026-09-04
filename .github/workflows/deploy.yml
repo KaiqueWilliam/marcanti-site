@@ -81,6 +81,22 @@ jobs:
           # pra começar). Depois de validar algumas rodadas, dá pra adicionar
           # --delete acima se quiser espelho exato.
 
+      - name: "Diagnóstico: conferir o que ficou de fato no servidor"
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PORT: ${{ vars.SSH_PORT || 22 }}
+          REMOTE_DIR: ${{ vars.REMOTE_DIR }}
+        run: |
+          ssh -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new "$SSH_USERNAME@$SSH_HOST" '
+            echo "--- HOME real do usuário SSH ---"; echo "$HOME"; pwd
+            echo "--- REMOTE_DIR usado no rsync: '"$REMOTE_DIR"' ---"
+            echo "--- conteúdo de ~/ (raiz) ---"; ls -la ~/ | head -30
+            echo "--- conteúdo do REMOTE_DIR ---"; ls -la '"$REMOTE_DIR"' 2>&1 | head -30
+            echo "--- pt/blog/index.html: data de modificação ---"; stat '"$REMOTE_DIR"'pt/blog/index.html 2>&1
+            echo "--- o post novo existe aí? ---"; ls -la '"$REMOTE_DIR"'pt/blog/cobrimento-de-armadura-como-escolher-o-espacador/ 2>&1
+          '
+
       - name: Limpar chave SSH e agente
         if: always()
         run: |
