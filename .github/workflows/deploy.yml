@@ -35,20 +35,30 @@ jobs:
       - name: Gerar pt/ en/ es/ (node build/build.js)
         run: node build/build.js
 
-      - name: Configurar chave SSH
+      - name: Configurar ssh-agent com a chave (destrava a senha uma vez)
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KEY_PASSPHRASE: ${{ secrets.SSH_KEY_PASSPHRASE }}
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
-      - name: "Diagnóstico: chave pública correspondente à privada salva"
-        run: |
-          echo "Compare esta chave pública com a que está 'authorized' no cPanel:"
-          ssh-keygen -y -f ~/.ssh/deploy_key || echo "FALHOU AO LER A CHAVE — arquivo corrompido/mal formatado."
-          echo "Fingerprint:"
-          ssh-keygen -lf ~/.ssh/deploy_key
+          # Script "askpass": quando o ssh-add pedir a senha da chave, ele
+          # chama esse script em vez de tentar abrir um terminal (que não
+          # existe no runner). printf em vez de heredoc pra não arriscar
+          # indentação quebrando o shebang da primeira linha.
+          printf '#!/bin/sh\necho "$SSH_KEY_PASSPHRASE"\n' > /tmp/askpass.sh
+          chmod +x /tmp/askpass.sh
+
+          eval "$(ssh-agent -s)"
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> "$GITHUB_ENV"
+
+          # SSH_ASKPASS_REQUIRE=force obriga o ssh-add a usar o script acima
+          # em vez de tentar abrir um prompt de terminal (testado localmente).
+          SSH_ASKPASS=/tmp/askpass.sh SSH_ASKPASS_REQUIRE=force ssh-add ~/.ssh/deploy_key < /dev/null
+          ssh-add -l
 
       - name: Publicar via rsync/SSH na HostGator
         env:
@@ -58,7 +68,7 @@ jobs:
           REMOTE_DIR: ${{ vars.REMOTE_DIR }}
         run: |
           rsync -avzr \
-            -e "ssh -v -p $SSH_PORT -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" \
+            -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=accept-new" \
             --exclude='.git/' --exclude='.git*' --exclude='.github/' \
             --exclude='node_modules/' --exclude='build/' \
             --exclude='backup-imagens/' --exclude='backup-imagens.zip' \
@@ -71,6 +81,8 @@ jobs:
           # pra começar). Depois de validar algumas rodadas, dá pra adicionar
           # --delete acima se quiser espelho exato.
 
-      - name: Limpar chave SSH
+      - name: Limpar chave SSH e agente
         if: always()
-        run: rm -f ~/.ssh/deploy_key
+        run: |
+          rm -f ~/.ssh/deploy_key /tmp/askpass.sh
+          ssh-agent -k || true
