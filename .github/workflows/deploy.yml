@@ -1,0 +1,52 @@
+name: Deploy para HostGator
+
+# Roda automaticamente a cada push na main (exceto quando só mexe em
+# documentação, que não faz parte do site publicado). Também pode ser
+# disparado manualmente na aba Actions do GitHub, útil para testar.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "AUDITORIA-PROGRESSO.md"
+      - ".github/**"
+  workflow_dispatch:
+
+# Evita duas publicações rodando ao mesmo tempo (ex.: dois pushes seguidos).
+concurrency:
+  group: deploy-hostgator
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Gerar pt/ en/ es/ (node build/build.js)
+        run: node build/build.js
+
+      - name: Publicar via rsync/SSH na HostGator
+        uses: easingthemes/ssh-deploy@v5.1.1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          REMOTE_PORT: ${{ vars.SSH_PORT || 22 }}
+          SOURCE: "./"
+          TARGET: ${{ vars.REMOTE_DIR }}
+          # Sem --delete de propósito: sobe/atualiza arquivos, mas não apaga
+          # nada que já esteja no servidor e não esteja no repo (mais seguro
+          # pra começar). Depois de validar algumas rodadas, dá pra trocar
+          # ARGS para "-avzr --delete" se quiser espelho exato.
+          ARGS: "-avzr"
+          EXCLUDE: ".git/, .git*, .github/, node_modules/, build/, backup-imagens/, backup-imagens.zip, *.zip, README.md, AUDITORIA-PROGRESSO.md, package.json, package-lock.json"
